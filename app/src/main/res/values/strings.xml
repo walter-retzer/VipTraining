@@ -2,4 +2,14 @@
     <string name="app_name">VipTraining</string>
     <string name="todos_podem_treinar">Todos Podem Treinar!</string>
     <string name="vip_training">VipTraining</string>
+    <string name="objetivo">Qual é o seu objetivo?</string>
+    <string name="sub_objetivo">Nós iremos te ajudar a montar os melhores treinos</string>
+    <string name="proximo">Próximo</string>
+    <string name="entendi">Entendi</string>
+    <string name="forma">Melhorar a forma</string>
+    <string name="sub_forma">Possuímos o treino certo para ajudar a melhorar a forma física em pouco tempo.</string>
+    <string name="otimize">Otimize seu Treino</string>
+    <string name="sub_otimize">Temos diversos tipos de treino que te ajudam a gerenciar seus exercícios de uma forma dinâmica.</string>
+    <string name="metas">Suas Metas</string>
+    <string name="sub_metas">Podemos ajudá-lo a determinar seus objetivos e acompanhar suas metas.</string>
 </resources>

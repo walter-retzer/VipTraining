@@ -7,4 +7,18 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
+    <style name="Button_Style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">30dp</item>
+        <item name="android:layout_marginRight">30dp</item>
+        <item name="android:layout_marginTop">15dp</item>
+        <item name="android:layout_marginBottom">25dp</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:background">@drawable/button</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
+
  </resources>

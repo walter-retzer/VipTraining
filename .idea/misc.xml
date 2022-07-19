@@ -3,7 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/button.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/default_dot.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/selected_dot.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/seletor.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_fragment_onboarding.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_onboarding_screen.xml" value="0.25" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding.xml" value="0.2359375" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding1.xml" value="0.25" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding2.xml" value="0.2359375" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding3.xml" value="0.2359375" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>

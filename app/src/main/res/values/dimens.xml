@@ -1,0 +1,4 @@
+<resources>
+    <dimen name="viewpager_next_item_visible">10dp</dimen>
+    <dimen name="viewpager_current_item_horizontal_margin">20dp</dimen>
+</resources>
