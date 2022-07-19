@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">VipTraining</string>
+    <string name="todos_podem_treinar">Todos Podem Treinar!</string>
+    <string name="vip_training">VipTraining</string>
 </resources>
