@@ -12,9 +12,11 @@
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_fragment_onboarding.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_input_text.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_account.xml" value="0.185" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_calendar.xml" value="0.185" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_lock.xml" value="0.2415" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_login.xml" value="0.2415" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_create_user_account.xml" value="0.25" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_insert_training.xml" value="0.4" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_onboarding_screen.xml" value="0.25" />

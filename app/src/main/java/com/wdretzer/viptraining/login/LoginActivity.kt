@@ -11,6 +11,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.wdretzer.viptraining.MainActivity
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
+import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -84,7 +85,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Autenticando Login...", Toast.LENGTH_LONG).show()
                     Handler().postDelayed({
                         progressBar.isVisible = false
-                        val intent = Intent(this, MainActivity::class.java)
+                        val intent = Intent(this, InsertTrainingActivity::class.java)
                         startActivity(intent)
                     }, 2000)
 
