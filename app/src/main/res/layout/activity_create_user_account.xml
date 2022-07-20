@@ -8,27 +8,11 @@
     tools:context=".createaccount.CreateUserAccountActivity">
 
     <TextView
-        android:id="@+id/text_title_account"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:background="@android:color/transparent"
-        android:elevation="3dp"
-        android:text="@string/cabecalho_login"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="18sp"
-        android:textStyle="normal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
         android:id="@+id/text_subtitle_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="25dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
@@ -39,8 +23,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_account" />
-
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/account_name"
@@ -78,41 +61,6 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/account_last_name"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:background="@drawable/background_input_text"
-        android:hint="@string/sobrenome"
-        android:imeOptions="actionNext"
-        android:padding="5dp"
-        android:textColorHint="@color/grey_dark"
-        android:theme="@style/AppTheme"
-        app:boxStrokeColor="@android:color/transparent"
-        app:endIconMode="clear_text"
-        app:endIconTint="@color/grey_dark"
-        app:hintTextColor="@color/grey_dark"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_name"
-        app:startIconDrawable="@drawable/icon_account"
-        app:startIconTint="@color/grey_dark">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_last_name_account"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            android:inputType="textEmailAddress"
-            android:maxLength="50"
-            android:textColor="@color/grey_dark" />
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/account_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
@@ -132,7 +80,7 @@
         app:hintTextColor="@color/grey_dark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_last_name"
+        app:layout_constraintTop_toBottomOf="@+id/account_name"
         app:startIconDrawable="@drawable/icon_email"
         app:startIconTint="@color/grey_dark">
 
@@ -156,7 +104,7 @@
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
         android:background="@drawable/background_input_text"
-        android:hint="@string/password"
+        android:hint="@string/senha"
         android:imeOptions="actionNext"
         android:padding="5dp"
         android:textColorHint="@color/grey_dark"
@@ -178,7 +126,42 @@
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:inputType="numberPassword"
-            android:maxLength="50"
+            android:maxLength="6"
+            android:textColor="@color/grey_dark" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/account_confirm_password"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/background_input_text"
+        android:hint="@string/confirme_a_senha"
+        android:imeOptions="actionNext"
+        android:padding="5dp"
+        android:textColorHint="@color/grey_dark"
+        android:theme="@style/AppTheme"
+        app:boxStrokeColor="@android:color/transparent"
+        app:endIconMode="password_toggle"
+        app:endIconTint="@color/grey_dark"
+        app:hintTextColor="@color/grey_dark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/account_password"
+        app:startIconDrawable="@drawable/icon_lock"
+        app:startIconTint="@color/grey_dark">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/input_confirm_password"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:inputType="numberPassword"
+            android:maxLength="6"
             android:textColor="@color/grey_dark" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -196,7 +179,7 @@
         android:textStyle="normal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/account_password" />
+        app:layout_constraintTop_toBottomOf="@+id/account_confirm_password" />
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_create_account"

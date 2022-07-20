@@ -8,11 +8,14 @@ import android.widget.*
 import androidx.core.view.isVisible
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.auth.FirebaseAuth
+import com.wdretzer.viptraining.MainActivity
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
 
 
 class LoginActivity : AppCompatActivity() {
+
+    private lateinit var auth: FirebaseAuth
 
     private val textEmail: EditText
         get() = findViewById(R.id.input_email_login)
@@ -35,21 +38,20 @@ class LoginActivity : AppCompatActivity() {
     private val progressBar: FrameLayout
         get() = findViewById(R.id.progress_bar_login)
 
-    private lateinit var auth: FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         auth = FirebaseAuth.getInstance()
-        btnLogin.setOnClickListener { checkDados() }
+        btnLogin.setOnClickListener { checkInfoFromFields() }
         btnGoogle.setOnClickListener { sendToCreateAccount() }
         btnFacebook.setOnClickListener { sendToCreateAccount() }
         forgotPassword.setOnClickListener { sendToCreateAccount() }
     }
 
 
-    private fun checkDados() {
+    private fun checkInfoFromFields() {
         progressBar.isVisible = true
 
         if ((textEmail.text?.isEmpty() == true) || (textPassword.text?.isEmpty() == true)) {
@@ -79,8 +81,12 @@ class LoginActivity : AppCompatActivity() {
         )
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-
                     Toast.makeText(this, "Autenticando Login...", Toast.LENGTH_LONG).show()
+                    Handler().postDelayed({
+                        progressBar.isVisible = false
+                        val intent = Intent(this, MainActivity::class.java)
+                        startActivity(intent)
+                    }, 2000)
 
                 } else {
                     Toast.makeText(
@@ -92,6 +98,7 @@ class LoginActivity : AppCompatActivity() {
                 }
             }
     }
+
 
     private fun sendToCreateAccount() {
         Handler().postDelayed({

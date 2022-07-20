@@ -29,7 +29,7 @@ class CreateUserAccountActivity : AppCompatActivity() {
         get() = findViewById(R.id.input_password_login)
 
     private val textPasswordConfirm: EditText
-        get() = findViewById(R.id.input_password_login)
+        get() = findViewById(R.id.input_confirm_password)
 
     private val btnCreateAccount: Button
         get() = findViewById(R.id.btn_create_account)
