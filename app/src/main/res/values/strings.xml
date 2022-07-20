@@ -22,4 +22,8 @@
     <string name="account">Ainda não tem uma conta?</string>
     <string name="registre">Registre-se</string>
     <string name="cadastre">Cadastre-se</string>
+    <string name="account_create">Criando uma Conta</string>
+    <string name="conta">Já possui uma conta ?</string>
+    <string name="nome">Nome</string>
+    <string name="sobrenome">Sobrenome</string>
 </resources>

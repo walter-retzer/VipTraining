@@ -1,15 +1,15 @@
 package com.wdretzer.viptraining.login
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.EditText
-import android.widget.FrameLayout
-import android.widget.TextView
-import android.widget.Toast
+import android.os.Handler
+import android.widget.*
 import androidx.core.view.isVisible
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.firebase.auth.FirebaseAuth
 import com.wdretzer.viptraining.R
+import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -29,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
     private val btnFacebook: ShapeableImageView
         get() = findViewById(R.id.btn_icon_facebook)
 
-    private val btnLogin: ShapeableImageView
+    private val btnLogin: Button
         get() = findViewById(R.id.btn_login)
 
     private val progressBar: FrameLayout
@@ -43,9 +43,9 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         btnLogin.setOnClickListener { checkDados() }
-        btnGoogle.setOnClickListener { }
-        btnFacebook.setOnClickListener { }
-        forgotPassword.setOnClickListener { }
+        btnGoogle.setOnClickListener { sendToCreateAccount() }
+        btnFacebook.setOnClickListener { sendToCreateAccount() }
+        forgotPassword.setOnClickListener { sendToCreateAccount() }
     }
 
 
@@ -91,5 +91,12 @@ class LoginActivity : AppCompatActivity() {
                     progressBar.isVisible = false
                 }
             }
+    }
+
+    private fun sendToCreateAccount() {
+        Handler().postDelayed({
+            val intent = Intent(this, CreateUserAccountActivity::class.java)
+            startActivity(intent)
+        }, 2000)
     }
 }
