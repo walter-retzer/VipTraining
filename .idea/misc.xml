@@ -5,9 +5,15 @@
       <map>
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/button.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/default_dot.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/icon_email.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/selected_dot.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/seletor.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_button_login.xml" value="0.185" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_fragment_onboarding.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_input_text.xml" value="0.2225" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_lock.xml" value="0.2415" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_login.xml" value="0.2415" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_onboarding_screen.xml" value="0.25" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding.xml" value="0.2359375" />

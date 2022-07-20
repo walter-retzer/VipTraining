@@ -9,6 +9,7 @@ import com.wdretzer.nasaprojetointegrador.util.CustomPageTransformer
 import com.wdretzer.nasaprojetointegrador.util.HorizontalMarginItemDecoration
 import com.wdretzer.viptraining.MainActivity
 import com.wdretzer.viptraining.R
+import com.wdretzer.viptraining.login.LoginActivity
 
 
 class OnboardingScreenActivity : AppCompatActivity() {
@@ -49,7 +50,7 @@ class OnboardingScreenActivity : AppCompatActivity() {
 
     private fun checkButton() {
         buttonNext.setOnClickListener {
-            startActivity(Intent(this, MainActivity::class.java))
+            startActivity(Intent(this, LoginActivity::class.java))
             finish()
         }
     }
