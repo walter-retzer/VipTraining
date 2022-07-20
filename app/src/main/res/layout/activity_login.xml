@@ -44,17 +44,17 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_email"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:theme="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="25dp"
         android:layout_marginEnd="15dp"
-        android:padding="5dp"
         android:background="@drawable/background_input_text"
         android:hint="@string/email"
         android:imeOptions="actionNext"
+        android:padding="5dp"
         android:textColorHint="@color/grey_dark"
+        android:theme="@style/AppTheme"
         app:boxStrokeColor="@android:color/transparent"
         app:endIconMode="clear_text"
         app:endIconTint="@color/grey_dark"
@@ -69,9 +69,9 @@
             android:id="@+id/input_email_login"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="textEmailAddress"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
+            android:inputType="textEmailAddress"
             android:maxLength="50"
             android:textColor="@color/grey_dark" />
     </com.google.android.material.textfield.TextInputLayout>
@@ -80,17 +80,17 @@
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/login_password"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:theme="@style/AppTheme"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginStart="15dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="15dp"
-        android:padding="5dp"
         android:background="@drawable/background_input_text"
         android:hint="@string/password"
         android:imeOptions="actionNext"
+        android:padding="5dp"
         android:textColorHint="@color/grey_dark"
+        android:theme="@style/AppTheme"
         app:boxStrokeColor="@android:color/transparent"
         app:endIconMode="password_toggle"
         app:endIconTint="@color/grey_dark"
@@ -131,11 +131,11 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_login"
         style="@style/Button_Style"
+        android:layout_marginBottom="220dp"
         android:drawableStart="@drawable/icon_login"
         android:paddingStart="100dp"
         android:paddingEnd="100dp"
         android:text="@string/login"
-        android:layout_marginBottom="220dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -143,12 +143,12 @@
     <View
         android:id="@+id/line_or"
         android:layout_width="match_parent"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="30dp"
         android:layout_height="1dp"
-        android:padding="5dp"
-        android:background="@color/sand2"
+        android:layout_marginStart="30dp"
         android:layout_marginTop="30dp"
+        android:layout_marginEnd="30dp"
+        android:background="@color/sand2"
+        android:padding="5dp"
         app:layout_constraintEnd_toEndOf="@+id/btn_login"
         app:layout_constraintStart_toStartOf="@+id/btn_login"
         app:layout_constraintTop_toBottomOf="@+id/btn_login" />
@@ -158,16 +158,16 @@
         android:layout_width="40dp"
         android:layout_height="30dp"
         android:layout_marginStart="25dp"
-        android:layout_marginBottom="-20dp"
         android:layout_marginEnd="25dp"
+        android:layout_marginBottom="-20dp"
         android:background="@color/white"
         android:text="@string/ou"
         android:textAlignment="center"
         android:textColor="@color/grey"
         android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/line_or"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="@+id/line_or"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/btn_icon_google"
@@ -197,8 +197,8 @@
         android:id="@+id/text_new_account"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:layout_marginStart="40dp"
+        android:layout_marginBottom="40dp"
         android:background="@android:color/transparent"
         android:elevation="3dp"
         android:text="@string/account"
@@ -206,15 +206,15 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/text_register"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
         android:layout_marginStart="5dp"
+        android:layout_marginBottom="40dp"
         android:background="@android:color/transparent"
         android:elevation="3dp"
         android:text="@string/cadastre"
@@ -222,7 +222,26 @@
         android:textColor="@color/violet"
         android:textSize="16sp"
         android:textStyle="normal"
-        app:layout_constraintStart_toEndOf="@+id/text_new_account"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/text_new_account" />
+
+    <FrameLayout
+        android:id="@+id/progress_bar_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:elevation="3dp"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "512742890323",
+    "project_id": "viptraining-eaeb6",
+    "storage_bucket": "viptraining-eaeb6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:512742890323:android:04376912b136d74073dfa6",
+        "android_client_info": {
+          "package_name": "com.wdretzer.viptraining"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "512742890323-sk5hp50os0fgc0pr69f1gv67e7ap3qd4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBv8FUGo0uHeSw1whkkvqMLZztnj9Y6cGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "512742890323-sk5hp50os0fgc0pr69f1gv67e7ap3qd4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
