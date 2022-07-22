@@ -32,4 +32,28 @@
     <string name="date">Qua, 27 Jul 2022.</string>
     <string name="salvar">Salvar</string>
     <string name="detalhe_do_treinamento">Detalhe do Treinamento</string>
+    <string name="treinamento">Escolha o Treinamento</string>
+    <string name="exercicios">Exercícios</string>
+    <string name="imagens_do_treino">Imagens do Treino</string>
+    <string name="observation">Minhas Observações</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="minha_meta">Minha meta</string>
+    <string name="emagrecer">Abaixo nós apresentamos algumas opções de treino de musculação para emagrecer que você poderá seguir.</string>
+    <string name="title_activity_choose_training">ChooseTrainingActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="incluir">Incluir</string>
+
+    <string-array name="training_types">
+        <item>Perda de Peso</item>
+        <item>Melhorar a forma Física</item>
+        <item>Sair do Sedentarismo</item>
+        <item>Ganhar Músculos</item>
+    </string-array>
 </resources>

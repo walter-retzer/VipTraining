@@ -41,6 +41,9 @@ class CreateUserAccountActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_create_user_account)
 
+        // Desabilita a Action Bar que exibe o nome do Projeto:
+        supportActionBar?.hide()
+
         auth = FirebaseAuth.getInstance()
         btnCreateAccount.setOnClickListener { cadastrarDados() }
     }

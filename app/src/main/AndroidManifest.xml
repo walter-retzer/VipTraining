@@ -14,17 +14,21 @@
         android:theme="@style/Theme.VipTraining"
         tools:targetApi="31">
         <activity
+            android:name=".choosetraining.ChooseExerciseActivity"
+            android:exported="false" />
+        <activity
             android:name=".inserttraining.InsertTrainingActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:exported="false" />
+        <activity
+            android:name=".choosetraining.ChooseTrainingActivity"
+            android:windowSoftInputMode="stateVisible|adjustResize|adjustPan"
+            android:exported="false" />
         <activity
             android:name=".createaccount.CreateUserAccountActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".login.LoginActivity"
-            android:exported="false"
-            android:theme="@style/AppTheme.NoActionBar" />
+            android:exported="false" />
         <activity
             android:name=".onboarding.OnboardingScreenActivity"
             android:exported="false"
@@ -36,7 +40,8 @@
         <activity
             android:name=".splashscreen.SplashScreenActivity"
             android:exported="true"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar"
+            android:windowSoftInputMode="stateVisible|adjustResize|adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

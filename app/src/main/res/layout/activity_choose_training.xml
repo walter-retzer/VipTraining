@@ -5,14 +5,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".inserttraining.InsertTrainingActivity">
+    tools:context=".choosetraining.ChooseTrainingActivity">
 
     <TextView
         android:id="@+id/text_insert_training"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="25dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="25dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
@@ -30,6 +30,7 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
         android:background="@color/white"
         android:scaleType="fitCenter"
         app:contentPadding="15dp"
@@ -53,20 +54,68 @@
         app:layout_constraintStart_toEndOf="@+id/icon_date"
         app:layout_constraintTop_toTopOf="@+id/icon_date" />
 
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/view_pager_insert_training"
-        android:layout_width="0dp"
-        android:layout_marginTop="8dp"
+    <TextView
+        android:id="@+id/text_details_training"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="18dp"
+        android:background="@android:color/transparent"
+        android:elevation="2dp"
+        android:text="@string/detalhe_do_treinamento"
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon_date" />
+
+    <ImageView
+        android:id="@+id/image_choose_training"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginTop="15dp"
+        android:paddingTop="0dp"
+        android:scaleType="fitCenter"
+        android:src="@drawable/img_1_fragment_onboarding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_date_training" />
+        app:layout_constraintTop_toBottomOf="@+id/text_details_training" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/workout_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="30dp"
+        android:hint="@string/treinamento"
+        android:textColorHint="@color/grey_dark"
+        app:startIconDrawable="@drawable/icon_exercise"
+        app:startIconTint="@color/black"
+        app:boxBackgroundColor="@color/sand"
+        app:boxStrokeColor="@color/blue_light"
+        app:endIconTint="@color/black"
+        app:hintTextColor="@color/blue_light"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/image_choose_training"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCircle">
+
+        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+            android:id="@+id/input_name_workout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:inputType="none"
+            android:textColor="@color/grey_dark" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_insert"
+        android:id="@+id/btn_next_info"
         style="@style/Button_Style"
         android:layout_marginBottom="30dp"
-        android:text="@string/incluir"
+        android:text="@string/proximo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

@@ -15,8 +15,11 @@
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_calendar.xml" value="0.185" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_lock.xml" value="0.2415" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/icon_login.xml" value="0.2415" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_choose_exercise.xml" value="0.25416666666666665" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_choose_training.xml" value="0.15104166666666666" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_choose_training2.xml" value="0.24010416666666667" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_create_user_account.xml" value="0.25" />
-        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_insert_training.xml" value="0.4" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_insert_training.xml" value="0.2" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_login.xml" value="0.264" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_onboarding_screen.xml" value="0.25" />
@@ -25,6 +28,9 @@
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding1.xml" value="0.25" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding2.xml" value="0.2359375" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding3.xml" value="0.2359375" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_second.xml" value="0.25416666666666665" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_training_type1.xml" value="0.25416666666666665" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/list_item.xml" value="0.253125" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
     </option>
