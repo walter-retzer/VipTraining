@@ -4,14 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
 import android.widget.Button
 import android.widget.Toast
 import androidx.appcompat.widget.AppCompatAutoCompleteTextView
-import androidx.core.content.ContextCompat.startActivity
-import com.google.android.material.textfield.TextInputEditText
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
 import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
 
 
@@ -38,7 +34,6 @@ class ChooseTrainingActivity : AppCompatActivity() {
         // create an array adapter and pass the required parameter
         val arrayAdapter = ArrayAdapter(this, R.layout.list_item, languages)
         textWorkoutList.setAdapter(arrayAdapter)
-
 
     }
 
@@ -73,9 +68,5 @@ class ChooseTrainingActivity : AppCompatActivity() {
             putExtra("Number", trainingNumber)
         }
         startActivity(intent)
-    }
-
-    companion object {
-
     }
 }

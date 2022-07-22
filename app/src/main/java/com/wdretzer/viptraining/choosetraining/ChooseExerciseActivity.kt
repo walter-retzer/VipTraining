@@ -3,6 +3,7 @@ package com.wdretzer.viptraining.choosetraining
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
@@ -13,9 +14,10 @@ import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.datafirebase.ExerciseData
 import com.wdretzer.viptraining.datafirebase.FirestoreData
+import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
-import com.wdretzer.viptraining.splashscreen.SplashScreenActivity
-import java.time.LocalDate
+import java.util.*
+import kotlin.math.absoluteValue
 
 
 class ChooseExerciseActivity : AppCompatActivity() {
@@ -37,8 +39,6 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
     var setNumberTraining: Int? = null
     var setNameTraining: String? = null
-
-    //var listExercise: MutableList<ExerciseData>? = null
     var listExercise = mutableListOf<ExerciseData>()
     var exercise1: ExerciseData? = null
     var exercise2: ExerciseData? = null
@@ -51,63 +51,52 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
-
         checkBundle()
 
         btnNext.setOnClickListener {
-            checkBundle()
-            insertDataOnFirestore()
+
+            if (checkBox1.isChecked || checkBox2.isChecked || checkBox3.isChecked || checkBox4.isChecked) {
+                checkBundle()
+                insertDataOnFirestore()
+                sendToReadFirestore()
+            } else {
+                Toast.makeText(
+                    this,
+                    "Por favor selecione ao menos 1 exercicio!",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
         }
     }
 
-//    private fun check() {
-//        if (checkBox1.isChecked) {
-//
-//            listExercise.add(exercise1!!)
-//        }
-//        if (checkBox2.isChecked) {
-//            listExercise.add(exercise2!!)
-//        }
-//        if (checkBox3.isChecked) {
-//            listExercise.add(exercise3!!)
-//        }
-//        if (checkBox4.isChecked) {
-//            listExercise.add(exercise4!!)
-//        }
-//
-//        Toast.makeText(
-//            this,
-//            "List: $listExercise",
-//            Toast.LENGTH_LONG
-//        ).show()
-//
-//        Log.d("List", "List $listExercise")
-//    }
 
     private fun insertDataOnFirestore() {
-
         val db = Firebase.firestore
-        val trainingDocumentRef = db.collection("treino").document("exercicios")
+        val training = db.collection("Treino")
+        val dateTime: Date = Calendar.getInstance().time
 
-        val timeFirebase = Timestamp.now()
+        val documentFirestore =
+            FirestoreData(setNumberTraining, setNameTraining, Timestamp.now(), listExercise)
 
-        val data = FirestoreData(0, "Treino Master", timeFirebase, listExercise)
-
-        trainingDocumentRef.collection("treino")
-            .add(data)
+        training.document(Timestamp.now().toString()).set(documentFirestore)
             .addOnSuccessListener { documentReference ->
-                Log.d("Firebase", "DocumentSnapshot added with ID: ${documentReference.id}")
-                Toast.makeText(this, "Dados enviados ao Firestore!!", Toast.LENGTH_LONG).show()
+                Log.d("Firestore", "DocumentSnapshot added with ID: $documentReference")
             }
             .addOnFailureListener { e ->
-                Log.w("Firebase", "Error adding document", e)
+                Log.d("Firestore", "Error adding document", e)
             }
-
     }
 
     override fun onBackPressed() {
         val intent = Intent(this, InsertTrainingActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun sendToReadFirestore() {
+        Handler().postDelayed({
+            val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
+            startActivity(intent)
+        }, 10000)
     }
 
     private fun checkBundle() {
@@ -123,22 +112,8 @@ class ChooseExerciseActivity : AppCompatActivity() {
                 checkBox4.text = "04 - Caminhada Leve na Esteira por 40min"
 
                 if (checkBox1.isChecked) {
-                    exercise1 =
-                        ExerciseData(1, null, checkBox1.text.toString())
-
+                    exercise1 = ExerciseData(1, null, checkBox1.text.toString())
                     listExercise.add(exercise1!!)
-
-                    Toast.makeText(
-                        this,
-                        "List Exercise 1: $exercise1",
-                        Toast.LENGTH_LONG
-                    ).show()
-
-                    Toast.makeText(
-                        this,
-                        "List: ${listExercise}",
-                        Toast.LENGTH_LONG
-                    ).show()
                 }
 
                 if (checkBox2.isChecked) {
@@ -176,6 +151,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
                 }
                 if (checkBox4.isChecked) {
                     exercise4 = ExerciseData(24, null, checkBox4.text.toString())
+                    listExercise.add(exercise4!!)
                 }
             }
 
