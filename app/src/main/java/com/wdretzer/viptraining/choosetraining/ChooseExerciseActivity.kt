@@ -17,7 +17,6 @@ import com.wdretzer.viptraining.datafirebase.FirestoreData
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
 import java.util.*
-import kotlin.math.absoluteValue
 
 
 class ChooseExerciseActivity : AppCompatActivity() {
@@ -96,7 +95,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
         Handler().postDelayed({
             val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
             startActivity(intent)
-        }, 10000)
+        }, 2000)
     }
 
     private fun checkBundle() {
@@ -204,5 +203,6 @@ class ChooseExerciseActivity : AppCompatActivity() {
             }
         }
     }
+
 }
 
