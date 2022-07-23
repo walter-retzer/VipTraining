@@ -48,9 +48,9 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
 
 
     private fun sendDataToDelete(item: FirestoreData) {
-        deleteDocumentInFirestore(item.data!!)
-        getDataFromFirestore()
+        deleteDocumentInFirestore(item)
     }
+
 
     private fun getDataFromFirestore() {
         val db = Firebase.firestore
@@ -60,11 +60,11 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
                 for (document in result) {
                     val info = document.toObject<FirestoreData>()
                     listReturn.add(info)
-                    adp.updateList(listReturn)
-                    recycler.adapter = adp
-                    recycler.layoutManager = LinearLayoutManager(this)
                     Log.d("Item_Firestore", "${document.id} => ${document.data}")
                 }
+                adp.updateList(listReturn)
+                recycler.adapter = adp
+                recycler.layoutManager = LinearLayoutManager(this)
                 Log.d("Read_Firestore", "$listReturn")
             }
             .addOnFailureListener { exception ->
@@ -73,11 +73,13 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
     }
 
 
-    private fun deleteDocumentInFirestore(date: Timestamp) {
+    private fun deleteDocumentInFirestore(item: FirestoreData) {
         val db = Firebase.firestore
-        db.collection("Treino").document("$date")
+        db.collection("Treino").document("${item.data}")
             .delete()
-            .addOnSuccessListener { Log.d("Delete", "Document successfully deleted!") }
+            .addOnSuccessListener {
+                adp.updateItem(item)
+                Log.d("Delete", "Document successfully deleted!") }
             .addOnFailureListener { e -> Log.w("Delete", "Error deleting document", e) }
     }
 

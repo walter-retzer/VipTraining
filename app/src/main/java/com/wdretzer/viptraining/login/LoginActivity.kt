@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
+import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
 
 class LoginActivity : AppCompatActivity() {
@@ -48,7 +49,7 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         btnLogin.setOnClickListener { checkInfoFromFields() }
-        btnGoogle.setOnClickListener { sendToCreateAccount() }
+        btnGoogle.setOnClickListener { sendToCreateFirestore()}
         btnFacebook.setOnClickListener { sendToCreateAccount() }
         forgotPassword.setOnClickListener { sendToCreateAccount() }
     }
@@ -105,6 +106,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun sendToCreateAccount() {
         val intent = Intent(this, CreateUserAccountActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun sendToCreateFirestore() {
+        val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
         startActivity(intent)
     }
 }

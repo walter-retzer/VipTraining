@@ -42,6 +42,10 @@ class DataFromFirestoreAdapter(
         return position
     }
 
+    fun updateItem(item: FirestoreData) {
+        val list = mutableListOf(item)
+        diffUtil.submitList(diffUtil.currentList.minus(list.toSet()))
+    }
 
     fun updateList(newlist: MutableList<FirestoreData>) {
         diffUtil.submitList(diffUtil.currentList.plus(newlist))
@@ -50,7 +54,7 @@ class DataFromFirestoreAdapter(
     companion object {
         val DIFF_UTIL = object : DiffUtil.ItemCallback<FirestoreData>() {
             override fun areItemsTheSame(oldItem: FirestoreData, newItem: FirestoreData): Boolean {
-                return oldItem == newItem
+                return mutableListOf(oldItem) == mutableListOf(newItem)
             }
 
             override fun areContentsTheSame(
@@ -70,24 +74,14 @@ class ImagesFirestoreViewHolder(
     private val detailAction: (FirestoreData) -> Unit
 ) : RecyclerView.ViewHolder(view) {
 
-    var imageExerise: ImageView = view.findViewById(R.id.image_training_firestore)
-    var nameExercise1: TextView = view.findViewById(R.id.name_exercise1_firestore)
-    var nameExercise2: TextView = view.findViewById(R.id.name_exercise2_firestore)
-    var nameExercise3: TextView = view.findViewById(R.id.name_exercise3_firestore)
-    var nameExercise4: TextView = view.findViewById(R.id.name_exercise4_firestore)
-    var nameTraining: TextView = view.findViewById(R.id.name_training_firestore)
-    var btnDelete: ShapeableImageView = view.findViewById(R.id.btn_delete)
-    var btnEdit: ShapeableImageView = view.findViewById(R.id.btn_edit)
-
-    private var itemCorrente: FirestoreData? = null
-
-    init {
-        view.setOnClickListener {
-            itemCorrente?.let {
-                action.invoke(it)
-            }
-        }
-    }
+    private val imageExerise: ImageView = view.findViewById(R.id.image_training_firestore)
+    private val nameExercise1: TextView = view.findViewById(R.id.name_exercise1_firestore)
+    private val nameExercise2: TextView = view.findViewById(R.id.name_exercise2_firestore)
+    private val nameExercise3: TextView = view.findViewById(R.id.name_exercise3_firestore)
+    private val nameExercise4: TextView = view.findViewById(R.id.name_exercise4_firestore)
+    private val nameTraining: TextView = view.findViewById(R.id.name_training_firestore)
+    private val btnDelete: ShapeableImageView = view.findViewById(R.id.btn_delete)
+    private val btnEdit: ShapeableImageView = view.findViewById(R.id.btn_edit)
 
     @SuppressLint("SetTextI18n")
     fun bind(item: FirestoreData) {
@@ -101,13 +95,8 @@ class ImagesFirestoreViewHolder(
             Log.d("Item_Firestore", "Indice não encontrado.")
         }
 
-        btnDelete.setOnClickListener {
-            detailAction.invoke(item)
-        }
-
-        btnEdit.setOnClickListener {
-            detailAction.invoke(item)
-        }
+        btnDelete.setOnClickListener { detailAction.invoke(item) }
+        btnEdit.setOnClickListener { action.invoke(item) }
 
         Glide.with(imageExerise.context)
             //.load(item.listExercise?.first()?.imagem)
@@ -115,7 +104,5 @@ class ImagesFirestoreViewHolder(
             .placeholder(R.drawable.img_exercise)
             .error(R.drawable.icon_error)
             .into(imageExerise)
-
-        itemCorrente = item
     }
 }
