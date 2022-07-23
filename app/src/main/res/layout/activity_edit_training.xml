@@ -5,25 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".choosetraining.ChooseExerciseActivity">
-
-    <TextView
-        android:id="@+id/text_insert_exercise"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="25dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="25dp"
-        android:background="@android:color/transparent"
-        android:elevation="2dp"
-        android:text="@string/adicionar_exercicio"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="28sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    tools:context=".edittraining.EditTrainingActivity">
 
     <View
         android:id="@+id/view_top_menu"
@@ -45,25 +27,25 @@
         app:layout_constraintTop_toBottomOf="@+id/view_top_menu" />
 
     <TextView
-        android:id="@+id/text_details_training"
-        android:layout_width="0dp"
+        android:id="@+id/text_edit_training"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:background="@drawable/background_input_title"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="25dp"
+        android:background="@android:color/transparent"
         android:elevation="2dp"
-        android:padding="16dp"
-        android:text="@string/tipos_de_exercicios"
+        android:text="Editar Treino"
         android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/image_choose_exercise"
-        app:layout_constraintStart_toEndOf="@+id/image_choose_exercise"
-        app:layout_constraintTop_toTopOf="@+id/image_choose_exercise" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_choose_exercise"
+        android:id="@+id/image_training_edit"
         android:layout_width="120dp"
         android:layout_height="120dp"
         android:layout_marginStart="10dp"
@@ -71,66 +53,87 @@
         android:background="@color/violet"
         android:scaleType="fitCenter"
         app:contentPadding="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_top_white"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_insert_exercise"
-        app:layout_constraintBottom_toTopOf="@+id/view_top_white"
+        app:layout_constraintTop_toBottomOf="@+id/text_edit_training"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:srcCompat="@drawable/img_3_fragment_onboarding" />
 
+    <TextView
+        android:id="@+id/text_name_training"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/background_input_title"
+        android:elevation="2dp"
+        android:padding="16dp"
+        android:text="@string/detalhe_do_treinamento"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/image_training_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/image_training_edit"
+        app:layout_constraintTop_toTopOf="@+id/image_training_edit"
+        tools:layout_editor_absoluteY="166dp" />
+
     <CheckBox
-        android:id="@+id/checkbox_exercise1"
+        android:id="@+id/checkbox_exercise1_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="18dp"
+        android:layout_marginTop="25dp"
         android:buttonTint="@color/blue_light"
-        android:text="01 - Caminhada Leve por 40min"
+        android:text="@string/option"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view_top_white" />
+        app:layout_constraintTop_toTopOf="@+id/view_top_white"
+        tools:layout_editor_absoluteY="261dp" />
 
     <CheckBox
-        android:id="@+id/checkbox_exercise2"
+        android:id="@+id/checkbox_exercise2_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:buttonTint="@color/blue_light"
-        android:text="02 - Caminhada e Corrida Leve por 40min"
+        android:text="@string/option"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise1" />
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise1_edit" />
 
     <CheckBox
-        android:id="@+id/checkbox_exercise3"
+        android:id="@+id/checkbox_exercise3_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:buttonTint="@color/blue_light"
-        android:text="03 - Pedalada Leve por 50min"
+        android:text="@string/option"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise2" />
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise2_edit" />
 
     <CheckBox
-        android:id="@+id/checkbox_exercise4"
+        android:id="@+id/checkbox_exercise4_edit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:buttonTint="@color/blue_light"
-        android:text="04 - Caminhada Leve na Esteira por 40min"
+        android:text="@string/option"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise3" />
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise3_edit" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_next_action"
+        android:id="@+id/btn_edit"
         style="@style/Button_Style"
         android:layout_marginBottom="30dp"
-        android:text="@string/proximo"
+        android:text="@string/salvar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

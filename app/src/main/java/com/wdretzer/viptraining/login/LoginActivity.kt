@@ -14,6 +14,7 @@ import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
 
+
 class LoginActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth

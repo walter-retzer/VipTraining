@@ -25,6 +25,25 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <View
+        android:id="@+id/view_top_menu"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:background="@color/blue_light2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
+    <View
+        android:id="@+id/view_top_white"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="-45dp"
+        android:background="@drawable/background_bottom"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view_top_menu"
+        app:layout_constraintEnd_toEndOf="parent"/>
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/icon_date"
         android:layout_width="60dp"
@@ -34,6 +53,7 @@
         android:background="@color/white"
         android:scaleType="fitCenter"
         app:contentPadding="15dp"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_insert_training"
         app:srcCompat="@drawable/icon_calendar" />
@@ -58,17 +78,17 @@
         android:id="@+id/text_details_training"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
+        android:layout_marginStart="35dp"
         android:layout_marginTop="18dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
-        android:text="@string/detalhe_do_treinamento"
+        android:text="@string/treinos_disponiveis"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/icon_date" />
+        app:layout_constraintTop_toTopOf="@+id/view_top_white" />
 
     <ImageView
         android:id="@+id/image_choose_training"

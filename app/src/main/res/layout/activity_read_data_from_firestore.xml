@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,49 +7,222 @@
     android:background="@color/white"
     tools:context=".firestore.ReadDataFromFirestoreActivity">
 
-    <TextView
-        android:id="@+id/text_title_training_firestore"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="15dp"
-        android:layout_marginEnd="10dp"
-        android:background="@color/white"
-        android:padding="10dp"
-        android:text="Imagens Encontradas"
-        android:textAlignment="center"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="top">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/firestore_recycler"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_gravity="top"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="5dp"
-        android:paddingStart="10dp"
-        android:paddingEnd="10dp"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        app:layout_constraintBottom_toTopOf="@+id/btn_test"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_training_firestore"
-        app:spanCount="1"
-        tools:itemCount="8"
-        tools:listitem="@layout/item_training"
-        tools:spanCount="1" />
+        <FrameLayout
+            android:id="@+id/loading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@android:color/transparent"
+            android:backgroundTint="@android:color/transparent"
+            android:elevation="5dp"
+            android:padding="16dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_test"
-        style="@style/Button_Style"
-        android:layout_marginBottom="30dp"
-        android:text="@string/proximo"
+            <ProgressBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+        </FrameLayout>
+
+        <TextView
+            android:id="@+id/text_title_training_firestore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="10dp"
+            android:elevation="2dp"
+            android:padding="10dp"
+            android:text="@string/meus_treinos"
+            android:textAlignment="center"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_top_menu"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            android:background="@color/blue_light2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/view_top_white"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:layout_marginTop="-45dp"
+            android:background="@drawable/background_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view_top_menu" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/firestore_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_gravity="top"
+            android:layout_marginTop="10dp"
+            android:elevation="3dp"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/view_top_white"
+            app:spanCount="1"
+            tools:itemCount="8"
+            tools:listitem="@layout/item_training"
+            tools:spanCount="1" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/menu_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_gravity="bottom"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/background_menu_bottom"
+        android:elevation="2dp"
+        app:hideOnScroll="true"
+        app:labelVisibilityMode="selected"
+        app:layout_behavior="@string/hide_bottom_view_on_scroll_behavior"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_insetEdge="bottom"
+        app:layout_scrollFlags="scroll|enterAlways">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="bottom"
+            android:elevation="3dp"
+            tools:context=".roversearch.RoverSearchActivity">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/btn_add_list"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:contentPadding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_delete_all"
+                app:layout_constraintStart_toEndOf="@+id/btn_send_search"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                app:srcCompat="@drawable/icon_handy" />
+
+            <TextView
+                android:id="@+id/text_add"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Adicionar"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_add_list"
+                app:layout_constraintStart_toStartOf="@+id/btn_add_list"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_list" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/btn_delete_all"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:contentPadding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                app:srcCompat="@drawable/icon_delete" />
+
+            <TextView
+                android:id="@+id/text_finish"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Deletar"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_delete_all"
+                app:layout_constraintStart_toStartOf="@+id/btn_delete_all"
+                app:layout_constraintTop_toBottomOf="@+id/btn_delete_all" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/btn_home"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="35dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:contentPadding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                app:srcCompat="@drawable/icon_home" />
+
+            <TextView
+                android:id="@+id/text_btn_list"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Lembretes"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_home"
+                app:layout_constraintStart_toStartOf="@+id/btn_home"
+                app:layout_constraintTop_toBottomOf="@+id/btn_home" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/btn_send_search"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:contentPadding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_add_list"
+                app:layout_constraintStart_toEndOf="@+id/btn_home"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                app:srcCompat="@drawable/icon_search" />
+
+            <TextView
+                android:id="@+id/text_search"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Procurar"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_send_search"
+                app:layout_constraintStart_toStartOf="@+id/btn_send_search"
+                app:layout_constraintTop_toBottomOf="@+id/btn_send_search" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

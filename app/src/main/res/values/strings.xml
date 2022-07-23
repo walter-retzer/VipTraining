@@ -49,6 +49,11 @@
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="incluir">Incluir</string>
+    <string name="option">Opção 01</string>
+    <string name="treinos_disponiveis">Treinos Disponíveis</string>
+    <string name="adicionar_exercicio">Adicionar Exercício</string>
+    <string name="tipos_de_exercicios">Tipos de Exercicios</string>
+    <string name="meus_treinos">Meus Treinos</string>
 
     <string-array name="training_types">
         <item>Perda de Peso</item>

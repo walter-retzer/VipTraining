@@ -34,7 +34,6 @@ class ChooseTrainingActivity : AppCompatActivity() {
         // create an array adapter and pass the required parameter
         val arrayAdapter = ArrayAdapter(this, R.layout.list_item, languages)
         textWorkoutList.setAdapter(arrayAdapter)
-
     }
 
     override fun onBackPressed() {
@@ -50,7 +49,8 @@ class ChooseTrainingActivity : AppCompatActivity() {
                 Toast.makeText(this, "Por favor escolha um Treino!", Toast.LENGTH_LONG).show()
             } else {
                 if (textWorkoutList.text.toString() == "Perda de Peso") numberTraining = 1000
-                if (textWorkoutList.text.toString() == "Melhorar a forma Física") numberTraining = 2000
+                if (textWorkoutList.text.toString() == "Melhorar a forma Física") numberTraining =
+                    2000
                 if (textWorkoutList.text.toString() == "Sair do Sedentarismo") numberTraining = 3000
                 if (textWorkoutList.text.toString() == "Ganhar Músculos") numberTraining = 4000
 
