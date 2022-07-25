@@ -10,6 +10,8 @@
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/seletor.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_bottom.xml" value="0.154" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_button_login.xml" value="0.185" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_dialog.xml" value="0.154" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_dialog_delete.xml" value="0.154" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_fragment_onboarding.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_input_text.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable/background_input_title.xml" value="0.154" />
@@ -35,7 +37,11 @@
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_main.xml" value="0.25" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_onboarding_screen.xml" value="0.25" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_read_data_from_firestore.xml" value="0.25416666666666665" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_search_data_in_firestore.xml" value="0.25416666666666665" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/activity_splash_screen.xml" value="0.1" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_dialog_delete.xml" value="0.25416666666666665" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_dialog_option.xml" value="0.25416666666666665" />
+        <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_forgot_password_dialog.xml" value="0.25416666666666665" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding.xml" value="0.2359375" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding1.xml" value="0.25" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/fragment_onboarding2.xml" value="0.2359375" />

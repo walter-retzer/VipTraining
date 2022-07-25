@@ -30,9 +30,9 @@
         android:layout_width="match_parent"
         android:layout_height="220dp"
         android:background="@color/blue_light2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <View
         android:id="@+id/view_top_white"
@@ -40,9 +40,9 @@
         android:layout_height="220dp"
         android:layout_marginTop="-45dp"
         android:background="@drawable/background_bottom"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/view_top_menu"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/view_top_menu" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/icon_date"
@@ -53,9 +53,9 @@
         android:background="@color/white"
         android:scaleType="fitCenter"
         app:contentPadding="15dp"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_insert_training"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:srcCompat="@drawable/icon_calendar" />
 
     <TextView
@@ -100,7 +100,8 @@
         android:src="@drawable/img_1_fragment_onboarding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workout_name" />
+        app:layout_constraintTop_toBottomOf="@+id/workout_name"
+        tools:ignore="ContentDescription" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/workout_name"
@@ -112,8 +113,6 @@
         android:layout_marginEnd="30dp"
         android:hint="@string/treinamento"
         android:textColorHint="@color/grey_dark"
-        app:startIconDrawable="@drawable/icon_exercise"
-        app:startIconTint="@color/black"
         app:boxBackgroundColor="@color/sand"
         app:boxStrokeColor="@color/blue_light"
         app:endIconTint="@color/black"
@@ -121,7 +120,9 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_details_training"
-        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCircle">
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCircle"
+        app:startIconDrawable="@drawable/icon_exercise"
+        app:startIconTint="@color/black">
 
         <androidx.appcompat.widget.AppCompatAutoCompleteTextView
             android:id="@+id/input_name_workout"

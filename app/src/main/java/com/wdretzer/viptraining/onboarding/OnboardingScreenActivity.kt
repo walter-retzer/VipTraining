@@ -7,7 +7,6 @@ import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
 import com.wdretzer.nasaprojetointegrador.util.CustomPageTransformer
 import com.wdretzer.nasaprojetointegrador.util.HorizontalMarginItemDecoration
-import com.wdretzer.viptraining.MainActivity
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.login.LoginActivity
 

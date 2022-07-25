@@ -11,6 +11,7 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
+import com.wdretzer.viptraining.dialogfragment.ForgotPasswordDialogFragment
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
 
@@ -40,6 +41,8 @@ class LoginActivity : AppCompatActivity() {
     private val progressBar: FrameLayout
         get() = findViewById(R.id.progress_bar_login)
 
+    private val dialogForgetPassword = ForgotPasswordDialogFragment()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,7 +55,12 @@ class LoginActivity : AppCompatActivity() {
         btnLogin.setOnClickListener { checkInfoFromFields() }
         btnGoogle.setOnClickListener { sendToCreateFirestore()}
         btnFacebook.setOnClickListener { sendToCreateAccount() }
-        forgotPassword.setOnClickListener { sendToCreateAccount() }
+        forgotPassword.setOnClickListener {
+            dialogForgetPassword.show(
+                supportFragmentManager,
+                dialogForgetPassword.tag
+            )
+        }
     }
 
 

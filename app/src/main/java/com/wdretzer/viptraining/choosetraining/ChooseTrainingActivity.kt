@@ -26,12 +26,14 @@ class ChooseTrainingActivity : AppCompatActivity() {
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
 
+        // Desabilita a abertura do Teclado quando o item for clicado:
+        textWorkoutList.showSoftInputOnFocus = false
+        textWorkoutList.isCursorVisible = false
+
         checkTraining()
 
         // get reference to the string array that we just created
         val languages = resources.getStringArray(R.array.training_types)
-
-        // create an array adapter and pass the required parameter
         val arrayAdapter = ArrayAdapter(this, R.layout.list_item, languages)
         textWorkoutList.setAdapter(arrayAdapter)
     }

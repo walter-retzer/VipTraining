@@ -1,17 +1,15 @@
-package com.wdretzer.viptraining.firestore
+package com.wdretzer.viptraining.searchinfirestore
 
 import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.Button
-import android.widget.FrameLayout
-import android.widget.TextView
-import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.*
+import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.core.view.isVisible
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -22,46 +20,69 @@ import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.datafirebase.FirestoreData
 import com.wdretzer.viptraining.edittraining.EditTrainingActivity
-import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
-import com.wdretzer.viptraining.searchinfirestore.SearchDataInFirestoreActivity
+import com.wdretzer.viptraining.firestore.DataFromFirestoreAdapter
+import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 
 
-class ReadDataFromFirestoreActivity : AppCompatActivity() {
+class SearchDataInFirestoreActivity : AppCompatActivity() {
 
-    private val btnSearch: ShapeableImageView
-        get() = findViewById(R.id.btn_send_search)
+    private val textWorkoutList: AppCompatAutoCompleteTextView
+        get() = findViewById(R.id.search_name_workout)
+
+    private val btnSearch: Button
+        get() = findViewById(R.id.btn_search)
 
     private val recycler: RecyclerView
-        get() = findViewById(R.id.firestore_recycler)
+        get() = findViewById(R.id.firestore_recycler_search)
 
     private val loading: FrameLayout
         get() = findViewById(R.id.loading)
 
+    private val btnReturn: ShapeableImageView
+        get() = findViewById(R.id.btn_return)
+
     private var listReturn = mutableListOf<FirestoreData>()
+    private var listReturnAux = mutableListOf<FirestoreData>()
     private var adp = DataFromFirestoreAdapter(::sendDataToDelete) {
         sendToEditTraining(it)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_read_data_from_firestore)
+        setContentView(R.layout.activity_search_data_in_firestore)
 
-        // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
+        recycler.adapter = adp
+        recycler.layoutManager = LinearLayoutManager(this)
 
-        getDataFromFirestore()
-        btnSearch.setOnClickListener { sendToSearchTraining() }
+        // Desabilita a abertura do Teclado quando o item for clicado:
+        textWorkoutList.showSoftInputOnFocus = false
+        textWorkoutList.isCursorVisible = false
+
+        val languages = resources.getStringArray(R.array.training_types)
+        val arrayAdapter = ArrayAdapter(this, R.layout.list_item, languages)
+        textWorkoutList.setAdapter(arrayAdapter)
+
+        btnSearch.setOnClickListener {
+            if (textWorkoutList.text.isEmpty()) {
+                Toast.makeText(this, "Por favor escolha um Treino!", Toast.LENGTH_LONG).show()
+            }
+            if (textWorkoutList.text.isNotEmpty()) {
+                searchTrainingInFirestore(textWorkoutList.text.toString())
+            }
+        }
+
+        btnReturn.setOnClickListener {
+            val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
+            startActivity(intent)
+        }
     }
 
 
     override fun onBackPressed() {
-        val intent = Intent(this, InsertTrainingActivity::class.java)
+        val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
         startActivity(intent)
-    }
-
-
-    private fun sendDataToDelete(item: FirestoreData) {
-        showDialogDeleteItem(item)
     }
 
 
@@ -72,42 +93,8 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
     }
 
 
-    private fun sendToSearchTraining() {
-        val intent = Intent(this, SearchDataInFirestoreActivity::class.java)
-        startActivity(intent)
-    }
-
-
-    private fun getDataFromFirestore() {
-        loading.isVisible = true
-        val db = Firebase.firestore
-        val docRef = db.collection("Treino")
-        docRef.get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    val info = document.toObject<FirestoreData>()
-                    listReturn.add(info)
-                    Log.d("Item_Firestore", "${document.id} => ${document.data}")
-                }
-
-                if (result.isEmpty)
-                    Toast.makeText(
-                        this,
-                        "Não há informações salvas no banco de dados!",
-                        Toast.LENGTH_SHORT
-                    ).show()
-
-                adp.updateList(listReturn)
-                recycler.adapter = adp
-                recycler.layoutManager = LinearLayoutManager(this)
-
-                Log.d("Read_Firestore", "$listReturn")
-                loading.isVisible = false
-            }
-            .addOnFailureListener { exception ->
-                Log.d("Read_Firestore", "Fail to try read data from Firestore", exception)
-                loading.isVisible = false
-            }
+    private fun sendDataToDelete(item: FirestoreData) {
+        showDialogDeleteItem(item)
     }
 
 
@@ -124,6 +111,46 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
             .addOnFailureListener { e ->
                 Log.w("Delete", "Error deleting document", e)
                 loading.isVisible = false
+            }
+    }
+
+
+    private fun searchTrainingInFirestore(training: String) {
+        adp.deleteList(listReturnAux)
+        btnSearch.isVisible = false
+
+        val db = Firebase.firestore
+        val docRef = db.collection("Treino")
+        docRef
+            .whereEqualTo("descricao", training)
+            .get()
+            .addOnSuccessListener { result ->
+                loading.isVisible = true
+
+                for (document in result) {
+                    val info = document.toObject<FirestoreData>()
+                    listReturn.add(info)
+                    listReturnAux.add(info)
+                }
+
+                if (result.isEmpty)
+                    Toast.makeText(
+                        this,
+                        "Não há informações sobre o item pesquisado!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+
+                adp.updateList(listReturn)
+                listReturn.clear()
+
+                Log.d("Read_Firestore", "$listReturn")
+                loading.isVisible = false
+                btnSearch.isVisible = true
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Read_Firestore", "Fail to try read data from Firestore", exception)
+                loading.isVisible = false
+                btnSearch.isVisible = true
             }
     }
 

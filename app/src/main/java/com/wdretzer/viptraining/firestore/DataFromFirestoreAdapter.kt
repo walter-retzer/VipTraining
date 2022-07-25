@@ -51,17 +51,21 @@ class DataFromFirestoreAdapter(
         diffUtil.submitList(diffUtil.currentList.plus(newlist))
     }
 
+    fun deleteList(list: MutableList<FirestoreData>) {
+        diffUtil.submitList(diffUtil.currentList.minus(list.toSet()))
+    }
+
     companion object {
         val DIFF_UTIL = object : DiffUtil.ItemCallback<FirestoreData>() {
             override fun areItemsTheSame(oldItem: FirestoreData, newItem: FirestoreData): Boolean {
-                return mutableListOf(oldItem) == mutableListOf(newItem)
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(
                 oldItem: FirestoreData,
                 newItem: FirestoreData
             ): Boolean {
-                return oldItem.data == newItem.data
+                return oldItem.data == newItem.data || oldItem.descricao == newItem.descricao
             }
         }
     }

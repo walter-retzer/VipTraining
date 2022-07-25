@@ -17,4 +17,6 @@
     <color name="grey_dark">#34515e</color>
     <color name="sand">#F7F8F8</color>
     <color name="sand2">#DDDADA</color>
+    <color name="cinza_l">#607d8b</color>
+    <color name="cinza_d">#78909c</color>
 </resources>

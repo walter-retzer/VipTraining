@@ -3,7 +3,6 @@ package com.wdretzer.viptraining.edittraining
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
 import android.util.Log
 import android.widget.*
 import androidx.core.view.isVisible
@@ -72,12 +71,10 @@ class EditTrainingActivity : AppCompatActivity() {
 
 
     private fun sendToReadDataFromFirestore() {
-        Toast.makeText(this, "Dados atualizados!", Toast.LENGTH_LONG).show()
-        Handler().postDelayed({
-            btnEdit.isVisible = true
-            val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
-            startActivity(intent)
-        }, 3000)
+        Toast.makeText(this, "Dados atualizados!", Toast.LENGTH_SHORT).show()
+        btnEdit.isVisible = true
+        val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
+        startActivity(intent)
     }
 
     private fun itemsToEdit() {

@@ -23,9 +23,7 @@ class InsertTrainingActivity : AppCompatActivity() {
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
-
         setupViewPager()
-
         btnNext.setOnClickListener { sendToChooseTraining() }
     }
 

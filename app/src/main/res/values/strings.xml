@@ -54,6 +54,13 @@
     <string name="adicionar_exercicio">Adicionar Exercício</string>
     <string name="tipos_de_exercicios">Tipos de Exercicios</string>
     <string name="meus_treinos">Meus Treinos</string>
+    <string name="digite_seu_email">Digite seu email</string>
+    <string name="esqueceu_a_sua_senha">Esqueceu a sua senha?</string>
+    <string name="detlalhe_forget_password">Digite o seu e-mail cadastrado e em breve enviaremos um link para resetar a sua senha.</string>
+    <string name="procurar_treinos">Procurar Treinos</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="apagar">Apagar</string>
 
     <string-array name="training_types">
         <item>Perda de Peso</item>
