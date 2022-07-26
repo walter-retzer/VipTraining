@@ -104,8 +104,8 @@ class ImagesFirestoreViewHolder(
 
         Glide.with(imageExerise.context)
             .load(item.listExercise?.first()?.imagem)
-            .placeholder(R.drawable.img_3)
-            .error(R.drawable.img_3)
+            .placeholder(R.drawable.img_woman_training)
+            .error(R.drawable.img_woman_training)
             .into(imageExerise)
     }
 }

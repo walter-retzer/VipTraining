@@ -27,7 +27,7 @@
             app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintTop_toBottomOf="@+id/name_training_firestore"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-            app:srcCompat="@drawable/img_3" />
+            app:srcCompat="@drawable/img_woman_training" />
 
         <TextView
             android:id="@+id/name_training_firestore"

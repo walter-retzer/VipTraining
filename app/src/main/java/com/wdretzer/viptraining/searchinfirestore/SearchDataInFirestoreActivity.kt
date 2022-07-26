@@ -22,6 +22,7 @@ import com.wdretzer.viptraining.datafirebase.FirestoreData
 import com.wdretzer.viptraining.edittraining.EditTrainingActivity
 import com.wdretzer.viptraining.firestore.DataFromFirestoreAdapter
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
+import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 
 
 class SearchDataInFirestoreActivity : AppCompatActivity() {
@@ -81,7 +82,7 @@ class SearchDataInFirestoreActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-        val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
+        val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 

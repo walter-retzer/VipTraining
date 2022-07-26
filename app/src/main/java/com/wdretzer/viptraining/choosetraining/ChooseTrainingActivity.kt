@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat
 import com.google.android.material.imageview.ShapeableImageView
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.extension.SaveFile
-import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
+import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 import java.io.ByteArrayOutputStream
 import java.lang.System.currentTimeMillis
 
@@ -90,7 +90,7 @@ class ChooseTrainingActivity : AppCompatActivity() {
 
 
     override fun onBackPressed() {
-        val intent = Intent(this, InsertTrainingActivity::class.java)
+        val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 

@@ -61,6 +61,19 @@
     <string name="pesquisar">Pesquisar</string>
     <string name="cancelar">Cancelar</string>
     <string name="apagar">Apagar</string>
+    <string name="profile">Profile</string>
+    <string name="complete_o_seu_perfil">Complete o seu perfil</string>
+    <string name="dia_de_aniversario">Dia de Aniversário</string>
+    <string name="peso">Peso</string>
+    <string name="altura">Altura</string>
+    <string name="perfil">Perfil</string>
+    <string name="adicionar">Adicionar</string>
+    <string name="procurar">Procurar</string>
+    <string name="treinos">Treinos</string>
+    <string name="home">Home</string>
+    <string name="definicao">Exercicios que ajudam na definição dos seus músculos</string>
+    <string name="nivel">Nível Avançado*</string>
+    <string name="treinar">Começar a Treinar</string>
 
     <string-array name="training_types">
         <item>Perda de Peso</item>

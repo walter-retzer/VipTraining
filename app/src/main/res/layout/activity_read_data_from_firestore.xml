@@ -133,58 +133,6 @@
             tools:context=".roversearch.RoverSearchActivity">
 
             <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/btn_add_list"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/white"
-                android:scaleType="fitCenter"
-                app:contentPadding="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_delete_all"
-                app:layout_constraintStart_toEndOf="@+id/btn_send_search"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                app:srcCompat="@drawable/icon_handy" />
-
-            <TextView
-                android:id="@+id/text_add"
-                style="@style/TextAppearance.AppCompat.Headline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Adicionar"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/btn_add_list"
-                app:layout_constraintStart_toStartOf="@+id/btn_add_list"
-                app:layout_constraintTop_toBottomOf="@+id/btn_add_list" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/btn_delete_all"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="35dp"
-                android:layout_marginBottom="20dp"
-                android:background="@color/white"
-                android:scaleType="fitCenter"
-                app:contentPadding="5dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                app:srcCompat="@drawable/icon_delete" />
-
-            <TextView
-                android:id="@+id/text_finish"
-                style="@style/TextAppearance.AppCompat.Headline"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Deletar"
-                android:textColor="@color/white"
-                android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="@+id/btn_delete_all"
-                app:layout_constraintStart_toStartOf="@+id/btn_delete_all"
-                app:layout_constraintTop_toBottomOf="@+id/btn_delete_all" />
-
-            <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/btn_home"
                 android:layout_width="40dp"
                 android:layout_height="40dp"
@@ -199,11 +147,11 @@
                 app:srcCompat="@drawable/icon_home" />
 
             <TextView
-                android:id="@+id/text_btn_list"
+                android:id="@+id/text_btn_home"
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Lembretes"
+                android:text="@string/home"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/btn_home"
@@ -219,7 +167,7 @@
                 android:scaleType="fitCenter"
                 app:contentPadding="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_add_list"
+                app:layout_constraintEnd_toStartOf="@+id/btn_add_exercise"
                 app:layout_constraintStart_toEndOf="@+id/btn_home"
                 app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                 app:srcCompat="@drawable/icon_search" />
@@ -229,13 +177,65 @@
                 style="@style/TextAppearance.AppCompat.Headline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Procurar"
+                android:elevation="3dp"
+                android:text="@string/procurar"
                 android:textColor="@color/white"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="@+id/btn_send_search"
                 app:layout_constraintStart_toStartOf="@+id/btn_send_search"
                 app:layout_constraintTop_toBottomOf="@+id/btn_send_search" />
 
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/btn_add_exercise"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:contentPadding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_training"
+                app:layout_constraintStart_toEndOf="@+id/btn_send_search"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                app:srcCompat="@drawable/icon_exercise" />
+
+            <TextView
+                android:id="@+id/text_add_exercise"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/adicionar"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_add_exercise"
+                app:layout_constraintStart_toStartOf="@+id/btn_add_exercise"
+                app:layout_constraintTop_toBottomOf="@+id/btn_add_exercise" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/btn_training"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="35dp"
+                android:layout_marginBottom="20dp"
+                android:background="@color/white"
+                android:scaleType="fitCenter"
+                app:contentPadding="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                app:srcCompat="@drawable/icon_training" />
+
+            <TextView
+                android:id="@+id/text_btn_training"
+                style="@style/TextAppearance.AppCompat.Headline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/treinos"
+                android:textColor="@color/white"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="@+id/btn_training"
+                app:layout_constraintStart_toStartOf="@+id/btn_training"
+                app:layout_constraintTop_toBottomOf="@+id/btn_training" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

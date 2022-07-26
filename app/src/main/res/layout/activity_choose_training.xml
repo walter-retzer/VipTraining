@@ -119,7 +119,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_title_img"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-        app:srcCompat="@drawable/img_3" />
+        app:srcCompat="@drawable/img_woman_training" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/btn_camera"

@@ -12,7 +12,7 @@ import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.datafirebase.ExerciseData
 import com.wdretzer.viptraining.datafirebase.FirestoreData
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
-import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
+import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 
 
 class EditTrainingActivity : AppCompatActivity() {
@@ -65,7 +65,7 @@ class EditTrainingActivity : AppCompatActivity() {
     }
 
     override fun onBackPressed() {
-        val intent = Intent(this, InsertTrainingActivity::class.java)
+        val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 

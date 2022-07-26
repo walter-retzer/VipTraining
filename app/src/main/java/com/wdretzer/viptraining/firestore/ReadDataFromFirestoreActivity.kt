@@ -20,9 +20,10 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
+import com.wdretzer.viptraining.choosetraining.ChooseTrainingActivity
 import com.wdretzer.viptraining.datafirebase.FirestoreData
 import com.wdretzer.viptraining.edittraining.EditTrainingActivity
-import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
+import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 import com.wdretzer.viptraining.searchinfirestore.SearchDataInFirestoreActivity
 
 
@@ -30,6 +31,12 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
 
     private val btnSearch: ShapeableImageView
         get() = findViewById(R.id.btn_send_search)
+
+    private val btnAddTraining: ShapeableImageView
+        get() = findViewById(R.id.btn_add_exercise)
+
+    private val btnMyTraining: ShapeableImageView
+        get() = findViewById(R.id.btn_training)
 
     private val recycler: RecyclerView
         get() = findViewById(R.id.firestore_recycler)
@@ -51,11 +58,25 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
 
         getDataFromFirestore()
         btnSearch.setOnClickListener { sendToSearchTraining() }
+        btnAddTraining.setOnClickListener { sendToChooseTraining() }
+        btnMyTraining.setOnClickListener { sendToMyTraining() }
     }
 
 
     override fun onBackPressed() {
-        val intent = Intent(this, InsertTrainingActivity::class.java)
+        val intent = Intent(this, MainMenuActivity::class.java)
+        startActivity(intent)
+    }
+
+
+    private fun sendToChooseTraining() {
+        val intent = Intent(this, ChooseTrainingActivity::class.java)
+        startActivity(intent)
+    }
+
+
+    private fun sendToMyTraining() {
+        val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
         startActivity(intent)
     }
 

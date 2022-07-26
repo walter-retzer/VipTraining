@@ -12,8 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
 import com.wdretzer.viptraining.dialogfragment.ForgotPasswordDialogFragment
-import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
-import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
+import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 
 
 class LoginActivity : AppCompatActivity() {
@@ -53,8 +52,9 @@ class LoginActivity : AppCompatActivity() {
 
         auth = FirebaseAuth.getInstance()
         btnLogin.setOnClickListener { checkInfoFromFields() }
-        btnGoogle.setOnClickListener { sendToCreateFirestore()}
+        btnGoogle.setOnClickListener { sendToMainMenu()}
         btnFacebook.setOnClickListener { sendToCreateAccount() }
+
         forgotPassword.setOnClickListener {
             dialogForgetPassword.show(
                 supportFragmentManager,
@@ -97,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
                     Toast.makeText(this, "Autenticando Login...", Toast.LENGTH_LONG).show()
                     Handler().postDelayed({
                         progressBar.isVisible = false
-                        val intent = Intent(this, InsertTrainingActivity::class.java)
+                        val intent = Intent(this, MainMenuActivity::class.java)
                         startActivity(intent)
                     }, 2000)
 
@@ -118,8 +118,8 @@ class LoginActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
-    private fun sendToCreateFirestore() {
-        val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
+    private fun sendToMainMenu() {
+        val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 }
