@@ -1,6 +1,10 @@
 package com.wdretzer.viptraining.choosetraining
 
+import android.annotation.SuppressLint
 import android.content.Intent
+import android.icu.text.SimpleDateFormat
+import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,16 +12,23 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.annotation.RequiresApi
+import androidx.core.net.toUri
 import androidx.core.view.isVisible
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.datafirebase.CheckBoxStatus
 import com.wdretzer.viptraining.datafirebase.ExerciseData
 import com.wdretzer.viptraining.datafirebase.FirestoreData
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
+import java.io.File
+import java.io.FileNotFoundException
+import java.io.FileWriter
+import java.io.IOException
 import java.util.*
 
 
@@ -47,6 +58,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
     private lateinit var exercise4: ExerciseData
     private lateinit var setNameTraining: String
     private var setNumberTraining: Int = 1000
+    private var setUriImageTraining: String? = null
     private var listExercise = mutableListOf<ExerciseData>()
 
 
@@ -67,6 +79,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
             checkBundle()
             insertDataOnFirestore()
             sendToReadFirestore()
+            uploadToFirebase(saveFile())
         } else {
             Toast.makeText(
                 this,
@@ -79,7 +92,6 @@ class ChooseExerciseActivity : AppCompatActivity() {
     private fun insertDataOnFirestore() {
         val db = Firebase.firestore
         val training = db.collection("Treino")
-        val dateTime: Date = Calendar.getInstance().time
 
         val statusCheckBox = CheckBoxStatus(
             checkBox1.isChecked,
@@ -125,6 +137,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
         if (bundle != null) {
             setNumberTraining = bundle.getInt("Number")
             setNameTraining = bundle.getString("Name").toString()
+            setUriImageTraining = bundle.getString("Uri").toString()
 
             if (setNumberTraining == 1000) {
                 checkBox1.text = "Caminhada Leve por 40min"
@@ -133,22 +146,22 @@ class ChooseExerciseActivity : AppCompatActivity() {
                 checkBox4.text = "Caminhada Leve na Esteira por 40min"
 
                 if (checkBox1.isChecked) {
-                    exercise1 = ExerciseData(1, null, checkBox1.text.toString())
+                    exercise1 = ExerciseData(1, setUriImageTraining, checkBox1.text.toString())
                     listExercise.add(exercise1)
                 }
 
                 if (checkBox2.isChecked) {
-                    exercise2 = ExerciseData(2, null, checkBox2.text.toString())
+                    exercise2 = ExerciseData(2, setUriImageTraining, checkBox2.text.toString())
                     listExercise.add(exercise2)
                 }
 
                 if (checkBox3.isChecked) {
-                    exercise3 = ExerciseData(3, null, checkBox3.text.toString())
+                    exercise3 = ExerciseData(3, setUriImageTraining, checkBox3.text.toString())
                     listExercise.add(exercise3)
                 }
 
                 if (checkBox4.isChecked) {
-                    exercise4 = ExerciseData(4, null, checkBox4.text.toString())
+                    exercise4 = ExerciseData(4, setUriImageTraining, checkBox4.text.toString())
                     listExercise.add(exercise4)
                 }
             }
@@ -160,22 +173,22 @@ class ChooseExerciseActivity : AppCompatActivity() {
                 checkBox4.text = "Puxada de triceps"
 
                 if (checkBox1.isChecked) {
-                    exercise1 = ExerciseData(21, null, checkBox1.text.toString())
+                    exercise1 = ExerciseData(21, setUriImageTraining, checkBox1.text.toString())
                     listExercise.add(exercise1)
 
                 }
                 if (checkBox2.isChecked) {
-                    exercise2 = ExerciseData(22, null, checkBox2.text.toString())
+                    exercise2 = ExerciseData(22, setUriImageTraining, checkBox2.text.toString())
                     listExercise.add(exercise2)
 
                 }
                 if (checkBox3.isChecked) {
-                    exercise3 = ExerciseData(23, null, checkBox3.text.toString())
+                    exercise3 = ExerciseData(23, setUriImageTraining, checkBox3.text.toString())
                     listExercise.add(exercise3)
 
                 }
                 if (checkBox4.isChecked) {
-                    exercise4 = ExerciseData(24, null, checkBox4.text.toString())
+                    exercise4 = ExerciseData(24, setUriImageTraining, checkBox4.text.toString())
                     listExercise.add(exercise4)
 
                 }
@@ -188,22 +201,22 @@ class ChooseExerciseActivity : AppCompatActivity() {
                 checkBox4.text = "Caminhada Leve na Esteira por 30min"
 
                 if (checkBox1.isChecked) {
-                    exercise1 = ExerciseData(31, null, checkBox1.text.toString())
+                    exercise1 = ExerciseData(31, setUriImageTraining, checkBox1.text.toString())
                     listExercise.add(exercise1)
 
                 }
                 if (checkBox2.isChecked) {
-                    exercise2 = ExerciseData(32, null, checkBox2.text.toString())
+                    exercise2 = ExerciseData(32, setUriImageTraining, checkBox2.text.toString())
                     listExercise.add(exercise2)
 
                 }
                 if (checkBox3.isChecked) {
-                    exercise3 = ExerciseData(33, null, checkBox3.text.toString())
+                    exercise3 = ExerciseData(33, setUriImageTraining, checkBox3.text.toString())
                     listExercise.add(exercise3)
 
                 }
                 if (checkBox4.isChecked) {
-                    exercise4 = ExerciseData(34, null, checkBox4.text.toString())
+                    exercise4 = ExerciseData(34, setUriImageTraining, checkBox4.text.toString())
                     listExercise.add(exercise4)
 
                 }
@@ -216,27 +229,88 @@ class ChooseExerciseActivity : AppCompatActivity() {
                 checkBox4.text = "Encolhimneto com barra"
 
                 if (checkBox1.isChecked) {
-                    exercise1 = ExerciseData(41, null, checkBox1.text.toString())
+                    exercise1 = ExerciseData(41, setUriImageTraining, checkBox1.text.toString())
                     listExercise.add(exercise1)
                 }
 
                 if (checkBox2.isChecked) {
-                    exercise2 = ExerciseData(42, null, checkBox2.text.toString())
+                    exercise2 = ExerciseData(42, setUriImageTraining, checkBox2.text.toString())
                     listExercise.add(exercise2)
                 }
 
                 if (checkBox3.isChecked) {
-                    exercise3 = ExerciseData(43, null, checkBox3.text.toString())
+                    exercise3 = ExerciseData(43, setUriImageTraining, checkBox3.text.toString())
                     listExercise.add(exercise3)
                 }
 
                 if (checkBox4.isChecked) {
-                    exercise4 = ExerciseData(44, null, checkBox4.text.toString())
+                    exercise4 = ExerciseData(44, setUriImageTraining, checkBox4.text.toString())
                     listExercise.add(exercise4)
                 }
             }
         }
     }
 
-}
 
+    @SuppressLint("SimpleDateFormat")
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun uploadToFirebase(uri: Uri) {
+
+        val nameFile = ""
+        val firebaseStorage = FirebaseStorage.getInstance()
+        val storage = firebaseStorage.getReference("Imagens")
+        val fileReference = storage.child("search_$nameFile.txt")
+
+        uri.apply {
+            fileReference
+                .putFile(this)
+                .addOnSuccessListener {
+                    Log.d("Firebase Storage:", "Arquivo Enviado ao Firebase Storage com sucesso!")
+                }
+                .addOnFailureListener {
+                    Log.d("Firebase Storage:", "rquivo Não Enviado ao Firebase Storage!")
+                }
+        }
+    }
+
+
+    @SuppressLint("SimpleDateFormat")
+    @RequiresApi(Build.VERSION_CODES.N)
+    private fun saveFile(): Uri {
+        val file = getDisc()
+
+        if (!file.exists() && !file.mkdirs()) {
+            file.mkdir()
+        }
+
+        val nameFile = "Img"
+        val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy_HH.mm.ss")
+        val date = simpleDateFormat.format(Date())
+        val name = "imagens_$nameFile.txt"
+        val fileName = file.absolutePath + "/" + name
+        val newFile = File(fileName)
+
+        try {
+            val fileWriter = FileWriter(newFile, true)
+            newFile.appendText("Data: $date; Treino: $setNameTraining; Imagem: $setUriImageTraining \n")
+            fileWriter.flush()
+            fileWriter.close()
+
+        } catch (e: FileNotFoundException) {
+            e.printStackTrace()
+            Log.d("Firebase Storage:", "Arquivo para o Firebase Storage Inexistente!")
+
+        } catch (e: IOException) {
+            e.printStackTrace()
+            Log.d("Firebase Storage:", "Falha ao Salvar o Arquivo!")
+        }
+
+        return Uri.parse(newFile.toUri().toString())
+    }
+
+
+    private fun getDisc(): File {
+        return File(this.externalCacheDir!!.absolutePath, "/Vip")
+    }
+
+}

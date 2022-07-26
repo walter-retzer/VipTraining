@@ -103,10 +103,9 @@ class ImagesFirestoreViewHolder(
         btnEdit.setOnClickListener { action.invoke(item) }
 
         Glide.with(imageExerise.context)
-            //.load(item.listExercise?.first()?.imagem)
-            .load(R.drawable.img_3_fragment_onboarding)
-            .placeholder(R.drawable.img_exercise)
-            .error(R.drawable.icon_error)
+            .load(item.listExercise?.first()?.imagem)
+            .placeholder(R.drawable.img_3)
+            .error(R.drawable.img_3)
             .into(imageExerise)
     }
 }

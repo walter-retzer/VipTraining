@@ -84,24 +84,56 @@
         android:elevation="2dp"
         android:text="@string/treinos_disponiveis"
         android:textAlignment="center"
-        android:textColor="@color/black"
+        android:textColor="@color/grey"
         android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view_top_white" />
 
-    <ImageView
+    <TextView
+        android:id="@+id/text_title_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="35dp"
+        android:layout_marginTop="18dp"
+        android:background="@android:color/transparent"
+        android:elevation="2dp"
+        android:text="Salve uma Imagem do Treino:"
+        android:textAlignment="center"
+        android:textColor="@color/grey"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/workout_name" />
+
+
+    <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_choose_training"
         android:layout_width="250dp"
         android:layout_height="250dp"
-        android:layout_marginTop="15dp"
-        android:paddingTop="0dp"
-        android:scaleType="fitCenter"
-        android:src="@drawable/img_1_fragment_onboarding"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/violet"
+        android:scaleType="fitXY"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/workout_name"
-        tools:ignore="ContentDescription" />
+        app:layout_constraintTop_toBottomOf="@+id/text_title_img"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        app:srcCompat="@drawable/img_3" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/btn_camera"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:background="@color/sand2"
+        android:scaleType="fitXY"
+        app:contentPadding="10dp"
+        app:layout_constraintBottom_toBottomOf="@+id/image_choose_training"
+        app:layout_constraintEnd_toEndOf="@+id/image_choose_training"
+        app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+        app:srcCompat="@drawable/icon_camera" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/workout_name"

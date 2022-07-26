@@ -38,6 +38,9 @@ android {
 
 dependencies {
 
+    //Firebase Storage
+    implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'
+
     //Firebase Authentication
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.6'
 

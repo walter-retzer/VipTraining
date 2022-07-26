@@ -19,7 +19,7 @@ data class FirestoreData(
 @Parcelize
 data class ExerciseData(
     val nome: Int? = null,
-    val imagem: Uri? = null,
+    val imagem: String? = null,
     val observacoes: String? = null,
 ) : Parcelable
 

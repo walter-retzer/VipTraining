@@ -21,14 +21,13 @@
             android:layout_height="120dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="10dp"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
             android:background="@color/violet"
-            android:scaleType="fitCenter"
-            app:contentPadding="15dp"
-            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            android:scaleType="fitXY"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintTop_toBottomOf="@+id/name_training_firestore"
-            app:srcCompat="@drawable/img_3_fragment_onboarding" />
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:srcCompat="@drawable/img_3" />
 
         <TextView
             android:id="@+id/name_training_firestore"
@@ -51,10 +50,10 @@
             android:layout_marginStart="15dp"
             android:layout_marginTop="5dp"
             android:layout_marginEnd="20dp"
-            app:layout_constraintHorizontal_chainStyle="spread_inside"
             android:text=" "
             android:textColor="@color/grey"
             android:textSize="14sp"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/name_training_firestore" />
 
@@ -101,15 +100,15 @@
             android:id="@+id/btn_edit"
             android:layout_width="30dp"
             android:layout_height="30dp"
-            android:layout_marginTop="10dp"
             android:layout_marginStart="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:background="@color/white"
             android:scaleType="fitCenter"
             app:contentPadding="2dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/image_training_firestore"
             app:layout_constraintEnd_toStartOf="@+id/btn_delete"
+            app:layout_constraintStart_toStartOf="@+id/image_training_firestore"
             app:layout_constraintTop_toBottomOf="@+id/image_training_firestore"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
             app:srcCompat="@drawable/icon_edit" />
@@ -125,9 +124,9 @@
             android:background="@color/white"
             android:scaleType="fitCenter"
             app:contentPadding="5dp"
-            app:layout_constraintStart_toEndOf="@+id/btn_edit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/image_training_firestore"
+            app:layout_constraintStart_toEndOf="@+id/btn_edit"
             app:layout_constraintTop_toBottomOf="@+id/image_training_firestore"
             app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
             app:srcCompat="@drawable/icon_close" />
