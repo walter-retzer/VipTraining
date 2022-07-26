@@ -71,10 +71,10 @@
         android:background="@color/violet"
         android:scaleType="fitCenter"
         app:contentPadding="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/view_top_white"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/text_insert_exercise"
-        app:layout_constraintBottom_toTopOf="@+id/view_top_white"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:srcCompat="@drawable/img_3_fragment_onboarding" />
 

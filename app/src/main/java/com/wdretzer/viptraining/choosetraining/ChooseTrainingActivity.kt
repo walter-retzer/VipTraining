@@ -22,16 +22,22 @@ import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.extension.SaveFile
 import com.wdretzer.viptraining.inserttraining.InsertTrainingActivity
 import java.io.ByteArrayOutputStream
+import java.lang.System.currentTimeMillis
 
 
 class ChooseTrainingActivity : AppCompatActivity() {
 
+    private val imageName = "training-${currentTimeMillis()}"
+
     private val cameraCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                result.data?.extras?.get("data")?.let { photo ->
+                val image = result.data
+
+                image?.extras?.get("data")?.let { photo ->
                     imageTraining.setImageBitmap(photo as Bitmap)
-                    uriImage = getImageUri(this, photo)
+                    val uri = getImageUri(this, photo)
+                    uriImage = uri
                     SaveFile(this, photo).saveAndShare()
                 }
             }
@@ -154,11 +160,11 @@ class ChooseTrainingActivity : AppCompatActivity() {
     }
 
 
-    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri? {
+    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
         val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.PNG, 100, bytes)
+        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
         val path =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, "Title", null)
+            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, imageName, null)
         return Uri.parse(path)
     }
 

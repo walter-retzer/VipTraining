@@ -115,22 +115,22 @@ class EditTrainingActivity : AppCompatActivity() {
 
     private fun checkItems(item: FirestoreData) {
         if (checkBox1.isChecked) {
-            exercise1 = ExerciseData(item.name, null, checkBox1.text.toString())
+            exercise1 = ExerciseData(item.name, item.listExercise?.first()?.imagem, checkBox1.text.toString())
             listExercise.add(exercise1)
         }
 
         if (checkBox2.isChecked) {
-            exercise2 = ExerciseData(item.name, null, checkBox2.text.toString())
+            exercise2 = ExerciseData(item.name, item.listExercise?.first()?.imagem, checkBox2.text.toString())
             listExercise.add(exercise2)
         }
 
         if (checkBox3.isChecked) {
-            exercise3 = ExerciseData(item.name, null, checkBox3.text.toString())
+            exercise3 = ExerciseData(item.name, item.listExercise?.first()?.imagem, checkBox3.text.toString())
             listExercise.add(exercise3)
         }
 
         if (checkBox4.isChecked) {
-            exercise4 = ExerciseData(item.name, null, checkBox4.text.toString())
+            exercise4 = ExerciseData(item.name, item.listExercise?.first()?.imagem, checkBox4.text.toString())
             listExercise.add(exercise4)
         }
     }

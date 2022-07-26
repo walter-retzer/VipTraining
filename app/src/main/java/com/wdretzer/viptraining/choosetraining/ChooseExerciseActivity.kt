@@ -52,6 +52,8 @@ class ChooseExerciseActivity : AppCompatActivity() {
     private val loading: FrameLayout
         get() = findViewById(R.id.loading)
 
+    private val imageName = "training-${System.currentTimeMillis()}"
+
     private lateinit var exercise1: ExerciseData
     private lateinit var exercise2: ExerciseData
     private lateinit var exercise3: ExerciseData
@@ -76,18 +78,26 @@ class ChooseExerciseActivity : AppCompatActivity() {
         if (checkBox1.isChecked || checkBox2.isChecked || checkBox3.isChecked || checkBox4.isChecked) {
             loading.isVisible = true
             btnNext.isVisible = false
+
             checkBundle()
             insertDataOnFirestore()
             sendToReadFirestore()
             uploadToFirebase(saveFile())
+
+            setUriImageTraining?.let {
+                val uri = Uri.parse(setUriImageTraining)
+                uri.let(::uploadToFirebaseStorage)
+            }
+
         } else {
             Toast.makeText(
                 this,
-                "Por favor selecione ao menos 1 exercicio!",
+                "Por favor selecione ao menos 1 exercício!",
                 Toast.LENGTH_LONG
             ).show()
         }
     }
+
 
     private fun insertDataOnFirestore() {
         val db = Firebase.firestore
@@ -252,14 +262,32 @@ class ChooseExerciseActivity : AppCompatActivity() {
     }
 
 
+    private fun uploadToFirebaseStorage(uri: Uri) {
+        val firebaseStorage = FirebaseStorage.getInstance()
+        val storage = firebaseStorage.getReference("Image")
+        val fileReference = storage.child("$imageName.jpg")
+        uri.apply {
+            fileReference
+                .putFile(this)
+                .addOnSuccessListener {
+                    Log.d("Firestore_Storage:", "Upload Ok. Imagem $imageName")
+                }
+                .addOnFailureListener {
+                    Log.d("Firestore_Storage:", "Upload Não Ok. Imagem $imageName")
+                }
+                .addOnProgressListener { loading.isVisible = true }
+                .addOnCompleteListener { loading.isVisible = false }
+        }
+    }
+
+
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     private fun uploadToFirebase(uri: Uri) {
 
-        val nameFile = ""
         val firebaseStorage = FirebaseStorage.getInstance()
-        val storage = firebaseStorage.getReference("Imagens")
-        val fileReference = storage.child("search_$nameFile.txt")
+        val storage = firebaseStorage.getReference("Documents")
+        val fileReference = storage.child("image_list.txt")
 
         uri.apply {
             fileReference
@@ -283,10 +311,9 @@ class ChooseExerciseActivity : AppCompatActivity() {
             file.mkdir()
         }
 
-        val nameFile = "Img"
         val simpleDateFormat = SimpleDateFormat("dd.MM.yyyy_HH.mm.ss")
         val date = simpleDateFormat.format(Date())
-        val name = "imagens_$nameFile.txt"
+        val name = "img.txt"
         val fileName = file.absolutePath + "/" + name
         val newFile = File(fileName)
 
@@ -310,7 +337,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
 
     private fun getDisc(): File {
-        return File(this.externalCacheDir!!.absolutePath, "/Vip")
+        return File(this.externalCacheDir!!.absolutePath, "/VipImage")
     }
 
 }
