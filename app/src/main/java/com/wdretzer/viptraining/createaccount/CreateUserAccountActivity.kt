@@ -15,6 +15,7 @@ import androidx.core.view.isVisible
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.data.extension.DataResult
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
+import com.wdretzer.viptraining.profile.MyProfileActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
@@ -115,15 +116,32 @@ class CreateUserAccountActivity : AppCompatActivity() {
 
                 is DataResult.Success -> {
                     Log.d("Login_Firebase:", "Autenticação Realizada com Sucesso! ")
-                    sendToMainMenu()
+                    Toast.makeText(this, "Criando perfil do Usuario!", Toast.LENGTH_LONG)
+                        .show()
+                    Handler().postDelayed({
+                        updateUserName(textName.text.toString(), null  )
+                    }, 4000)
+
                 }
             }
         }
     }
 
+    private fun updateUserName(name: String, uri: String?) {
+        viewModel.updateUserName(name, null).observe(this) {
+            if (it is DataResult.Loading) {
+                progressBar.isVisible = it.isLoading
+            }
 
-    private fun sendToMainMenu() {
-        val intent = Intent(this, MainMenuActivity::class.java)
+            if (it is DataResult.Success) {
+                sendToMyProfile()
+            }
+        }
+    }
+
+
+    private fun sendToMyProfile() {
+        val intent = Intent(this, MyProfileActivity::class.java)
         startActivity(intent)
     }
 

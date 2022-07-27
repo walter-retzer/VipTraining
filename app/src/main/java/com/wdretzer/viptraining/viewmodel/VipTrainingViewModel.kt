@@ -1,13 +1,17 @@
 package com.wdretzer.viptraining.viewmodel
 
+import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.userProfileChangeRequest
 import com.wdretzer.viptraining.data.extension.DataResult
 
 
 class VipTrainingViewModel() : ViewModel() {
+
+    var firebaseAuth = FirebaseAuth.getInstance()
 
     fun login(email: String, password: String): MutableLiveData<DataResult<Boolean>> {
         val result = MutableLiveData<DataResult<Boolean>>()
@@ -28,7 +32,7 @@ class VipTrainingViewModel() : ViewModel() {
             return result
         }
 
-        FirebaseAuth.getInstance().signInWithEmailAndPassword(
+        firebaseAuth.signInWithEmailAndPassword(
             email, password
         )
             .addOnCompleteListener { task ->
@@ -87,7 +91,7 @@ class VipTrainingViewModel() : ViewModel() {
                 .matches() && name.isNotEmpty() && password == confirmPassword
         ) {
 
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(
+            firebaseAuth.createUserWithEmailAndPassword(
                 email, password
             )
                 .addOnCompleteListener { task ->
@@ -111,6 +115,78 @@ class VipTrainingViewModel() : ViewModel() {
                         }
                     }
                 }
+        }
+        return result
+    }
+
+
+    fun updateUserName(name: String?, uri: String?): MutableLiveData<DataResult<Boolean>> {
+        val result = MutableLiveData<DataResult<Boolean>>()
+        result.value = DataResult.Loading(true)
+
+        if (firebaseAuth.currentUser != null) {
+            firebaseAuth.currentUser?.apply {
+                updateProfile(userProfileChangeRequest {
+                    name?.let { displayName = it }
+                    uri?.let { photoUri = Uri.parse(it) }
+
+                }).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        result.value = DataResult.Warning("${firebaseAuth.currentUser?.displayName}")
+                        result.value = DataResult.Success(true)
+                        result.value = DataResult.Loading(false)
+                        Log.i(
+                            "Current_User_Firebase:",
+                            "Current User: ${firebaseAuth.currentUser?.displayName}"
+                        )
+
+                    } else {
+                        task.exception?.let {
+                            Log.i(
+                                "Current_User_Firebase:",
+                                "Current User in Firebase failed with error ${it.localizedMessage}"
+                            )
+                            result.value = DataResult.Error(it)
+                            result.value = DataResult.Loading(false)
+                        }
+                    }
+                }
+            }
+        }
+        return result
+    }
+
+
+    fun checkUserName(): MutableLiveData<DataResult<Boolean>> {
+        val result = MutableLiveData<DataResult<Boolean>>()
+        result.value = DataResult.Loading(true)
+
+        if (firebaseAuth.currentUser != null) {
+            firebaseAuth.currentUser?.apply {
+                updateProfile(userProfileChangeRequest {
+
+                }).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        result.value = DataResult.Warning("${firebaseAuth.currentUser?.displayName}")
+                        result.value = DataResult.Success(true)
+                        result.value = DataResult.Loading(false)
+                        Log.i(
+                            "Current_User_Firebase:",
+                            "Current User: ${firebaseAuth.currentUser?.displayName}"
+                        )
+
+                    } else {
+                        task.exception?.let {
+                            Log.i(
+                                "Current_User_Firebase:",
+                                "Current User in Firebase failed with error ${it.localizedMessage}"
+                            )
+                            result.value = DataResult.Error(it)
+                            result.value = DataResult.Loading(false)
+                        }
+                    }
+                }
+            }
         }
         return result
     }

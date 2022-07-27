@@ -12,6 +12,7 @@ import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.choosetraining.ChooseTrainingActivity
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.onboarding.OnboardingScreenAdapter
+import com.wdretzer.viptraining.profile.MyProfileActivity
 import com.wdretzer.viptraining.searchinfirestore.SearchDataInFirestoreActivity
 import java.text.SimpleDateFormat
 import java.util.*
@@ -24,6 +25,9 @@ class MainMenuActivity : AppCompatActivity() {
 
     private val btnAddTraining: ShapeableImageView
         get() = findViewById(R.id.btn_add_exercise)
+
+    private val btnProfile: ShapeableImageView
+        get() = findViewById(R.id.btn_home)
 
     private val btnSearchTraining: ShapeableImageView
         get() = findViewById(R.id.btn_send_search)
@@ -49,6 +53,7 @@ class MainMenuActivity : AppCompatActivity() {
         btnAddTraining.setOnClickListener { sendToChooseTraining() }
         btnSearchTraining.setOnClickListener { sendToSearchTraining() }
         btnMyTraining.setOnClickListener { sendToMyTraining() }
+        btnProfile.setOnClickListener { sendToMyProfile() }
     }
 
 
@@ -64,6 +69,11 @@ class MainMenuActivity : AppCompatActivity() {
 
     private fun sendToMyTraining() {
         val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun sendToMyProfile() {
+        val intent = Intent(this, MyProfileActivity::class.java)
         startActivity(intent)
     }
 

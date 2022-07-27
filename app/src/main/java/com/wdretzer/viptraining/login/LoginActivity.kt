@@ -14,6 +14,7 @@ import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
 import com.wdretzer.viptraining.data.extension.DataResult
 import com.wdretzer.viptraining.dialogfragment.ForgotPasswordDialogFragment
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
+import com.wdretzer.viptraining.profile.MyProfileActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
@@ -52,7 +53,8 @@ class LoginActivity : AppCompatActivity() {
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
 
-        btnGoogle.setOnClickListener { sendToMainMenu() }
+       // btnGoogle.setOnClickListener { sendToMainMenu() }
+        btnGoogle.setOnClickListener { sendToMyProfile() }
         btnFacebook.setOnClickListener { sendToCreateAccount() }
         btnLogin.setOnClickListener {
             checkInfoFromFields(
@@ -109,6 +111,11 @@ class LoginActivity : AppCompatActivity() {
 
     private fun sendToMainMenu() {
         val intent = Intent(this, MainMenuActivity::class.java)
+        startActivity(intent)
+    }
+
+    private fun sendToMyProfile() {
+        val intent = Intent(this, MyProfileActivity::class.java)
         startActivity(intent)
     }
 }

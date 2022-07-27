@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".profile.MyProfileActivity">
 
     <TextView
@@ -11,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
-        android:layout_marginTop="35dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="25dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
@@ -43,89 +44,110 @@
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_profile"
         android:layout_width="220dp"
-        android:layout_height="220dp"
+        android:layout_height="200dp"
         android:layout_marginTop="5dp"
         android:background="@color/violet"
         android:scaleType="fitCenter"
-        app:contentPadding="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
+        app:contentPadding="15dp"
         app:layout_constraintTop_toBottomOf="@+id/text_title_profile"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-        app:srcCompat="@drawable/img_3_fragment_onboarding" />
+        app:srcCompat="@drawable/welcome_user" />
+
 
     <TextView
-        android:id="@+id/text_subtitle_profile"
+        android:id="@+id/text_welcome_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginEnd="15dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
-        android:text="@string/complete_o_seu_perfil"
+        android:text="Seja Bem Vindo,"
         android:textAlignment="center"
         android:textColor="@color/black"
-        android:textSize="20sp"
+        android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_profile" />
 
     <TextView
-        android:id="@+id/text_subtitle_profile2"
+        android:id="@+id/text_name_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="35dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginEnd="25dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
-        android:text="Isso ajudará a te conhecer melhor!"
+        android:text="..."
+        android:textAlignment="center"
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_welcome_user" />
+
+    <TextView
+        android:id="@+id/text_subtitle_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:background="@android:color/transparent"
+        android:elevation="2dp"
+        android:text="Complete o seu Perfil, isso nos ajudará a te conhecer melhor e assim poderemos te indicar super treinos."
         android:textAlignment="center"
         android:textColor="@color/grey"
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_subtitle_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/text_name_user" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/birthday"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_marginEnd="30dp"
-        android:hint="@string/dia_de_aniversario"
-        android:textColorHint="@color/grey_dark"
+        android:hint="@string/aniversário"
+        android:imeOptions="actionNext"
+        android:textColorHint="@color/black"
         app:boxBackgroundColor="@color/sand"
         app:boxStrokeColor="@color/blue_light"
+        app:endIconMode="clear_text"
         app:endIconTint="@color/black"
         app:hintTextColor="@color/blue_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_subtitle_profile2"
+        app:layout_constraintTop_toBottomOf="@+id/text_subtitle_profile"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCircle"
         app:startIconDrawable="@drawable/icon_calendar"
         app:startIconTint="@color/black">
 
-        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_birthday"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="date"
-            android:textColor="@color/grey_dark" />
+            android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
+
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/weight"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:hint="@string/peso"
         android:textColorHint="@color/grey_dark"
@@ -141,11 +163,11 @@
         app:startIconDrawable="@drawable/icon_calendar"
         app:startIconTint="@color/black">
 
-        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_weight"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="date"
+            android:inputType="numberDecimal"
             android:textColor="@color/grey_dark" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -162,16 +184,15 @@
         app:layout_constraintStart_toEndOf="@+id/weight"
         app:layout_constraintTop_toTopOf="@+id/weight"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
-        app:srcCompat="@drawable/icon_height" />
-
+        app:srcCompat="@drawable/icon_weight" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/height"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_marginStart="30dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="30dp"
         android:hint="@string/altura"
         android:textColorHint="@color/grey_dark"
@@ -187,11 +208,11 @@
         app:startIconDrawable="@drawable/icon_calendar"
         app:startIconTint="@color/black">
 
-        <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+        <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/input_height"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:inputType="date"
+            android:inputType="number"
             android:textColor="@color/grey_dark" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -211,12 +232,31 @@
         app:srcCompat="@drawable/icon_height" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_next_info"
+        android:id="@+id/btn_save_profile"
         style="@style/Button_Style"
         android:layout_marginBottom="30dp"
         android:text="@string/salvar"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/progress_bar_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:backgroundTint="@android:color/transparent"
+        android:elevation="3dp"
+        android:padding="16dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

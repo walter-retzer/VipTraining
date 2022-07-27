@@ -74,6 +74,7 @@
     <string name="definicao">Exercicios que ajudam na definição dos seus músculos</string>
     <string name="nivel">Nível Avançado*</string>
     <string name="treinar">Começar a Treinar</string>
+    <string name="aniversário">Data de Aniversário</string>
 
     <string-array name="training_types">
         <item>Perda de Peso</item>
