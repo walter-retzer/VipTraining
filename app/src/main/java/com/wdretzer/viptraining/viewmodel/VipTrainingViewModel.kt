@@ -2,10 +2,12 @@ package com.wdretzer.viptraining.viewmodel
 
 import android.net.Uri
 import android.util.Log
+import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.storage.FirebaseStorage
 import com.wdretzer.viptraining.data.extension.DataResult
 
 
@@ -132,7 +134,8 @@ class VipTrainingViewModel() : ViewModel() {
 
                 }).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        result.value = DataResult.Warning("${firebaseAuth.currentUser?.displayName}")
+                        result.value =
+                            DataResult.Warning("${firebaseAuth.currentUser?.displayName}")
                         result.value = DataResult.Success(true)
                         result.value = DataResult.Loading(false)
                         Log.i(
@@ -157,17 +160,55 @@ class VipTrainingViewModel() : ViewModel() {
     }
 
 
+    fun updateUserPhoto(uri: String?): MutableLiveData<DataResult<Boolean>> {
+        val result = MutableLiveData<DataResult<Boolean>>()
+        result.value = DataResult.Loading(true)
+
+        if (firebaseAuth.currentUser != null) {
+
+            firebaseAuth.currentUser?.apply {
+                updateProfile(userProfileChangeRequest {
+                    uri?.let { photoUri = Uri.parse(it) }
+
+                }).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        result.value = DataResult.Warning("${firebaseAuth.currentUser?.photoUrl}")
+                        result.value = DataResult.Success(true)
+                        result.value = DataResult.Loading(false)
+                        Log.i(
+                            "Current_User_Firebase:",
+                            "Current User: ${firebaseAuth.currentUser?.photoUrl}"
+                        )
+
+                    } else {
+                        task.exception?.let {
+                            Log.i(
+                                "Current_User_Firebase:",
+                                "Current User in Firebase failed with error ${it.localizedMessage}"
+                            )
+                            result.value = DataResult.Error(it)
+                            result.value = DataResult.Loading(false)
+                        }
+                    }
+                }
+            }
+        }
+        return result
+    }
+
     fun checkUserName(): MutableLiveData<DataResult<Boolean>> {
         val result = MutableLiveData<DataResult<Boolean>>()
         result.value = DataResult.Loading(true)
 
         if (firebaseAuth.currentUser != null) {
+
             firebaseAuth.currentUser?.apply {
                 updateProfile(userProfileChangeRequest {
 
                 }).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
-                        result.value = DataResult.Warning("${firebaseAuth.currentUser?.displayName}")
+                        result.value =
+                            DataResult.Warning("${firebaseAuth.currentUser?.displayName}")
                         result.value = DataResult.Success(true)
                         result.value = DataResult.Loading(false)
                         Log.i(
@@ -187,6 +228,70 @@ class VipTrainingViewModel() : ViewModel() {
                     }
                 }
             }
+        }
+        return result
+    }
+
+    fun checkUserPhoto(): MutableLiveData<DataResult<Boolean>> {
+        val result = MutableLiveData<DataResult<Boolean>>()
+        result.value = DataResult.Loading(true)
+
+        if (firebaseAuth.currentUser != null) {
+
+            firebaseAuth.currentUser?.apply {
+                updateProfile(userProfileChangeRequest {
+
+                }).addOnCompleteListener { task ->
+                    if (task.isSuccessful) {
+                        result.value = DataResult.Warning("${firebaseAuth.currentUser?.photoUrl}")
+                        result.value = DataResult.Success(true)
+                        result.value = DataResult.Loading(false)
+                        Log.i(
+                            "Current_User_Firebase:",
+                            "Current User: ${firebaseAuth.currentUser?.photoUrl}"
+                        )
+
+                    } else {
+                        task.exception?.let {
+                            Log.i(
+                                "Current_User_Firebase:",
+                                "Current User in Firebase failed with error ${it.localizedMessage}"
+                            )
+                            result.value = DataResult.Error(it)
+                            result.value = DataResult.Loading(false)
+                        }
+                    }
+                }
+            }
+        }
+        return result
+    }
+
+
+    fun uploadPhotoProfileToFirebaseStorage(
+        uri: Uri,
+        imageName: String,
+        localStorage: String
+    ): MutableLiveData<DataResult<Boolean>> {
+        val result = MutableLiveData<DataResult<Boolean>>()
+        result.value = DataResult.Loading(true)
+
+        val firebaseStorage = FirebaseStorage.getInstance()
+        val storage = firebaseStorage.getReference("Profile")
+        val fileReference = storage.child("$imageName.jpg")
+        uri.apply {
+            fileReference
+                .putFile(this)
+                .addOnSuccessListener {
+                    Log.d("Firestore_Storage:", "Upload Ok. Imagem $imageName")
+                    result.value = DataResult.Success(true)
+                }
+                .addOnFailureListener {
+                    Log.d("Firestore_Storage:", "Upload Não Ok. Imagem $imageName")
+                    result.value = DataResult.Error(it)
+                }
+                .addOnProgressListener { result.value = DataResult.Loading(true) }
+                .addOnCompleteListener { result.value = DataResult.Loading(false) }
         }
         return result
     }

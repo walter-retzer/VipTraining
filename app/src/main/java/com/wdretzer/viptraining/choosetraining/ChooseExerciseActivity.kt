@@ -12,6 +12,7 @@ import android.widget.Button
 import android.widget.CheckBox
 import android.widget.FrameLayout
 import android.widget.Toast
+import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.net.toUri
 import androidx.core.view.isVisible
@@ -20,11 +21,13 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.wdretzer.viptraining.R
+import com.wdretzer.viptraining.data.extension.DataResult
 import com.wdretzer.viptraining.datafirebase.CheckBoxStatus
 import com.wdretzer.viptraining.datafirebase.ExerciseData
 import com.wdretzer.viptraining.datafirebase.FirestoreData
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
+import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 import java.io.File
 import java.io.FileNotFoundException
 import java.io.FileWriter
@@ -51,6 +54,8 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
     private val loading: FrameLayout
         get() = findViewById(R.id.loading)
+
+    private val viewModel: VipTrainingViewModel by viewModels()
 
     private val imageName = "training-${System.currentTimeMillis()}"
 
@@ -86,7 +91,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
             setUriImageTraining?.let {
                 val uri = Uri.parse(setUriImageTraining)
-                uri.let(::uploadToFirebaseStorage)
+                updatePhotoFirebase(uri, imageName)
             }
 
         } else {
@@ -136,11 +141,13 @@ class ChooseExerciseActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
     private fun sendToReadFirestore() {
         btnNext.isVisible = true
         val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
         startActivity(intent)
     }
+
 
     private fun checkBundle() {
         val bundle: Bundle? = intent.extras
@@ -261,22 +268,15 @@ class ChooseExerciseActivity : AppCompatActivity() {
         }
     }
 
+    private fun updatePhotoFirebase(uri: Uri, imageName: String) {
+        viewModel.uploadPhotoProfileToFirebaseStorage(uri, imageName, "Image").observe(this) {
+            if (it is DataResult.Loading) {
+                loading.isVisible = it.isLoading
+            }
 
-    private fun uploadToFirebaseStorage(uri: Uri) {
-        val firebaseStorage = FirebaseStorage.getInstance()
-        val storage = firebaseStorage.getReference("Image")
-        val fileReference = storage.child("$imageName.jpg")
-        uri.apply {
-            fileReference
-                .putFile(this)
-                .addOnSuccessListener {
-                    Log.d("Firestore_Storage:", "Upload Ok. Imagem $imageName")
-                }
-                .addOnFailureListener {
-                    Log.d("Firestore_Storage:", "Upload Não Ok. Imagem $imageName")
-                }
-                .addOnProgressListener { loading.isVisible = true }
-                .addOnCompleteListener { loading.isVisible = false }
+            if (it is DataResult.Success) {
+                Toast.makeText(this, "Update Photo In Firebase Storage!", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

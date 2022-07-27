@@ -75,6 +75,8 @@
     <string name="nivel">Nível Avançado*</string>
     <string name="treinar">Começar a Treinar</string>
     <string name="aniversário">Data de Aniversário</string>
+    <string name="edite_profile">Editar Perfil</string>
+    <string name="ola">Olá,</string>
 
     <string-array name="training_types">
         <item>Perda de Peso</item>

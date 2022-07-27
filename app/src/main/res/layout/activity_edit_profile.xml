@@ -5,10 +5,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".profile.MyProfileActivity">
+    tools:context=".profile.EditProfileActivity">
 
     <TextView
-        android:id="@+id/text_title_profile"
+        android:id="@+id/text_title_edit_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="35dp"
@@ -16,7 +16,7 @@
         android:layout_marginEnd="25dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
-        android:text="@string/profile"
+        android:text="@string/edite_profile"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="28sp"
@@ -34,15 +34,15 @@
         android:elevation="3dp"
         android:scaleType="fitCenter"
         app:contentPadding="8dp"
-        app:layout_constraintBottom_toBottomOf="@+id/text_title_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/text_title_edit_profile"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/text_title_profile"
+        app:layout_constraintTop_toTopOf="@+id/text_title_edit_profile"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
         app:srcCompat="@drawable/icon_left" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/image_profile"
+        android:id="@+id/image_edit_profile"
         android:layout_width="220dp"
         android:layout_height="200dp"
         android:layout_marginTop="5dp"
@@ -51,7 +51,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_chainStyle="spread_inside"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_title_profile"
+        app:layout_constraintTop_toBottomOf="@+id/text_title_edit_profile"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:srcCompat="@drawable/welcome_user" />
 
@@ -64,13 +64,13 @@
         android:background="@color/sand2"
         android:scaleType="fitXY"
         app:contentPadding="10dp"
-        app:layout_constraintBottom_toBottomOf="@+id/image_profile"
-        app:layout_constraintEnd_toEndOf="@+id/image_profile"
+        app:layout_constraintBottom_toBottomOf="@+id/image_edit_profile"
+        app:layout_constraintEnd_toEndOf="@+id/image_edit_profile"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:srcCompat="@drawable/icon_camera" />
 
     <TextView
-        android:id="@+id/text_welcome_user"
+        android:id="@+id/text_hey_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -78,17 +78,17 @@
         android:layout_marginEnd="15dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
-        android:text="Seja Bem Vindo,"
+        android:text="@string/ola"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/image_profile" />
+        app:layout_constraintTop_toBottomOf="@+id/image_edit_profile" />
 
     <TextView
-        android:id="@+id/text_name_user"
+        android:id="@+id/text_name_edit_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -102,10 +102,10 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_welcome_user" />
+        app:layout_constraintTop_toBottomOf="@+id/text_hey_user" />
 
     <TextView
-        android:id="@+id/text_subtitle_profile"
+        android:id="@+id/text_subtitle_edit_profile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
@@ -119,10 +119,10 @@
         android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_name_user" />
+        app:layout_constraintTop_toBottomOf="@+id/text_name_edit_user" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/birthday"
+        android:id="@+id/edit_birthday"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -139,13 +139,13 @@
         app:hintTextColor="@color/blue_light"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/text_subtitle_profile"
+        app:layout_constraintTop_toBottomOf="@+id/text_subtitle_edit_profile"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCircle"
         app:startIconDrawable="@drawable/icon_calendar"
         app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_birthday"
+            android:id="@+id/input_edit_birthday"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="date"
@@ -154,7 +154,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/weight"
+        android:id="@+id/edit_weight"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -170,13 +170,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/icon_weight"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/birthday"
+        app:layout_constraintTop_toBottomOf="@+id/edit_birthday"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCircle"
         app:startIconDrawable="@drawable/icon_calendar"
         app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_weight"
+            android:id="@+id/input_edit_weight"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="numberDecimal"
@@ -191,15 +191,15 @@
         android:background="@color/white"
         android:elevation="3dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/weight"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_weight"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/weight"
-        app:layout_constraintTop_toTopOf="@+id/weight"
+        app:layout_constraintStart_toEndOf="@+id/edit_weight"
+        app:layout_constraintTop_toTopOf="@+id/edit_weight"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
         app:srcCompat="@drawable/icon_weight" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/height"
+        android:id="@+id/edit_height"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="60dp"
@@ -215,13 +215,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/icon_height"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/weight"
+        app:layout_constraintTop_toBottomOf="@+id/edit_weight"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerCircle"
         app:startIconDrawable="@drawable/icon_calendar"
         app:startIconTint="@color/black">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/input_height"
+            android:id="@+id/input_edit_height"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:inputType="number"
@@ -236,15 +236,15 @@
         android:background="@color/white"
         android:elevation="3dp"
         android:scaleType="fitCenter"
-        app:layout_constraintBottom_toBottomOf="@+id/height"
+        app:layout_constraintBottom_toBottomOf="@+id/edit_height"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/height"
-        app:layout_constraintTop_toTopOf="@+id/height"
+        app:layout_constraintStart_toEndOf="@+id/edit_height"
+        app:layout_constraintTop_toTopOf="@+id/edit_height"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
         app:srcCompat="@drawable/icon_height" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn_save_profile"
+        android:id="@+id/btn_edit_profile"
         style="@style/Button_Style"
         android:layout_marginBottom="30dp"
         android:text="@string/salvar"
@@ -270,5 +270,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </FrameLayout>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -88,7 +88,7 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/btn_home"
+        android:id="@+id/btn_profile"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginStart="35dp"
@@ -99,19 +99,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-        app:srcCompat="@drawable/icon_home" />
+        app:srcCompat="@drawable/icon_profile" />
 
     <TextView
         android:id="@+id/text_btn_home"
         style="@style/TextAppearance.AppCompat.Headline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/home"
+        android:text="@string/perfil"
         android:textColor="@color/white"
         android:textSize="12sp"
-        app:layout_constraintEnd_toEndOf="@+id/btn_home"
-        app:layout_constraintStart_toStartOf="@+id/btn_home"
-        app:layout_constraintTop_toBottomOf="@+id/btn_home" />
+        app:layout_constraintEnd_toEndOf="@+id/btn_profile"
+        app:layout_constraintStart_toStartOf="@+id/btn_profile"
+        app:layout_constraintTop_toBottomOf="@+id/btn_profile" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/btn_send_search"
@@ -123,7 +123,7 @@
         app:contentPadding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btn_add_exercise"
-        app:layout_constraintStart_toEndOf="@+id/btn_home"
+        app:layout_constraintStart_toEndOf="@+id/btn_profile"
         app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
         app:srcCompat="@drawable/icon_search" />
 

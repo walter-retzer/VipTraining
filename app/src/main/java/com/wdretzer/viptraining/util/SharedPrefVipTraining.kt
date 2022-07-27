@@ -9,14 +9,6 @@ class SharedPrefVipTraining {
         .appContext?.getSharedPreferences("viptraining", Context.MODE_PRIVATE)
         ?: throw IllegalArgumentException("shared preferences error!")
 
-    fun saveBoolean(id: String, boolean: Boolean) {
-        sharedPref.edit()?.putBoolean(id, boolean)?.apply()
-    }
-
-    fun readBoolean(id: String): Boolean {
-        return sharedPref.getBoolean(id, false)
-    }
-
     fun saveString(id: String, string: String) {
         sharedPref.edit()?.putString(id, string)?.apply()
     }

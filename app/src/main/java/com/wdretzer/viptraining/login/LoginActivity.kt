@@ -14,7 +14,6 @@ import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
 import com.wdretzer.viptraining.data.extension.DataResult
 import com.wdretzer.viptraining.dialogfragment.ForgotPasswordDialogFragment
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
-import com.wdretzer.viptraining.profile.MyProfileActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
@@ -25,6 +24,9 @@ class LoginActivity : AppCompatActivity() {
 
     private val forgotPassword: TextView
         get() = findViewById(R.id.text_forget_password)
+
+    private val createAccount: TextView
+        get() = findViewById(R.id.text_register)
 
     private val textPassword: TextInputEditText
         get() = findViewById(R.id.input_password_login)
@@ -53,9 +55,9 @@ class LoginActivity : AppCompatActivity() {
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
 
-       // btnGoogle.setOnClickListener { sendToMainMenu() }
-        btnGoogle.setOnClickListener { sendToMyProfile() }
-        btnFacebook.setOnClickListener { sendToCreateAccount() }
+        btnGoogle.setOnClickListener {  }
+        btnFacebook.setOnClickListener {  }
+        createAccount.setOnClickListener { sendToCreateAccount() }
         btnLogin.setOnClickListener {
             checkInfoFromFields(
                 textEmail.text.toString(),
@@ -69,8 +71,6 @@ class LoginActivity : AppCompatActivity() {
                 dialogForgetPassword.tag
             )
         }
-
-
     }
 
 
@@ -111,11 +111,6 @@ class LoginActivity : AppCompatActivity() {
 
     private fun sendToMainMenu() {
         val intent = Intent(this, MainMenuActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun sendToMyProfile() {
-        val intent = Intent(this, MyProfileActivity::class.java)
         startActivity(intent)
     }
 }

@@ -12,6 +12,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
@@ -24,13 +25,14 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.data.extension.DataResult
+import com.wdretzer.viptraining.extension.SaveFile
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 import com.wdretzer.viptraining.util.SharedPrefVipTraining
 import com.wdretzer.viptraining.util.getImageUri
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
-class MyProfileActivity : AppCompatActivity() {
+class EditProfileActivity : AppCompatActivity() {
 
     private val imageName = "training-${System.currentTimeMillis()}"
     private var uriImage: Uri? = null
@@ -44,6 +46,7 @@ class MyProfileActivity : AppCompatActivity() {
                     imageProfile.setImageBitmap(photo as Bitmap)
                     val uri = getImageUri(this, photo, imageName)
                     uriImage = uri
+                    SaveFile(this, photo).saveAndShare()
                 }
             }
         }
@@ -57,43 +60,48 @@ class MyProfileActivity : AppCompatActivity() {
         }
 
     private val imageProfile: ShapeableImageView
-        get() = findViewById(R.id.image_profile)
+        get() = findViewById(R.id.image_edit_profile)
 
     private val btnCamerae: ShapeableImageView
         get() = findViewById(R.id.btn_camera)
 
     private val textName: TextView
-        get() = findViewById(R.id.text_name_user)
+        get() = findViewById(R.id.text_name_edit_user)
 
     private val textBirthday: TextInputEditText
-        get() = findViewById(R.id.input_birthday)
+        get() = findViewById(R.id.input_edit_birthday)
 
     private val textWeigth: TextInputEditText
-        get() = findViewById(R.id.input_weight)
+        get() = findViewById(R.id.input_edit_weight)
 
     private val textHeigth: TextInputEditText
-        get() = findViewById(R.id.input_height)
+        get() = findViewById(R.id.input_edit_height)
 
     private val btnSaveProfile: Button
-        get() = findViewById(R.id.btn_save_profile)
+        get() = findViewById(R.id.btn_edit_profile)
 
     private val progressBar: FrameLayout
         get() = findViewById(R.id.progress_bar_login)
 
     private val viewModel: VipTrainingViewModel by viewModels()
-
     private val sharedPref: SharedPrefVipTraining = SharedPrefVipTraining.instance
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_profile)
+        setContentView(R.layout.activity_edit_profile)
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
-        checkUser()
 
+        checkUser()
+        checkUserPhoto()
+        checkSavePreferences()
+        checkClickListeners()
+    }
+
+
+    private fun checkClickListeners() {
         btnSaveProfile.setOnClickListener {
-            updateUserPhoto()
             uriImage?.let { updatePhotoFirebase(it, imageName) }
 
             saveName(textName.text.toString())
@@ -110,6 +118,17 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
 
+    private fun checkSavePreferences() {
+        try {
+            textBirthday.setText(sharedPref.readString("Date"))
+            textWeigth.setText(sharedPref.readString("Weight"))
+            textHeigth.setText(sharedPref.readString("Height"))
+        } catch (e: IllegalArgumentException) {
+            Log.d("Shared_Pref:", "Error: $e")
+        }
+    }
+
+
     private fun checkUser() {
         viewModel.checkUserName().observe(this) {
             if (it is DataResult.Loading) {
@@ -123,18 +142,18 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
 
-    private fun updateUserPhoto() {
-        viewModel.updateUserPhoto(uriImage.toString()).observe(this) {
+    private fun checkUserPhoto() {
+        viewModel.checkUserPhoto().observe(this) {
             if (it is DataResult.Loading) {
                 progressBar.isVisible = it.isLoading
             }
 
-            if (it is DataResult.Success) {
-                Toast.makeText(this, "Update Photo to Authentication!", Toast.LENGTH_SHORT).show()
+            if (it is DataResult.Warning) {
+                val uri = Uri.parse(it.message)
+                imageProfile.setImageURI(uri)
             }
         }
     }
-
 
     private fun updatePhotoFirebase(uri: Uri, imageName: String) {
         viewModel.uploadPhotoProfileToFirebaseStorage(uri, imageName, "Profile").observe(this) {
@@ -147,7 +166,6 @@ class MyProfileActivity : AppCompatActivity() {
             }
         }
     }
-
 
     private fun saveName(name: String) {
         sharedPref.saveString("Name", name)
@@ -165,12 +183,29 @@ class MyProfileActivity : AppCompatActivity() {
         sharedPref.saveString("Height", height)
     }
 
+
     private fun sendToMainMenu() {
         Handler().postDelayed({
             val intent = Intent(this, MainMenuActivity::class.java)
             startActivity(intent)
         }, 2000)
     }
+
+
+    private fun dialogPhoto(context: Context) {
+        val items = arrayOf("Tirar foto", "Buscar na Galeria")
+        AlertDialog
+            .Builder(context)
+            .setTitle("Qual você deseja usar?")
+            .setItems(items) { dialog, index ->
+                when (index) {
+                    0 -> getFromCamera(context)
+                    1 -> getFromGallery()
+                }
+                dialog.dismiss()
+            }.show()
+    }
+
 
     private fun getFromCamera(context: Context) {
         val permission =
@@ -199,26 +234,12 @@ class MyProfileActivity : AppCompatActivity() {
         }
     }
 
+
     private fun getFromGallery() {
         val intent = Intent().apply {
             action = Intent.ACTION_PICK
             type = "image/*"
         }
         galleryCallback.launch(intent)
-    }
-
-
-    private fun dialogPhoto(context: Context) {
-        val items = arrayOf("Tirar foto", "Buscar na Galeria")
-        AlertDialog
-            .Builder(context)
-            .setTitle("Qual você deseja usar?")
-            .setItems(items) { dialog, index ->
-                when (index) {
-                    0 -> getFromCamera(context)
-                    1 -> getFromGallery()
-                }
-                dialog.dismiss()
-            }.show()
     }
 }
