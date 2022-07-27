@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
-import com.google.firebase.auth.FirebaseAuth
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
 import com.wdretzer.viptraining.data.extension.DataResult
@@ -19,8 +18,6 @@ import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
 class LoginActivity : AppCompatActivity() {
-
-    private lateinit var auth: FirebaseAuth
 
     private val textEmail: TextInputEditText
         get() = findViewById(R.id.input_email_login)
@@ -54,8 +51,6 @@ class LoginActivity : AppCompatActivity() {
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
-
-        auth = FirebaseAuth.getInstance()
 
         btnGoogle.setOnClickListener { sendToMainMenu() }
         btnFacebook.setOnClickListener { sendToCreateAccount() }
