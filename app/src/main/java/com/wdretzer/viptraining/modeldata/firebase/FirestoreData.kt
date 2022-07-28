@@ -1,6 +1,5 @@
-package com.wdretzer.viptraining.datafirebase
+package com.wdretzer.viptraining.modeldata
 
-import android.net.Uri
 import android.os.Parcelable
 import com.google.firebase.Timestamp
 import kotlinx.parcelize.Parcelize

@@ -9,10 +9,10 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.choosetraining.ChooseTrainingActivity
+import com.wdretzer.viptraining.view.addtraining.ChooseTrainingActivity
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.onboarding.OnboardingScreenAdapter
-import com.wdretzer.viptraining.profile.EditProfileActivity
+import com.wdretzer.viptraining.view.profile.EditProfileActivity
 import com.wdretzer.viptraining.searchinfirestore.SearchDataInFirestoreActivity
 import java.text.SimpleDateFormat
 import java.util.*

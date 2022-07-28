@@ -19,7 +19,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.datafirebase.FirestoreData
-import com.wdretzer.viptraining.edittraining.EditTrainingActivity
+import com.wdretzer.viptraining.view.edittraining.EditTrainingActivity
 import com.wdretzer.viptraining.firestore.DataFromFirestoreAdapter
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity

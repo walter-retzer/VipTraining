@@ -20,11 +20,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.choosetraining.ChooseTrainingActivity
+import com.wdretzer.viptraining.view.addtraining.ChooseTrainingActivity
 import com.wdretzer.viptraining.datafirebase.FirestoreData
-import com.wdretzer.viptraining.edittraining.EditTrainingActivity
-import com.wdretzer.viptraining.mainmenu.MainMenuActivity
-import com.wdretzer.viptraining.searchinfirestore.SearchDataInFirestoreActivity
+import com.wdretzer.viptraining.view.edittraining.EditTrainingActivity
+import com.wdretzer.viptraining.view.menu.MainMenuActivity
+import com.wdretzer.viptraining.view.searchdatainfirestore.SearchDataInFirestoreActivity
 
 
 class ReadDataFromFirestoreActivity : AppCompatActivity() {

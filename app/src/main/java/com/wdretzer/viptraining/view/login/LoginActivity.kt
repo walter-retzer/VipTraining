@@ -10,9 +10,9 @@ import androidx.core.view.isVisible
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.createaccount.CreateUserAccountActivity
+import com.wdretzer.viptraining.view.createuser.CreateUserAccountActivity
 import com.wdretzer.viptraining.data.extension.DataResult
-import com.wdretzer.viptraining.dialogfragment.ForgotPasswordDialogFragment
+import com.wdretzer.viptraining.view.dialogs.ForgotPasswordDialogFragment
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
