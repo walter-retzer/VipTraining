@@ -12,6 +12,14 @@ Tópicos Implementados na Aplicação Mobile:
 - Componentes do Material Design para criar os Layout das Telas;
 
 
+## PROTÓTIPO DAS TELAS DO APLICATIVO NO FIGMA
+
+![Screen](screen/img23.PNG)
+
+### Link com as telas desenhadas no Figma:
+
+[Figma](https://www.figma.com/file/J2iXG58WH6qTUWO2nrHEsg/Fitness-App-UI-Design?node-id=0%3A1)
+
 ## TELA DE ABERTURA DO APLICATIVO
 
 ![Screen](screen/img00.jpg)
