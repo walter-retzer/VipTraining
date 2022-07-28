@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/button.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/default_dot.xml" value="0.2225" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/drawable-v24/icon_email.xml" value="0.2225" />
@@ -66,6 +67,7 @@
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/layout/list_item.xml" value="0.253125" />
         <entry key="..\:/Kotlin/VipTraining/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
       </map>
+
     </option>
   </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
