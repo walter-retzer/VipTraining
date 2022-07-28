@@ -55,7 +55,6 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
-
         getDataFromFirestore()
         btnSearch.setOnClickListener { sendToSearchTraining() }
         btnAddTraining.setOnClickListener { sendToChooseTraining() }
@@ -102,7 +101,7 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
     private fun getDataFromFirestore() {
         loading.isVisible = true
         val db = Firebase.firestore
-        val docRef = db.collection("Treino")
+        val docRef = db.collection("Training")
         docRef.get()
             .addOnSuccessListener { result ->
                 for (document in result) {
@@ -135,7 +134,7 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
     private fun deleteDocumentInFirestore(item: FirestoreData) {
         loading.isVisible = true
         val db = Firebase.firestore
-        db.collection("Treino").document("${item.data}")
+        db.collection("Training").document("${item.data}")
             .delete()
             .addOnSuccessListener {
                 adp.updateItem(item)

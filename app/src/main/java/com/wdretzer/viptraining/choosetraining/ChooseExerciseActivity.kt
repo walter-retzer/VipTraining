@@ -75,9 +75,42 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
+
         checkBundle()
         btnNext.setOnClickListener { checkItems() }
     }
+
+
+    private fun updatePhotoFirebase(uri: Uri, imageName: String) {
+        viewModel.uploadFileToFirebaseStorage(uri, imageName, "Image").observe(this) {
+            if (it is DataResult.Loading) {
+                loading.isVisible = it.isLoading
+            }
+
+            if (it is DataResult.Success) {
+                Toast.makeText(this, "Update Photo In Firebase Storage!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+
+    private fun updateDocumentTxtInFirebaseStorage(uri: Uri) {
+        viewModel.uploadFileToFirebaseStorage(uri, "training_list.txt", "Documents")
+            .observe(this) {
+                if (it is DataResult.Loading) {
+                    loading.isVisible = it.isLoading
+                }
+
+                if (it is DataResult.Success) {
+                    Toast.makeText(
+                        this,
+                        "Update Document .txt In Firebase Storage!",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+    }
+
 
     private fun checkItems() {
         if (checkBox1.isChecked || checkBox2.isChecked || checkBox3.isChecked || checkBox4.isChecked) {
@@ -86,12 +119,14 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
             checkBundle()
             insertDataOnFirestore()
+          //  insertDataInFirestore()
+
             sendToReadFirestore()
-            uploadToFirebase(saveFile())
+            updateDocumentTxtInFirebaseStorage(saveFile())
 
             setUriImageTraining?.let {
                 val uri = Uri.parse(setUriImageTraining)
-                updatePhotoFirebase(uri, imageName)
+                updatePhotoFirebase(uri, "$imageName.jpg")
             }
 
         } else {
@@ -106,7 +141,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
     private fun insertDataOnFirestore() {
         val db = Firebase.firestore
-        val training = db.collection("Treino")
+        val training = db.collection("Training")
 
         val statusCheckBox = CheckBoxStatus(
             checkBox1.isChecked,
@@ -265,39 +300,6 @@ class ChooseExerciseActivity : AppCompatActivity() {
                     listExercise.add(exercise4)
                 }
             }
-        }
-    }
-
-    private fun updatePhotoFirebase(uri: Uri, imageName: String) {
-        viewModel.uploadPhotoProfileToFirebaseStorage(uri, imageName, "Image").observe(this) {
-            if (it is DataResult.Loading) {
-                loading.isVisible = it.isLoading
-            }
-
-            if (it is DataResult.Success) {
-                Toast.makeText(this, "Update Photo In Firebase Storage!", Toast.LENGTH_SHORT).show()
-            }
-        }
-    }
-
-
-    @SuppressLint("SimpleDateFormat")
-    @RequiresApi(Build.VERSION_CODES.N)
-    private fun uploadToFirebase(uri: Uri) {
-
-        val firebaseStorage = FirebaseStorage.getInstance()
-        val storage = firebaseStorage.getReference("Documents")
-        val fileReference = storage.child("image_list.txt")
-
-        uri.apply {
-            fileReference
-                .putFile(this)
-                .addOnSuccessListener {
-                    Log.d("Firebase Storage:", "Arquivo Enviado ao Firebase Storage com sucesso!")
-                }
-                .addOnFailureListener {
-                    Log.d("Firebase Storage:", "rquivo Não Enviado ao Firebase Storage!")
-                }
         }
     }
 

@@ -19,9 +19,8 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.core.content.ContextCompat
 import com.google.android.material.imageview.ShapeableImageView
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.extension.SaveFile
+import com.wdretzer.viptraining.extension.getImageUri
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
-import java.io.ByteArrayOutputStream
 import java.lang.System.currentTimeMillis
 
 
@@ -36,9 +35,8 @@ class ChooseTrainingActivity : AppCompatActivity() {
 
                 image?.extras?.get("data")?.let { photo ->
                     imageTraining.setImageBitmap(photo as Bitmap)
-                    val uri = getImageUri(this, photo)
+                    val uri = getImageUri(this, photo, imageName)
                     uriImage = uri
-                    SaveFile(this, photo).saveAndShare()
                 }
             }
         }
@@ -157,15 +155,6 @@ class ChooseTrainingActivity : AppCompatActivity() {
             }
             cameraCallback.launch(intent)
         }
-    }
-
-
-    private fun getImageUri(inContext: Context, inImage: Bitmap): Uri {
-        val bytes = ByteArrayOutputStream()
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)
-        val path =
-            MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, imageName, null)
-        return Uri.parse(path)
     }
 
 

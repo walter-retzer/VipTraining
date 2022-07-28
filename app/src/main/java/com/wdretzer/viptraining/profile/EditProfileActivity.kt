@@ -25,10 +25,9 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.data.extension.DataResult
-import com.wdretzer.viptraining.extension.SaveFile
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 import com.wdretzer.viptraining.util.SharedPrefVipTraining
-import com.wdretzer.viptraining.util.getImageUri
+import com.wdretzer.viptraining.extension.getImageUri
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
@@ -46,7 +45,6 @@ class EditProfileActivity : AppCompatActivity() {
                     imageProfile.setImageBitmap(photo as Bitmap)
                     val uri = getImageUri(this, photo, imageName)
                     uriImage = uri
-                    SaveFile(this, photo).saveAndShare()
                 }
             }
         }
@@ -102,7 +100,8 @@ class EditProfileActivity : AppCompatActivity() {
 
     private fun checkClickListeners() {
         btnSaveProfile.setOnClickListener {
-            uriImage?.let { updatePhotoFirebase(it, imageName) }
+            updateUserPhoto()
+            uriImage?.let { updatePhotoFirebase(it, "$imageName.jpg") }
 
             saveName(textName.text.toString())
             saveBirthday(textBirthday.text.toString())
@@ -156,13 +155,25 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
     private fun updatePhotoFirebase(uri: Uri, imageName: String) {
-        viewModel.uploadPhotoProfileToFirebaseStorage(uri, imageName, "Profile").observe(this) {
+        viewModel.uploadFileToFirebaseStorage(uri, imageName, "Profile").observe(this) {
             if (it is DataResult.Loading) {
                 progressBar.isVisible = it.isLoading
             }
 
             if (it is DataResult.Success) {
                 Toast.makeText(this, "Update Photo In Firebase Storage!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    private fun updateUserPhoto() {
+        viewModel.updateUserPhoto(uriImage.toString()).observe(this) {
+            if (it is DataResult.Loading) {
+                progressBar.isVisible = it.isLoading
+            }
+
+            if (it is DataResult.Success) {
+                Toast.makeText(this, "Update Photo to Authentication!", Toast.LENGTH_SHORT).show()
             }
         }
     }

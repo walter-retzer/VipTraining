@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
+import com.wdretzer.viptraining.datafirebase.CheckBoxStatus
 import com.wdretzer.viptraining.datafirebase.ExerciseData
 import com.wdretzer.viptraining.datafirebase.FirestoreData
 import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
@@ -136,8 +137,29 @@ class EditTrainingActivity : AppCompatActivity() {
     }
 
     private fun updateDocumentInFirestore(item: FirestoreData) {
+
+        val statusCheckBox = CheckBoxStatus(
+            checkBox1.isChecked,
+            checkBox2.isChecked,
+            checkBox3.isChecked,
+            checkBox4.isChecked
+        )
+
         val db = Firebase.firestore
-        val docRef = db.collection("Treino").document("${item.data}")
+        val docRef = db.collection("Training").document("${item.data}")
+
+        docRef.update("status", statusCheckBox)
+            .addOnSuccessListener {
+                Log.d("Update_Firestore", "Document successfully updated!")
+                loading.isVisible = false
+                sendToReadDataFromFirestore()
+            }
+            .addOnFailureListener { e ->
+                Log.w("Update_Firestore", "Error updating document", e)
+                loading.isVisible = false
+                btnEdit.isVisible = true
+            }
+
         docRef.update("listExercise", listExercise)
             .addOnSuccessListener {
                 Log.d("Update_Firestore", "Document successfully updated!")

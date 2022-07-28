@@ -26,7 +26,7 @@ import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.data.extension.DataResult
 import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 import com.wdretzer.viptraining.util.SharedPrefVipTraining
-import com.wdretzer.viptraining.util.getImageUri
+import com.wdretzer.viptraining.extension.getImageUri
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
@@ -90,11 +90,14 @@ class MyProfileActivity : AppCompatActivity() {
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
-        checkUser()
+        checkUserName()
+        checkButtonClickListeners()
+    }
 
+    private fun checkButtonClickListeners(){
         btnSaveProfile.setOnClickListener {
             updateUserPhoto()
-            uriImage?.let { updatePhotoFirebase(it, imageName) }
+            uriImage?.let { updatePhotoFirebase(it, "$imageName.jpg") }
 
             saveName(textName.text.toString())
             saveBirthday(textBirthday.text.toString())
@@ -110,7 +113,7 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
 
-    private fun checkUser() {
+    private fun checkUserName() {
         viewModel.checkUserName().observe(this) {
             if (it is DataResult.Loading) {
                 progressBar.isVisible = it.isLoading
@@ -137,7 +140,7 @@ class MyProfileActivity : AppCompatActivity() {
 
 
     private fun updatePhotoFirebase(uri: Uri, imageName: String) {
-        viewModel.uploadPhotoProfileToFirebaseStorage(uri, imageName, "Profile").observe(this) {
+        viewModel.uploadFileToFirebaseStorage(uri, imageName, "Profile").observe(this) {
             if (it is DataResult.Loading) {
                 progressBar.isVisible = it.isLoading
             }

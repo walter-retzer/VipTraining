@@ -5,10 +5,15 @@ import android.util.Log
 import androidx.core.view.isVisible
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.userProfileChangeRequest
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.wdretzer.viptraining.data.extension.DataResult
+import com.wdretzer.viptraining.datafirebase.CheckBoxStatus
+import com.wdretzer.viptraining.datafirebase.FirestoreData
 
 
 class VipTrainingViewModel() : ViewModel() {
@@ -268,26 +273,29 @@ class VipTrainingViewModel() : ViewModel() {
     }
 
 
-    fun uploadPhotoProfileToFirebaseStorage(
+
+    fun uploadFileToFirebaseStorage(
         uri: Uri,
-        imageName: String,
+        fileName: String,
         localStorage: String
     ): MutableLiveData<DataResult<Boolean>> {
+
         val result = MutableLiveData<DataResult<Boolean>>()
+        val firebaseStorage = FirebaseStorage.getInstance()
+        val storage = firebaseStorage.getReference(localStorage)
+        val fileReference = storage.child(fileName)
+
         result.value = DataResult.Loading(true)
 
-        val firebaseStorage = FirebaseStorage.getInstance()
-        val storage = firebaseStorage.getReference("Profile")
-        val fileReference = storage.child("$imageName.jpg")
         uri.apply {
             fileReference
                 .putFile(this)
                 .addOnSuccessListener {
-                    Log.d("Firestore_Storage:", "Upload Ok. Imagem $imageName")
+                    Log.d("Firestore_Storage:", "Upload Ok. Imagem $fileName")
                     result.value = DataResult.Success(true)
                 }
                 .addOnFailureListener {
-                    Log.d("Firestore_Storage:", "Upload Não Ok. Imagem $imageName")
+                    Log.d("Firestore_Storage:", "Upload Não Ok. Imagem $fileName")
                     result.value = DataResult.Error(it)
                 }
                 .addOnProgressListener { result.value = DataResult.Loading(true) }
@@ -295,6 +303,4 @@ class VipTrainingViewModel() : ViewModel() {
         }
         return result
     }
-
-
 }

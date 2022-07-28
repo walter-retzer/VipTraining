@@ -1,5 +1,4 @@
-package com.wdretzer.viptraining.util
-
+package com.wdretzer.viptraining.extension
 
 import android.content.Context
 import android.graphics.Bitmap
@@ -15,4 +14,3 @@ fun getImageUri(inContext: Context, inImage: Bitmap, imageName: String): Uri {
         MediaStore.Images.Media.insertImage(inContext.contentResolver, inImage, imageName, null)
     return Uri.parse(path)
 }
-

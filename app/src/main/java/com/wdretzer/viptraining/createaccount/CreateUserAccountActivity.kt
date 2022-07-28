@@ -1,11 +1,11 @@
 package com.wdretzer.viptraining.createaccount
 
 import android.content.Intent
-import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.FrameLayout
@@ -14,7 +14,6 @@ import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.data.extension.DataResult
-import com.wdretzer.viptraining.mainmenu.MainMenuActivity
 import com.wdretzer.viptraining.profile.MyProfileActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
@@ -49,7 +48,7 @@ class CreateUserAccountActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         btnCreateAccount.setOnClickListener {
-            cadastrarDados(
+            createUser(
                 textName.text.toString(),
                 textEmail.text.toString(),
                 textPassword.text.toString(),
@@ -59,12 +58,14 @@ class CreateUserAccountActivity : AppCompatActivity() {
     }
 
 
-    private fun cadastrarDados(
+    private fun createUser(
         name: String,
         email: String,
         password: String,
         confirmPassword: String
     ) {
+
+        btnCreateAccount.visibility= View.INVISIBLE
 
         viewModel.createUser(name, email, password, confirmPassword).observe(this) {
             when (it) {
@@ -134,6 +135,7 @@ class CreateUserAccountActivity : AppCompatActivity() {
             }
 
             if (it is DataResult.Success) {
+                btnCreateAccount.visibility= View.VISIBLE
                 sendToMyProfile()
             }
         }
