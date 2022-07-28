@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.onboarding
+package com.wdretzer.viptraining.view.onboarding
 
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity

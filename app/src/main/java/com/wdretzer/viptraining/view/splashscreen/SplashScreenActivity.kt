@@ -1,11 +1,11 @@
-package com.wdretzer.viptraining.splashscreen
+package com.wdretzer.viptraining.view.splashscreen
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.onboarding.OnboardingScreenActivity
+import com.wdretzer.viptraining.view.onboarding.OnboardingScreenActivity
 
 
 class SplashScreenActivity : AppCompatActivity() {

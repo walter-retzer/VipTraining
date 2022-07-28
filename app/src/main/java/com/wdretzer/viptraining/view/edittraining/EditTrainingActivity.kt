@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.edittraining
+package com.wdretzer.viptraining.view.edittraining
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -9,11 +9,11 @@ import androidx.core.view.isVisible
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.datafirebase.CheckBoxStatus
-import com.wdretzer.viptraining.datafirebase.ExerciseData
-import com.wdretzer.viptraining.datafirebase.FirestoreData
-import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
-import com.wdretzer.viptraining.mainmenu.MainMenuActivity
+import com.wdretzer.viptraining.modeldata.firebase.CheckBoxStatus
+import com.wdretzer.viptraining.modeldata.firebase.ExerciseData
+import com.wdretzer.viptraining.modeldata.firebase.FirestoreData
+import com.wdretzer.viptraining.view.readdatafromfirestore.ReadDataFromFirestoreActivity
+import com.wdretzer.viptraining.view.menu.MainMenuActivity
 
 
 class EditTrainingActivity : AppCompatActivity() {

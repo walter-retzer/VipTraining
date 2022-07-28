@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.choosetraining
+package com.wdretzer.viptraining.view.addtraining
 
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -19,14 +19,12 @@ import androidx.core.view.isVisible
 import com.google.firebase.Timestamp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
-import com.google.firebase.storage.FirebaseStorage
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.data.extension.DataResult
-import com.wdretzer.viptraining.datafirebase.CheckBoxStatus
-import com.wdretzer.viptraining.datafirebase.ExerciseData
-import com.wdretzer.viptraining.datafirebase.FirestoreData
-import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
-import com.wdretzer.viptraining.mainmenu.MainMenuActivity
+import com.wdretzer.viptraining.modeldata.extension.DataResult
+import com.wdretzer.viptraining.modeldata.firebase.CheckBoxStatus
+import com.wdretzer.viptraining.modeldata.firebase.ExerciseData
+import com.wdretzer.viptraining.modeldata.firebase.FirestoreData
+import com.wdretzer.viptraining.view.readdatafromfirestore.ReadDataFromFirestoreActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 import java.io.File
 import java.io.FileNotFoundException

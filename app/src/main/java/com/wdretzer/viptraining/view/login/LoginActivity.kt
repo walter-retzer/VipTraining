@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.login
+package com.wdretzer.viptraining.view.login
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -11,9 +11,9 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.view.createuser.CreateUserAccountActivity
-import com.wdretzer.viptraining.data.extension.DataResult
+import com.wdretzer.viptraining.modeldata.extension.DataResult
 import com.wdretzer.viptraining.view.dialogs.ForgotPasswordDialogFragment
-import com.wdretzer.viptraining.mainmenu.MainMenuActivity
+import com.wdretzer.viptraining.view.menu.MainMenuActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 

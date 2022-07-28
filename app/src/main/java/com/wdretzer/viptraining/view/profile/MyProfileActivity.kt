@@ -1,11 +1,10 @@
-package com.wdretzer.viptraining.profile
+package com.wdretzer.viptraining.view.profile
 
 import android.Manifest
 import android.app.Activity
 import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
@@ -18,22 +17,21 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.google.android.material.imageview.ShapeableImageView
 import com.google.android.material.textfield.TextInputEditText
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.data.extension.DataResult
-import com.wdretzer.viptraining.mainmenu.MainMenuActivity
-import com.wdretzer.viptraining.util.SharedPrefVipTraining
-import com.wdretzer.viptraining.extension.getImageUri
+import com.wdretzer.viptraining.modeldata.extension.DataResult
+import com.wdretzer.viptraining.view.menu.MainMenuActivity
+import com.wdretzer.viptraining.view.util.SharedPrefVipTraining
+import com.wdretzer.viptraining.view.extension.getImageUri
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
 class MyProfileActivity : AppCompatActivity() {
 
     private val imageName = "training-${System.currentTimeMillis()}"
-    private var uriImage: Uri? = null
+    private lateinit var uriImage: Uri
 
     private val cameraCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
@@ -48,10 +46,15 @@ class MyProfileActivity : AppCompatActivity() {
             }
         }
 
+    private val cameraPermissionCallback =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) {
+
+        }
+
     private val galleryCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
-                uriImage = result.data?.data
+                uriImage = result.data?.data!!
                 imageProfile.setImageURI(uriImage)
             }
         }
@@ -90,11 +93,14 @@ class MyProfileActivity : AppCompatActivity() {
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
+
+        cameraPermissionCallback.launch(Manifest.permission.CAMERA)
+
         checkUserName()
         checkButtonClickListeners()
     }
 
-    private fun checkButtonClickListeners(){
+    private fun checkButtonClickListeners() {
         btnSaveProfile.setOnClickListener {
             updateUserPhoto()
             uriImage?.let { updatePhotoFirebase(it, "$imageName.jpg") }
@@ -103,6 +109,7 @@ class MyProfileActivity : AppCompatActivity() {
             saveBirthday(textBirthday.text.toString())
             saveWeight(textWeigth.text.toString())
             saveHeight(textHeigth.text.toString())
+            saveImg(uriImage.toString())
 
             Toast.makeText(this, "Dados Salvos!", Toast.LENGTH_SHORT).show()
             sendToMainMenu()
@@ -156,6 +163,10 @@ class MyProfileActivity : AppCompatActivity() {
         sharedPref.saveString("Name", name)
     }
 
+    private fun saveImg(img: String) {
+        sharedPref.saveString("Img", img)
+    }
+
     private fun saveBirthday(name: String) {
         sharedPref.saveString("Date", name)
     }
@@ -175,31 +186,11 @@ class MyProfileActivity : AppCompatActivity() {
         }, 2000)
     }
 
-    private fun getFromCamera(context: Context) {
-        val permission =
-            ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-
-        if (permission == PackageManager.PERMISSION_DENIED) {
-            requestPermissions(
-                arrayOf(
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ), 0
-            )
-
-            val intent = Intent().apply {
-                action = MediaStore.ACTION_IMAGE_CAPTURE
-            }
-            cameraCallback.launch(intent)
+    private fun getFromCamera() {
+        val intent = Intent().apply {
+            action = MediaStore.ACTION_IMAGE_CAPTURE
         }
-
-        if (permission == PackageManager.PERMISSION_GRANTED) {
-            val intent = Intent().apply {
-                action = MediaStore.ACTION_IMAGE_CAPTURE
-            }
-            cameraCallback.launch(intent)
-        }
+        cameraCallback.launch(intent)
     }
 
     private fun getFromGallery() {
@@ -218,7 +209,7 @@ class MyProfileActivity : AppCompatActivity() {
             .setTitle("Qual você deseja usar?")
             .setItems(items) { dialog, index ->
                 when (index) {
-                    0 -> getFromCamera(context)
+                    0 -> getFromCamera()
                     1 -> getFromGallery()
                 }
                 dialog.dismiss()

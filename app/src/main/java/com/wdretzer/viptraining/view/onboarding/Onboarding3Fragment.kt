@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.onboarding
+package com.wdretzer.viptraining.view.onboarding
 
 import android.content.pm.ActivityInfo
 import android.os.Bundle

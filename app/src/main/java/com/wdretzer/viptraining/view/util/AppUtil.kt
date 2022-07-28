@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.util
+package com.wdretzer.viptraining.view.util
 
 import android.app.Application
 import android.content.Context

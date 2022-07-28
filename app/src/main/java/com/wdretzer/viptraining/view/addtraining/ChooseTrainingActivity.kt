@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.choosetraining
+package com.wdretzer.viptraining.view.addtraining
 
 import android.Manifest
 import android.app.Activity
@@ -19,8 +19,8 @@ import androidx.appcompat.widget.AppCompatAutoCompleteTextView
 import androidx.core.content.ContextCompat
 import com.google.android.material.imageview.ShapeableImageView
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.extension.getImageUri
-import com.wdretzer.viptraining.mainmenu.MainMenuActivity
+import com.wdretzer.viptraining.view.extension.getImageUri
+import com.wdretzer.viptraining.view.menu.MainMenuActivity
 import java.lang.System.currentTimeMillis
 
 
@@ -133,21 +133,6 @@ class ChooseTrainingActivity : AppCompatActivity() {
     private fun getFromCamera(context: Context) {
         val permission =
             ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
-
-        if (permission == PackageManager.PERMISSION_DENIED) {
-            requestPermissions(
-                arrayOf(
-                    Manifest.permission.CAMERA,
-                    Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                    Manifest.permission.READ_EXTERNAL_STORAGE
-                ), 0
-            )
-
-            val intent = Intent().apply {
-                action = MediaStore.ACTION_IMAGE_CAPTURE
-            }
-            cameraCallback.launch(intent)
-        }
 
         if (permission == PackageManager.PERMISSION_GRANTED) {
             val intent = Intent().apply {

@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.mainmenu
+package com.wdretzer.viptraining.view.menu
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -10,10 +10,10 @@ import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.view.addtraining.ChooseTrainingActivity
-import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
-import com.wdretzer.viptraining.onboarding.OnboardingScreenAdapter
+import com.wdretzer.viptraining.view.readdatafromfirestore.ReadDataFromFirestoreActivity
+import com.wdretzer.viptraining.view.onboarding.OnboardingScreenAdapter
 import com.wdretzer.viptraining.view.profile.EditProfileActivity
-import com.wdretzer.viptraining.searchinfirestore.SearchDataInFirestoreActivity
+import com.wdretzer.viptraining.view.searchdatainfirestore.SearchDataInFirestoreActivity
 import java.text.SimpleDateFormat
 import java.util.*
 

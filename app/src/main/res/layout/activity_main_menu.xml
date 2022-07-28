@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".mainmenu.MainMenuActivity">
+    tools:context=".view.menu.MainMenuActivity">
 
     <TextView
         android:id="@+id/text_insert_training"

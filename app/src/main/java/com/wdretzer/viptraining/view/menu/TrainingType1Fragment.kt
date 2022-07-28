@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.mainmenu
+package com.wdretzer.viptraining.view.menu
 
 import android.content.pm.ActivityInfo
 import android.os.Build

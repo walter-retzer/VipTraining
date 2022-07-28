@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.firestore
+package com.wdretzer.viptraining.view.readdatafromfirestore
 
 import android.annotation.SuppressLint
 import android.util.Log
@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.material.imageview.ShapeableImageView
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.datafirebase.FirestoreData
+import com.wdretzer.viptraining.modeldata.firebase.FirestoreData
 
 
 class DataFromFirestoreAdapter(

@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.data.extension
+package com.wdretzer.viptraining.modeldata.extension
 
 sealed class DataResult<out T: Any> {
     data class Success <out T: Any> (val dataResult: T): DataResult<T>()

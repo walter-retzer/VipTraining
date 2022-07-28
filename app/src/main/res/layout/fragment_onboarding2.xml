@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/background_fragment_onboarding"
     android:paddingBottom="25dp"
-    tools:context=".onboarding.Onboarding2Fragment">
+    tools:context=".view.onboarding.Onboarding2Fragment">
 
     <ImageView
         android:id="@+id/imagem_onboarding_2"

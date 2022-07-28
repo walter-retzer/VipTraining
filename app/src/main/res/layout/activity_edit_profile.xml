@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".profile.EditProfileActivity">
+    tools:context=".view.profile.EditProfileActivity">
 
     <TextView
         android:id="@+id/text_title_edit_profile"
@@ -43,7 +43,7 @@
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/image_edit_profile"
-        android:layout_width="220dp"
+        android:layout_width="200dp"
         android:layout_height="200dp"
         android:layout_marginTop="5dp"
         android:background="@color/violet"
@@ -270,6 +270,5 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
     </FrameLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

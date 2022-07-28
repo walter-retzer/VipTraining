@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.createaccount
+package com.wdretzer.viptraining.view.createuser
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -13,8 +13,8 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.view.isVisible
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.data.extension.DataResult
-import com.wdretzer.viptraining.profile.MyProfileActivity
+import com.wdretzer.viptraining.modeldata.extension.DataResult
+import com.wdretzer.viptraining.view.profile.MyProfileActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 

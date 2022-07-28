@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.firestore
+package com.wdretzer.viptraining.view.readdatafromfirestore
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -21,7 +21,7 @@ import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.view.addtraining.ChooseTrainingActivity
-import com.wdretzer.viptraining.datafirebase.FirestoreData
+import com.wdretzer.viptraining.modeldata.firebase.FirestoreData
 import com.wdretzer.viptraining.view.edittraining.EditTrainingActivity
 import com.wdretzer.viptraining.view.menu.MainMenuActivity
 import com.wdretzer.viptraining.view.searchdatainfirestore.SearchDataInFirestoreActivity
@@ -31,6 +31,9 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
 
     private val btnSearch: ShapeableImageView
         get() = findViewById(R.id.btn_send_search)
+
+    private val btnSendToMainMenu: ShapeableImageView
+        get() = findViewById(R.id.btn_home)
 
     private val btnAddTraining: ShapeableImageView
         get() = findViewById(R.id.btn_add_exercise)
@@ -59,6 +62,7 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
         btnSearch.setOnClickListener { sendToSearchTraining() }
         btnAddTraining.setOnClickListener { sendToChooseTraining() }
         btnMyTraining.setOnClickListener { sendToMyTraining() }
+        btnSendToMainMenu.setOnClickListener { sendToMainMenu() }
     }
 
 
@@ -76,6 +80,12 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
 
     private fun sendToMyTraining() {
         val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
+        startActivity(intent)
+    }
+
+
+    private fun sendToMainMenu() {
+        val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 

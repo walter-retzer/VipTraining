@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.modeldata
+package com.wdretzer.viptraining.modeldata.firebase
 
 import android.os.Parcelable
 import com.google.firebase.Timestamp

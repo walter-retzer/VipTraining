@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.dialogfragment
+package com.wdretzer.viptraining.view.dialogs
 
 import android.os.Bundle
 import android.view.LayoutInflater

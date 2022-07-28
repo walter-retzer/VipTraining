@@ -1,4 +1,4 @@
-package com.wdretzer.viptraining.searchinfirestore
+package com.wdretzer.viptraining.view.searchdatainfirestore
 
 import android.annotation.SuppressLint
 import android.app.Dialog
@@ -18,11 +18,11 @@ import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.firestore.ktx.toObject
 import com.google.firebase.ktx.Firebase
 import com.wdretzer.viptraining.R
-import com.wdretzer.viptraining.datafirebase.FirestoreData
+import com.wdretzer.viptraining.modeldata.firebase.FirestoreData
 import com.wdretzer.viptraining.view.edittraining.EditTrainingActivity
-import com.wdretzer.viptraining.firestore.DataFromFirestoreAdapter
-import com.wdretzer.viptraining.firestore.ReadDataFromFirestoreActivity
-import com.wdretzer.viptraining.mainmenu.MainMenuActivity
+import com.wdretzer.viptraining.view.readdatafromfirestore.DataFromFirestoreAdapter
+import com.wdretzer.viptraining.view.readdatafromfirestore.ReadDataFromFirestoreActivity
+import com.wdretzer.viptraining.view.menu.MainMenuActivity
 
 
 class SearchDataInFirestoreActivity : AppCompatActivity() {
@@ -102,7 +102,7 @@ class SearchDataInFirestoreActivity : AppCompatActivity() {
     private fun deleteDocumentInFirestore(item: FirestoreData) {
         loading.isVisible = true
         val db = Firebase.firestore
-        db.collection("Treino").document("${item.data}")
+        db.collection("Training").document("${item.data}")
             .delete()
             .addOnSuccessListener {
                 adp.updateItem(item)
@@ -121,7 +121,7 @@ class SearchDataInFirestoreActivity : AppCompatActivity() {
         btnSearch.isVisible = false
 
         val db = Firebase.firestore
-        val docRef = db.collection("Treino")
+        val docRef = db.collection("Training")
         docRef
             .whereEqualTo("descricao", training)
             .get()

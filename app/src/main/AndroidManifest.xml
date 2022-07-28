@@ -16,7 +16,7 @@
         android:required="true" />
 
     <application
-        android:name=".util.AppUtil"
+        android:name=".view.util.AppUtil"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -28,70 +28,64 @@
         tools:targetApi="31">
 
         <activity
-            android:name=".profile.EditProfileActivity"
+            android:name=".view.profile.EditProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".profile.MyProfileActivity"
+            android:name=".view.profile.MyProfileActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".searchinfirestore.SearchDataInFirestoreActivity"
+            android:name=".view.searchdatainfirestore.SearchDataInFirestoreActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".edittraining.EditTrainingActivity"
+            android:name=".view.edittraining.EditTrainingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".firestore.ReadDataFromFirestoreActivity"
+            android:name=".view.readdatafromfirestore.ReadDataFromFirestoreActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".choosetraining.ChooseExerciseActivity"
+            android:name=".view.addtraining.ChooseExerciseActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".mainmenu.MainMenuActivity"
+            android:name=".view.menu.MainMenuActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".choosetraining.ChooseTrainingActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateVisible|adjustResize|adjustPan"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".createaccount.CreateUserAccountActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".login.LoginActivity"
+            android:name=".view.addtraining.ChooseTrainingActivity"
             android:exported="false"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateVisible|adjustResize|adjustPan"
             tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".onboarding.OnboardingScreenActivity"
+            android:name=".view.createuser.CreateUserAccountActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".view.login.LoginActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateVisible|adjustResize|adjustPan"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
+            android:name=".view.onboarding.OnboardingScreenActivity"
             android:exported="false"
             android:screenOrientation="fullSensor"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name=".MainActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@style/AppTheme.NoActionBar"
-            tools:ignore="LockedOrientationActivity" />
-        <activity
-            android:name=".splashscreen.SplashScreenActivity"
+            android:name=".view.splashscreen.SplashScreenActivity"
             android:exported="true"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar"

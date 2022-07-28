@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".splashscreen.SplashScreenActivity">
+    tools:context=".view.splashscreen.SplashScreenActivity">
 
     <RelativeLayout
         android:id="@+id/layout_animation_splash_screen"
@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:context=".splashscreen.SplashScreenActivity">
+        tools:context=".view.splashscreen.SplashScreenActivity">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/animation_splash_screen"

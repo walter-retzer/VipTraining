@@ -1,4 +1,4 @@
-package com.wdretzer.nasaprojetointegrador.util
+package com.wdretzer.viptraining.view.util
 
 import android.content.Context
 import android.graphics.Rect

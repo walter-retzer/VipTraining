@@ -1,12 +1,12 @@
-package com.wdretzer.viptraining.onboarding
+package com.wdretzer.viptraining.view.onboarding
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import androidx.viewpager2.widget.ViewPager2
-import com.wdretzer.nasaprojetointegrador.util.CustomPageTransformer
-import com.wdretzer.nasaprojetointegrador.util.HorizontalMarginItemDecoration
+import com.wdretzer.viptraining.view.util.CustomPageTransformer
+import com.wdretzer.viptraining.view.util.HorizontalMarginItemDecoration
 import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.view.login.LoginActivity
 
