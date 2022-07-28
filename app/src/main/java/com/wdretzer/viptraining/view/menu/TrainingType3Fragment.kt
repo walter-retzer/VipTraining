@@ -13,6 +13,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.wdretzer.viptraining.R
 
 
+// Classe com as Informações do Treino Sair do Sedentarismo:
 class TrainingType3Fragment : Fragment(R.layout.fragment_training_type1){
 
     private val imageCard: ShapeableImageView?

@@ -10,10 +10,12 @@ import com.google.firebase.storage.FirebaseStorage
 import com.wdretzer.viptraining.modeldata.extension.DataResult
 
 
+// Classe com as funções utilizadas pelo ViewModel:
 class VipTrainingViewModel() : ViewModel() {
 
     var firebaseAuth = FirebaseAuth.getInstance()
 
+    // Método responsável por realizar a autenticação do usuário no Firebase Authentication:
     fun login(email: String, password: String): MutableLiveData<DataResult<Boolean>> {
         val result = MutableLiveData<DataResult<Boolean>>()
         result.value = DataResult.Loading(true)
@@ -46,7 +48,7 @@ class VipTrainingViewModel() : ViewModel() {
                     result.value = DataResult.Empty
                 } else {
                     task.exception?.let {
-                        Log.i(
+                        Log.e(
                             "Auth_Login:",
                             "Signup failed with error ${it.localizedMessage}"
                         )
@@ -58,6 +60,7 @@ class VipTrainingViewModel() : ViewModel() {
     }
 
 
+    // Método responsável por realizar a criação do usuário no Firebase Authentication:
     fun createUser(
         name: String,
         email: String,
@@ -108,7 +111,7 @@ class VipTrainingViewModel() : ViewModel() {
 
                     } else {
                         task.exception?.let {
-                            Log.i(
+                            Log.e(
                                 "Create_User_Firebase",
                                 "Create user in Firebase failed with error ${it.localizedMessage}"
                             )
@@ -121,7 +124,8 @@ class VipTrainingViewModel() : ViewModel() {
     }
 
 
-    fun updateUserName(name: String?, uri: String?): MutableLiveData<DataResult<Boolean>> {
+    // Método responsável por realizar a atualização do nome do usuário no Firebase Authentication:
+    fun updateUserName(name: String?): MutableLiveData<DataResult<Boolean>> {
         val result = MutableLiveData<DataResult<Boolean>>()
         result.value = DataResult.Loading(true)
 
@@ -129,7 +133,6 @@ class VipTrainingViewModel() : ViewModel() {
             firebaseAuth.currentUser?.apply {
                 updateProfile(userProfileChangeRequest {
                     name?.let { displayName = it }
-                    uri?.let { photoUri = Uri.parse(it) }
 
                 }).addOnCompleteListener { task ->
                     if (task.isSuccessful) {
@@ -159,6 +162,7 @@ class VipTrainingViewModel() : ViewModel() {
     }
 
 
+    // Método responsável por realizar a atualização da foto do usuário no Firebase Authentication:
     fun updateUserPhoto(uri: String?): MutableLiveData<DataResult<Boolean>> {
         val result = MutableLiveData<DataResult<Boolean>>()
         result.value = DataResult.Loading(true)
@@ -181,7 +185,7 @@ class VipTrainingViewModel() : ViewModel() {
 
                     } else {
                         task.exception?.let {
-                            Log.i(
+                            Log.e(
                                 "Current_User_Firebase:",
                                 "Current User in Firebase failed with error ${it.localizedMessage}"
                             )
@@ -195,6 +199,8 @@ class VipTrainingViewModel() : ViewModel() {
         return result
     }
 
+
+    // Método responsável por retornar o nome do usuário logado no Firebase Authentication:
     fun checkUserName(): MutableLiveData<DataResult<Boolean>> {
         val result = MutableLiveData<DataResult<Boolean>>()
         result.value = DataResult.Loading(true)
@@ -217,42 +223,7 @@ class VipTrainingViewModel() : ViewModel() {
 
                     } else {
                         task.exception?.let {
-                            Log.i(
-                                "Current_User_Firebase:",
-                                "Current User in Firebase failed with error ${it.localizedMessage}"
-                            )
-                            result.value = DataResult.Error(it)
-                            result.value = DataResult.Loading(false)
-                        }
-                    }
-                }
-            }
-        }
-        return result
-    }
-
-    fun checkUserPhoto(): MutableLiveData<DataResult<Boolean>> {
-        val result = MutableLiveData<DataResult<Boolean>>()
-        result.value = DataResult.Loading(true)
-
-        if (firebaseAuth.currentUser != null) {
-
-            firebaseAuth.currentUser?.apply {
-                updateProfile(userProfileChangeRequest {
-
-                }).addOnCompleteListener { task ->
-                    if (task.isSuccessful) {
-                        result.value = DataResult.Warning("${firebaseAuth.currentUser?.photoUrl}")
-                        result.value = DataResult.Success(true)
-                        result.value = DataResult.Loading(false)
-                        Log.i(
-                            "Current_User_Firebase:",
-                            "Current User: ${firebaseAuth.currentUser?.photoUrl}"
-                        )
-
-                    } else {
-                        task.exception?.let {
-                            Log.i(
+                            Log.e(
                                 "Current_User_Firebase:",
                                 "Current User in Firebase failed with error ${it.localizedMessage}"
                             )
@@ -267,7 +238,7 @@ class VipTrainingViewModel() : ViewModel() {
     }
 
 
-
+    // Método responsável por enviar arquivo ao Firebase Storage
     fun uploadFileToFirebaseStorage(
         uri: Uri,
         fileName: String,
@@ -289,7 +260,7 @@ class VipTrainingViewModel() : ViewModel() {
                     result.value = DataResult.Success(true)
                 }
                 .addOnFailureListener {
-                    Log.d("Firestore_Storage:", "Upload Não Ok. Imagem $fileName")
+                    Log.e("Firestore_Storage:", "Upload Não Ok. Imagem $fileName")
                     result.value = DataResult.Error(it)
                 }
                 .addOnProgressListener { result.value = DataResult.Loading(true) }

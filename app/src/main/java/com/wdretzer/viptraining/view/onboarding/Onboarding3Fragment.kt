@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import com.wdretzer.viptraining.R
 
 
+// Classe com as Informações da Tela de Bem Vindo
 class Onboarding3Fragment : Fragment(R.layout.fragment_onboarding3){
     override fun onCreateView(
         inflater: LayoutInflater,

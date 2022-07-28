@@ -13,6 +13,7 @@ import com.google.android.material.imageview.ShapeableImageView
 import com.wdretzer.viptraining.R
 
 
+// Classe com as Informações do Treino Ganhar Músculos:
 class TrainingType1Fragment : Fragment(R.layout.fragment_training_type1){
     private val imageCard: ShapeableImageView?
         get() = view?.findViewById(R.id.image_training_info)
@@ -50,6 +51,7 @@ class TrainingType1Fragment : Fragment(R.layout.fragment_training_type1){
         activity?.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         return super.onCreateView(inflater, container, savedInstanceState)
     }
+
 
     @RequiresApi(Build.VERSION_CODES.N)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

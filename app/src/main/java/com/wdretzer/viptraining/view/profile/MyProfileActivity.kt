@@ -28,11 +28,13 @@ import com.wdretzer.viptraining.view.extension.getImageUri
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
+// Classe responsável pelo perfil do usuário:
 class MyProfileActivity : AppCompatActivity() {
 
     private val imageName = "training-${System.currentTimeMillis()}"
     private lateinit var uriImage: Uri
 
+    // variavel reponsável pela câmera
     private val cameraCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -46,11 +48,13 @@ class MyProfileActivity : AppCompatActivity() {
             }
         }
 
+    // variavel reponsável pela solicitação da Permissão de Uso da Câmera:
     private val cameraPermissionCallback =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) {
 
         }
 
+    // variavel reponsável pela galeria de fotos
     private val galleryCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -100,6 +104,8 @@ class MyProfileActivity : AppCompatActivity() {
         checkButtonClickListeners()
     }
 
+
+    // Método responsável peor verificar clicks
     private fun checkButtonClickListeners() {
         btnSaveProfile.setOnClickListener {
             updateUserPhoto()
@@ -120,6 +126,7 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por atualizar o nome do Usuário na Tela
     private fun checkUserName() {
         viewModel.checkUserName().observe(this) {
             if (it is DataResult.Loading) {
@@ -133,6 +140,7 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por atualizar a foto do Usuário na Tela
     private fun updateUserPhoto() {
         viewModel.updateUserPhoto(uriImage.toString()).observe(this) {
             if (it is DataResult.Loading) {
@@ -146,6 +154,7 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por atualizar a photo do Usuário no Firebase Storage:
     private fun updatePhotoFirebase(uri: Uri, imageName: String) {
         viewModel.uploadFileToFirebaseStorage(uri, imageName, "Profile").observe(this) {
             if (it is DataResult.Loading) {
@@ -158,26 +167,7 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
 
-    private fun saveName(name: String) {
-        sharedPref.saveString("Name", name)
-    }
-
-    private fun saveImg(img: String) {
-        sharedPref.saveString("Img", img)
-    }
-
-    private fun saveBirthday(name: String) {
-        sharedPref.saveString("Date", name)
-    }
-
-    private fun saveWeight(weight: String) {
-        sharedPref.saveString("Weight", weight)
-    }
-
-    private fun saveHeight(height: String) {
-        sharedPref.saveString("Height", height)
-    }
-
+    // Método responsável por iniciar a Activity: MainMenuActivity
     private fun sendToMainMenu() {
         Handler().postDelayed({
             val intent = Intent(this, MainMenuActivity::class.java)
@@ -185,6 +175,7 @@ class MyProfileActivity : AppCompatActivity() {
         }, 2000)
     }
 
+    // Método responsável por iniciar a Câmera
     private fun getFromCamera() {
         val intent = Intent().apply {
             action = MediaStore.ACTION_IMAGE_CAPTURE
@@ -192,6 +183,8 @@ class MyProfileActivity : AppCompatActivity() {
         cameraCallback.launch(intent)
     }
 
+
+    // Método responsável por iniciar a Galeria de fotos:
     private fun getFromGallery() {
         val intent = Intent().apply {
             action = Intent.ACTION_PICK
@@ -201,6 +194,7 @@ class MyProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar um dialog com as opções: Câmera e Galeria
     private fun dialogPhoto(context: Context) {
         val items = arrayOf("Tirar foto", "Buscar na Galeria")
         AlertDialog
@@ -213,5 +207,30 @@ class MyProfileActivity : AppCompatActivity() {
                 }
                 dialog.dismiss()
             }.show()
+    }
+
+    // Método responsável por salvar o nome do usuário no Shared Preferences:
+    private fun saveName(name: String) {
+        sharedPref.saveString("Name", name)
+    }
+
+    // Método responsável por salvar a Imagem do usuário no Shared Preferences:
+    private fun saveImg(img: String) {
+        sharedPref.saveString("Img", img)
+    }
+
+    // Método responsável por salvar a data de nascimento do usuário no Shared Preferences:
+    private fun saveBirthday(name: String) {
+        sharedPref.saveString("Date", name)
+    }
+
+    // Método responsável por salvar o peso do usuário no Shared Preferences:
+    private fun saveWeight(weight: String) {
+        sharedPref.saveString("Weight", weight)
+    }
+
+    // Método responsável por salvar a altura do usuário no Shared Preferences:
+    private fun saveHeight(height: String) {
+        sharedPref.saveString("Height", height)
     }
 }

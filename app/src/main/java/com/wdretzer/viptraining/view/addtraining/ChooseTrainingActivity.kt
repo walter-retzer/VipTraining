@@ -27,10 +27,12 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
+// Classe para Escolha do Tipo de Treino:
 class ChooseTrainingActivity : AppCompatActivity() {
 
     private val imageName = "training-${currentTimeMillis()}"
 
+    // Variavel reponsável pela utilização da câmera
     private val cameraCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -44,6 +46,7 @@ class ChooseTrainingActivity : AppCompatActivity() {
             }
         }
 
+    // Variavel reponsável pela utilização da galeria de fotos:
     private val galleryCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -77,11 +80,12 @@ class ChooseTrainingActivity : AppCompatActivity() {
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
 
+        // Exibe a data atual na Tela
         val sdf = SimpleDateFormat("E, dd-MM-yyyy")
         val currentDate = sdf.format(Date())
         textDate.text = currentDate.toString()
 
-        // get reference to the string array that we just created
+        // Lista com os dados para o usuário selecionar ao clicar no EditText:
         val languages = resources.getStringArray(R.array.training_types)
         val arrayAdapter = ArrayAdapter(this, R.layout.list_item, languages)
 
@@ -91,18 +95,19 @@ class ChooseTrainingActivity : AppCompatActivity() {
         textWorkoutList.setAdapter(arrayAdapter)
 
         checkTraining()
-
         imageTraining.setOnClickListener { dialogPhoto(it.context) }
         btnCamera.setOnClickListener { dialogPhoto(it.context) }
     }
 
 
+    // Método responsável por retornar a Activity: MainMenuActivity
     override fun onBackPressed() {
         val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável no qualo o usuário irá escolher um tipo de Treino:
     private fun checkTraining() {
         var numberTraining = 0
 
@@ -126,6 +131,7 @@ class ChooseTrainingActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por enviar a Activity: ChooseExerciseActivity as Informações Selecionadas
     private fun sendToChooseExercise(
         trainingName: String? = null,
         trainingNumber: Int? = null,
@@ -140,6 +146,7 @@ class ChooseTrainingActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar a abertura da câmera:
     private fun getFromCamera(context: Context) {
         val permission =
             ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
@@ -153,6 +160,7 @@ class ChooseTrainingActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar a abertura da Galeria de Fotos:
     private fun getFromGallery() {
         val intent = Intent().apply {
             action = Intent.ACTION_PICK
@@ -162,6 +170,7 @@ class ChooseTrainingActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar o dialog com as opções: Câmera ou Galeria de Fotos:
     private fun dialogPhoto(context: Context) {
         val items = arrayOf("Tirar foto", "Buscar na Galeria")
         AlertDialog

@@ -18,6 +18,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
+// Classe Responsável pelo Menu Principal do Aplicativo:
 class MainMenuActivity : AppCompatActivity() {
 
     private val viewPager: ViewPager2 by lazy { findViewById(R.id.view_pager_insert_training) }
@@ -46,10 +47,12 @@ class MainMenuActivity : AppCompatActivity() {
         supportActionBar?.hide()
         setupViewPager()
 
+        // Exibe a data atual na tela:
         val sdf = SimpleDateFormat("E, dd-MM-yyyy")
         val currentDate = sdf.format(Date())
         textDate.text = currentDate.toString()
 
+        // Verifica clique do usuário:
         btnAddTraining.setOnClickListener { sendToChooseTraining() }
         btnSearchTraining.setOnClickListener { sendToSearchTraining() }
         btnMyTraining.setOnClickListener { sendToMyTraining() }
@@ -57,27 +60,35 @@ class MainMenuActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar a Activity: MainMenuActivity
     private fun sendToChooseTraining() {
         val intent = Intent(this, ChooseTrainingActivity::class.java)
         startActivity(intent)
     }
 
+
+    // Método responsável por iniciar a Activity: SearchDataInFirestoreActivity
     private fun sendToSearchTraining() {
         val intent = Intent(this, SearchDataInFirestoreActivity::class.java)
         startActivity(intent)
     }
 
+
+    // Método responsável por iniciar a Activity: ReadDataFromFirestoreActivity
     private fun sendToMyTraining() {
         val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
         startActivity(intent)
     }
 
+
+    // Método responsável por iniciar a Activity: EditProfileActivity
     private fun sendToEditProfile() {
         val intent = Intent(this, EditProfileActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável pelo viewPager do Menu com os tipos de Treinos:
     private fun setupViewPager() {
         val listFragments = listOf(
             TrainingType1Fragment(),
@@ -86,10 +97,12 @@ class MainMenuActivity : AppCompatActivity() {
             TrainingType4Fragment()
         )
 
+        // carrega a lista dos fragments para serem exibidos
         viewPager.adapter = OnboardingScreenAdapter(
             this, listFragments
         )
 
+        // exibe o ponto que muda de cor, conforme a posição do ViewPager:
         TabLayoutMediator(indicator, viewPager) { _, _ -> }.attach()
     }
 }

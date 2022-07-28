@@ -12,6 +12,7 @@ import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.view.login.LoginActivity
 
 
+// Classe com as Informações que serão visualizadas para sa Telas de Bem Vindo
 class OnboardingScreenActivity : AppCompatActivity() {
     private val viewPager: ViewPager2 by lazy { findViewById(R.id.view_pager) }
     private val buttonNext: Button by lazy { findViewById(R.id.btn_next) }
@@ -24,11 +25,15 @@ class OnboardingScreenActivity : AppCompatActivity() {
         checkPage()
     }
 
+
+    // Método que retorna para a Activity: SplashScreen
     override fun onBackPressed() {
         val intent = Intent(this, SplashScreen::class.java)
         startActivity(intent)
     }
 
+
+    // Método respponsável pelo setup do ViewPager
     private fun setupViewPager() {
         val listFragments = listOf(
             Onboarding1Fragment(),
@@ -53,6 +58,8 @@ class OnboardingScreenActivity : AppCompatActivity() {
         viewPager.offscreenPageLimit = 1
     }
 
+
+    // Método que inicia a Activity: LoginActivity quando o botão "Próximo" for clicado.
     private fun checkButton() {
         buttonNext.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
@@ -60,12 +67,16 @@ class OnboardingScreenActivity : AppCompatActivity() {
         }
     }
 
+
+    // Método que muda para o próximo fragmento a ser exibido quando o botão "Próximo" for clicado.
     private fun checkButtonNext() {
         buttonNext.setOnClickListener {
             viewPager.currentItem = viewPager.currentItem + 1
         }
     }
 
+
+    // Método responsável por verificar qual posição do viewPager e alterar a função do botão Next:
     private fun checkPage() {
         viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {

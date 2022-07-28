@@ -12,6 +12,7 @@ import com.google.firebase.auth.FirebaseAuth
 import com.wdretzer.viptraining.R
 
 
+// Classe do Bottom Sheet para enviar o resete da senha ao email digitado:
 class ForgotPasswordDialogFragment : BottomSheetDialogFragment() {
 
     private val btnContinue: Button?
@@ -29,8 +30,8 @@ class ForgotPasswordDialogFragment : BottomSheetDialogFragment() {
 
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_forgot_password_dialog, container, false)
-
     }
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -38,21 +39,31 @@ class ForgotPasswordDialogFragment : BottomSheetDialogFragment() {
         auth = FirebaseAuth.getInstance()
 
         btnContinue?.setOnClickListener {
-            if(textEmailReset?.text?.isNotEmpty() == true){
+            if (textEmailReset?.text?.isNotEmpty() == true) {
                 val email = textEmailReset?.text.toString()
                 resetPasswordFirebase(email)
-            } else{
+            } else {
                 Toast.makeText(context, "Digite um e-mail.", Toast.LENGTH_LONG).show()
             }
         }
     }
 
+
+    // Método responsável por enviar o resete da senha por e-mail:
     private fun resetPasswordFirebase(email: String) {
         auth.sendPasswordResetEmail(email).addOnCompleteListener {
             if (it.isSuccessful) {
-                Toast.makeText(context, "Link com o resete da sua senha foi enviado ao email digitado!", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Link com o resete da sua senha foi enviado ao email digitado!",
+                    Toast.LENGTH_LONG
+                ).show()
             } else {
-                Toast.makeText(context, "Falha em enviar o link de resete da senha!", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    context,
+                    "Falha em enviar o link de resete da senha!",
+                    Toast.LENGTH_LONG
+                ).show()
             }
         }
     }

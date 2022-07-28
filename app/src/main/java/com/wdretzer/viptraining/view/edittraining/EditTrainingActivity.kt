@@ -16,6 +16,7 @@ import com.wdretzer.viptraining.view.readdatafromfirestore.ReadDataFromFirestore
 import com.wdretzer.viptraining.view.menu.MainMenuActivity
 
 
+// Classe responsável pela edição de itens do Treino:
 class EditTrainingActivity : AppCompatActivity() {
 
     private val btnEdit: Button
@@ -65,12 +66,15 @@ class EditTrainingActivity : AppCompatActivity() {
         }
     }
 
+
+    // Método responsável pelo retorno a Activity: MainMenuActivity
     override fun onBackPressed() {
         val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável pelo retorno iniciar a Activity: ReadDataFromFirestoreActivity
     private fun sendToReadDataFromFirestore() {
         Toast.makeText(this, "Dados atualizados!", Toast.LENGTH_SHORT).show()
         btnEdit.isVisible = true
@@ -78,6 +82,8 @@ class EditTrainingActivity : AppCompatActivity() {
         startActivity(intent)
     }
 
+
+    // Método responsável pelos itens selecionados pelo usuário que serão editados:
     private fun itemsToEdit() {
         textWorkoutName.text = item.descricao
         if (item.status?.checkbox1 == true) checkBox1.isChecked = true
@@ -114,6 +120,8 @@ class EditTrainingActivity : AppCompatActivity() {
         }
     }
 
+
+    // Método responsável por checar os itens que foram modificados pelo usuário:
     private fun checkItems(item: FirestoreData) {
         if (checkBox1.isChecked) {
             exercise1 = ExerciseData(item.name, item.listExercise?.first()?.imagem, checkBox1.text.toString())
@@ -136,8 +144,9 @@ class EditTrainingActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateDocumentInFirestore(item: FirestoreData) {
 
+    // Método responsável pelos envio dos itens editados pelo usuário ao Firebase Firestore:
+    private fun updateDocumentInFirestore(item: FirestoreData) {
         val statusCheckBox = CheckBoxStatus(
             checkBox1.isChecked,
             checkBox2.isChecked,
@@ -150,24 +159,24 @@ class EditTrainingActivity : AppCompatActivity() {
 
         docRef.update("status", statusCheckBox)
             .addOnSuccessListener {
-                Log.d("Update_Firestore", "Document successfully updated!")
+                Log.i("Update_Firestore", "Document successfully updated!")
                 loading.isVisible = false
                 sendToReadDataFromFirestore()
             }
             .addOnFailureListener { e ->
-                Log.w("Update_Firestore", "Error updating document", e)
+                Log.e("Update_Firestore", "Error updating document", e)
                 loading.isVisible = false
                 btnEdit.isVisible = true
             }
 
         docRef.update("listExercise", listExercise)
             .addOnSuccessListener {
-                Log.d("Update_Firestore", "Document successfully updated!")
+                Log.i("Update_Firestore", "Document successfully updated!")
                 loading.isVisible = false
                 sendToReadDataFromFirestore()
             }
             .addOnFailureListener { e ->
-                Log.w("Update_Firestore", "Error updating document", e)
+                Log.e("Update_Firestore", "Error updating document", e)
                 loading.isVisible = false
                 btnEdit.isVisible = true
             }

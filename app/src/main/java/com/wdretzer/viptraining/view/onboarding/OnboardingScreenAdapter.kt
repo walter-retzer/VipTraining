@@ -4,6 +4,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 
+
+// Classe Adapter das Telas de Bem-Vindo:
 class OnboardingScreenAdapter(
     fragmentManager: FragmentActivity,
     private val views: List<Fragment>

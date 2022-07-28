@@ -17,6 +17,7 @@ import com.wdretzer.viptraining.view.menu.MainMenuActivity
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
+// Classe responsável pelo Login do Usuário:
 class LoginActivity : AppCompatActivity() {
 
     private val textEmail: TextInputEditText
@@ -74,6 +75,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por checar os campos digitados de email e senha:
     private fun checkInfoFromFields(email: String, password: String) {
         viewModel.login(email, password).observe(this) {
             when (it) {
@@ -95,7 +97,7 @@ class LoginActivity : AppCompatActivity() {
                 }
 
                 is DataResult.Success -> {
-                    Log.d("Login_Firebase:", "Autenticação Realizada com Sucesso! ")
+                    Log.i("Login_Firebase:", "Autenticação Realizada com Sucesso! ")
                     sendToMainMenu()
                 }
             }
@@ -103,12 +105,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar a Activity: CreateUserAccountActivity
     private fun sendToCreateAccount() {
         val intent = Intent(this, CreateUserAccountActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável por iniciar a Activity: MainMenuActivity
     private fun sendToMainMenu() {
         val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)

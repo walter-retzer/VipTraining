@@ -25,6 +25,7 @@ import com.wdretzer.viptraining.view.readdatafromfirestore.ReadDataFromFirestore
 import com.wdretzer.viptraining.view.menu.MainMenuActivity
 
 
+// Classe reponsável pela Pesquisa de Itens salvos no Firebase Firestore:
 class SearchDataInFirestoreActivity : AppCompatActivity() {
 
     private val textWorkoutList: AppCompatAutoCompleteTextView
@@ -61,6 +62,7 @@ class SearchDataInFirestoreActivity : AppCompatActivity() {
         textWorkoutList.showSoftInputOnFocus = false
         textWorkoutList.isCursorVisible = false
 
+        // Exibe a itens em forma de lista para ser pesquisada pelo usuário:
         val languages = resources.getStringArray(R.array.training_types)
         val arrayAdapter = ArrayAdapter(this, R.layout.list_item, languages)
         textWorkoutList.setAdapter(arrayAdapter)
@@ -81,12 +83,14 @@ class SearchDataInFirestoreActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por retornar a Activity: MainMenuActivity
     override fun onBackPressed() {
         val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável por iniciar a Activity: EditTrainingActivity
     private fun sendToEditTraining(item: FirestoreData) {
         val intent = Intent(this, EditTrainingActivity::class.java)
         intent.putExtra("Item", item)
@@ -94,11 +98,13 @@ class SearchDataInFirestoreActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar o dialog com a opção de deletar item
     private fun sendDataToDelete(item: FirestoreData) {
         showDialogDeleteItem(item)
     }
 
 
+    // Método responsável por deletar um item no Firebase Firestore:
     private fun deleteDocumentInFirestore(item: FirestoreData) {
         loading.isVisible = true
         val db = Firebase.firestore
@@ -106,16 +112,17 @@ class SearchDataInFirestoreActivity : AppCompatActivity() {
             .delete()
             .addOnSuccessListener {
                 adp.updateItem(item)
-                Log.d("Delete", "Document successfully deleted!")
+                Log.i("Delete", "Document successfully deleted!")
                 loading.isVisible = false
             }
             .addOnFailureListener { e ->
-                Log.w("Delete", "Error deleting document", e)
+                Log.e("Delete", "Error deleting document", e)
                 loading.isVisible = false
             }
     }
 
 
+    // Método responsável por pesquisar itens no Firestore:
     private fun searchTrainingInFirestore(training: String) {
         adp.deleteList(listReturnAux)
         btnSearch.isVisible = false
@@ -149,13 +156,14 @@ class SearchDataInFirestoreActivity : AppCompatActivity() {
                 btnSearch.isVisible = true
             }
             .addOnFailureListener { exception ->
-                Log.d("Read_Firestore", "Fail to try read data from Firestore", exception)
+                Log.e("Read_Firestore", "Fail to try read data from Firestore", exception)
                 loading.isVisible = false
                 btnSearch.isVisible = true
             }
     }
 
 
+    // Método responsável por iniciar o dialog com a opção de deletar item
     @SuppressLint("SetTextI18n")
     private fun showDialogDeleteItem(item: FirestoreData) {
         val dialog = Dialog(this)

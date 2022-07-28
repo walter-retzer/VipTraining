@@ -33,6 +33,7 @@ import java.io.IOException
 import java.util.*
 
 
+// Classe para Escolha do Tipo de Exercício:
 class ChooseExerciseActivity : AppCompatActivity() {
 
     private val btnNext: Button
@@ -79,6 +80,15 @@ class ChooseExerciseActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por realizar o retorno a Activity: ChooseTrainingActivity,
+    // quando o usuário clicar em voltar:
+    override fun onBackPressed() {
+        val intent = Intent(this, ChooseTrainingActivity::class.java)
+        startActivity(intent)
+    }
+
+
+    // Método responsável por realizar o envio da foto do Treino ao Firebase Storage:
     private fun updatePhotoFirebase(uri: Uri, imageName: String) {
         viewModel.uploadFileToFirebaseStorage(uri, imageName, "Image").observe(this) {
             if (it is DataResult.Loading) {
@@ -86,12 +96,13 @@ class ChooseExerciseActivity : AppCompatActivity() {
             }
 
             if (it is DataResult.Success) {
-                Toast.makeText(this, "Update Photo In Firebase Storage!", Toast.LENGTH_SHORT).show()
+                Log.d("Firestore", "Update Photo In Firebase Storage!")
             }
         }
     }
 
 
+    // Método responsável por realizar o envio de arquivo .txt com as informações do Treino ao Firebase Storage:
     private fun updateDocumentTxtInFirebaseStorage(uri: Uri) {
         viewModel.uploadFileToFirebaseStorage(uri, "training_list.txt", "Documents")
             .observe(this) {
@@ -100,16 +111,14 @@ class ChooseExerciseActivity : AppCompatActivity() {
                 }
 
                 if (it is DataResult.Success) {
-                    Toast.makeText(
-                        this,
-                        "Update Document .txt In Firebase Storage!",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Log.d("Firestore", "Update Document .txt In Firebase Storage!")
                 }
             }
     }
 
 
+    // Método responsável por realizar a verificação dos checkboxes selecionados e executar os métodos
+    // para enviar dados ao Firebase Firestore e enviar arquivo ao Firebase Storage:
     private fun checkItems() {
         if (checkBox1.isChecked || checkBox2.isChecked || checkBox3.isChecked || checkBox4.isChecked) {
             loading.isVisible = true
@@ -117,8 +126,6 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
             checkBundle()
             insertDataOnFirestore()
-          //  insertDataInFirestore()
-
             sendToReadFirestore()
             updateDocumentTxtInFirebaseStorage(saveFile())
 
@@ -137,6 +144,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por realizar o envio dos dados do Treino ao Firebase Firestore:
     private fun insertDataOnFirestore() {
         val db = Firebase.firestore
         val training = db.collection("Training")
@@ -159,22 +167,18 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
         training.document(Timestamp.now().toString()).set(documentFirestore)
             .addOnSuccessListener { documentReference ->
-                Log.d("Firestore", "DocumentSnapshot added with ID: $documentReference")
+                Log.i("Firestore", "DocumentSnapshot added with ID: $documentReference")
                 loading.isVisible = false
             }
             .addOnFailureListener { e ->
-                Log.d("Firestore", "Error adding document", e)
+                Log.e("Firestore", "Error adding document", e)
                 loading.isVisible = false
                 btnNext.isVisible = true
             }
     }
 
-    override fun onBackPressed() {
-        val intent = Intent(this, ChooseTrainingActivity::class.java)
-        startActivity(intent)
-    }
 
-
+    // Método responsável por iniciar a Activity: ReadDataFromFirestoreActivity
     private fun sendToReadFirestore() {
         btnNext.isVisible = true
         val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
@@ -182,6 +186,8 @@ class ChooseExerciseActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por checar os itens que serão selecionados pelo usuário e
+    // serão enviados posteriormente ao Firebase Firestore:
     private fun checkBundle() {
         val bundle: Bundle? = intent.extras
         if (bundle != null) {
@@ -302,6 +308,7 @@ class ChooseExerciseActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por salvar o arquivo .txt que será enviado ao Firebase Storage:
     @SuppressLint("SimpleDateFormat")
     @RequiresApi(Build.VERSION_CODES.N)
     private fun saveFile(): Uri {
@@ -325,17 +332,18 @@ class ChooseExerciseActivity : AppCompatActivity() {
 
         } catch (e: FileNotFoundException) {
             e.printStackTrace()
-            Log.d("Firebase Storage:", "Arquivo para o Firebase Storage Inexistente!")
+            Log.e("Save File:", "Arquivo para o Firebase Storage Inexistente!")
 
         } catch (e: IOException) {
             e.printStackTrace()
-            Log.d("Firebase Storage:", "Falha ao Salvar o Arquivo!")
+            Log.e("Save File:", "Falha ao Salvar o Arquivo!")
         }
 
         return Uri.parse(newFile.toUri().toString())
     }
 
 
+    // Método responsável por checar direcionar o diretório onde é salvo o arquivo .txt
     private fun getDisc(): File {
         return File(this.externalCacheDir!!.absolutePath, "/VipImage")
     }

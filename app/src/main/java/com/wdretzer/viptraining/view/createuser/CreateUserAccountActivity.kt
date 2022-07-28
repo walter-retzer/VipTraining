@@ -58,6 +58,7 @@ class CreateUserAccountActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por realizar a Criação de Usuário:
     private fun createUser(
         name: String,
         email: String,
@@ -65,7 +66,7 @@ class CreateUserAccountActivity : AppCompatActivity() {
         confirmPassword: String
     ) {
 
-        btnCreateAccount.visibility= View.INVISIBLE
+        btnCreateAccount.visibility = View.INVISIBLE
 
         viewModel.createUser(name, email, password, confirmPassword).observe(this) {
             when (it) {
@@ -87,7 +88,7 @@ class CreateUserAccountActivity : AppCompatActivity() {
                 }
 
                 is DataResult.Success -> {
-                    Log.d("Login_Firebase:", "Usuario criado com Sucesso! ")
+                    Log.i("Login_Firebase:", "Usuario criado com Sucesso! ")
                     authUserLogin(email, password)
                 }
             }
@@ -95,6 +96,7 @@ class CreateUserAccountActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por realizar a Autenticação do Usuário:
     private fun authUserLogin(email: String, password: String) {
         viewModel.login(email, password).observe(this) {
             when (it) {
@@ -116,11 +118,11 @@ class CreateUserAccountActivity : AppCompatActivity() {
                 }
 
                 is DataResult.Success -> {
-                    Log.d("Login_Firebase:", "Autenticação Realizada com Sucesso! ")
+                    Log.i("Login_Firebase:", "Autenticação Realizada com Sucesso! ")
                     Toast.makeText(this, "Criando perfil do Usuario!", Toast.LENGTH_LONG)
                         .show()
                     Handler().postDelayed({
-                        updateUserName(textName.text.toString(), null  )
+                        updateUserName(textName.text.toString())
                     }, 4000)
 
                 }
@@ -128,20 +130,23 @@ class CreateUserAccountActivity : AppCompatActivity() {
         }
     }
 
-    private fun updateUserName(name: String, uri: String?) {
-        viewModel.updateUserName(name, null).observe(this) {
+
+    // Método responsável por realizar a atualização do Nome ao Perfil criado no Firebase Authentication:
+    private fun updateUserName(name: String) {
+        viewModel.updateUserName(name).observe(this) {
             if (it is DataResult.Loading) {
                 progressBar.isVisible = it.isLoading
             }
 
             if (it is DataResult.Success) {
-                btnCreateAccount.visibility= View.VISIBLE
+                btnCreateAccount.visibility = View.VISIBLE
                 sendToMyProfile()
             }
         }
     }
 
 
+    // Método responsável por realizar o inicio da Activity: MyProfileActivity
     private fun sendToMyProfile() {
         val intent = Intent(this, MyProfileActivity::class.java)
         startActivity(intent)

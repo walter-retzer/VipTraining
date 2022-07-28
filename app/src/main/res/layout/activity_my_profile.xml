@@ -61,7 +61,7 @@
         android:layout_height="60dp"
         android:layout_marginEnd="-10dp"
         android:layout_marginBottom="-10dp"
-        android:background="@color/sand2"
+        android:background="@color/sand_light"
         android:scaleType="fitXY"
         app:contentPadding="10dp"
         app:layout_constraintBottom_toBottomOf="@+id/image_profile"
@@ -78,7 +78,7 @@
         android:layout_marginEnd="15dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
-        android:text="Seja Bem Vindo,"
+        android:text="@string/seja_bem_vindo"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -95,7 +95,7 @@
         android:layout_marginEnd="15dp"
         android:background="@android:color/transparent"
         android:elevation="2dp"
-        android:text="..."
+        android:text="@string/option5"
         android:textAlignment="center"
         android:textColor="@color/black"
         android:textSize="24sp"
@@ -151,7 +151,6 @@
             android:inputType="date"
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
-
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/weight"

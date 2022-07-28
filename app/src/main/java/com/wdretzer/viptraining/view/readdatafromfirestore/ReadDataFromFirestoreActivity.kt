@@ -27,6 +27,7 @@ import com.wdretzer.viptraining.view.menu.MainMenuActivity
 import com.wdretzer.viptraining.view.searchdatainfirestore.SearchDataInFirestoreActivity
 
 
+// Clasee responsável pela leitura dos Dados Salvos no Firebase Firestore:
 class ReadDataFromFirestoreActivity : AppCompatActivity() {
 
     private val btnSearch: ShapeableImageView
@@ -65,49 +66,55 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
         btnSendToMainMenu.setOnClickListener { sendToMainMenu() }
     }
 
-
+    // Método responsável pelo retorno a Activity:  MainMenuActivity
     override fun onBackPressed() {
         val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável por iniciar a Activity: ChooseTrainingActivity
     private fun sendToChooseTraining() {
         val intent = Intent(this, ChooseTrainingActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável por iniciar a Activity: ReadDataFromFirestoreActivity
     private fun sendToMyTraining() {
         val intent = Intent(this, ReadDataFromFirestoreActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável por iniciar a Activity: MainMenuActivity
     private fun sendToMainMenu() {
         val intent = Intent(this, MainMenuActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável por iniciar um dialog com a confirmação ou cancelamento para ação deletar um item:
     private fun sendDataToDelete(item: FirestoreData) {
         showDialogDeleteItem(item)
     }
 
 
+    // Método responsável por iniciar a Activity: EditTrainingActivity
     private fun sendToEditTraining(item: FirestoreData) {
         val intent = Intent(this, EditTrainingActivity::class.java)
         intent.putExtra("Item", item)
         startActivity(intent)
     }
 
-
+    // Método responsável por iniciar a Activity: SearchDataInFirestoreActivity
     private fun sendToSearchTraining() {
         val intent = Intent(this, SearchDataInFirestoreActivity::class.java)
         startActivity(intent)
     }
 
 
+    // Método responsável por realizar a leitura dos dados ao Firebase Firestore:
     private fun getDataFromFirestore() {
         loading.isVisible = true
         val db = Firebase.firestore
@@ -135,12 +142,13 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
                 loading.isVisible = false
             }
             .addOnFailureListener { exception ->
-                Log.d("Read_Firestore", "Fail to try read data from Firestore", exception)
+                Log.e("Read_Firestore", "Fail to try read data from Firestore", exception)
                 loading.isVisible = false
             }
     }
 
 
+    // Método responsável por deletar um item do Firebase Firestore:
     private fun deleteDocumentInFirestore(item: FirestoreData) {
         loading.isVisible = true
         val db = Firebase.firestore
@@ -158,6 +166,7 @@ class ReadDataFromFirestoreActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar o dialog para deletar item:
     @SuppressLint("SetTextI18n")
     private fun showDialogDeleteItem(item: FirestoreData) {
         val dialog = Dialog(this)

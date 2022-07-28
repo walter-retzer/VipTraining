@@ -15,6 +15,7 @@ import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.modeldata.firebase.FirestoreData
 
 
+// Classe Adapter que utiliza Diff Util para exibir os itens da Recycler View:
 class DataFromFirestoreAdapter(
     private val action: (FirestoreData) -> Unit,
     private val detailAction: (FirestoreData) -> Unit
@@ -42,15 +43,18 @@ class DataFromFirestoreAdapter(
         return position
     }
 
+    // Método que realiza a atualização de um item da Lista
     fun updateItem(item: FirestoreData) {
         val list = mutableListOf(item)
         diffUtil.submitList(diffUtil.currentList.minus(list.toSet()))
     }
 
+    // Método que realiza a atualização da Lista
     fun updateList(newlist: MutableList<FirestoreData>) {
         diffUtil.submitList(diffUtil.currentList.plus(newlist))
     }
 
+    // Método que realiza a remoção de um item da Lista
     fun deleteList(list: MutableList<FirestoreData>) {
         diffUtil.submitList(diffUtil.currentList.minus(list.toSet()))
     }
@@ -96,7 +100,7 @@ class ImagesFirestoreViewHolder(
             nameExercise3.text = item.listExercise?.get(2)?.observacoes
             nameExercise4.text = item.listExercise?.get(3)?.observacoes
         } catch (e: Exception) {
-            Log.d("Item_Firestore", "Indice não encontrado.")
+            Log.w("Item_Firestore", "Indice não encontrado.")
         }
 
         btnDelete.setOnClickListener { detailAction.invoke(item) }

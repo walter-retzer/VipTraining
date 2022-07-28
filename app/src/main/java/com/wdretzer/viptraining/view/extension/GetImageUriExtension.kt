@@ -7,6 +7,7 @@ import android.provider.MediaStore
 import java.io.ByteArrayOutputStream
 
 
+// Método responsável pela conversão da foto tirada para um arquivo bitmap para acesso a uri deste arquivo:
 fun getImageUri(inContext: Context, inImage: Bitmap, imageName: String): Uri {
     val bytes = ByteArrayOutputStream()
     inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes)

@@ -7,6 +7,7 @@ import androidx.annotation.DimenRes
 import androidx.recyclerview.widget.RecyclerView
 
 
+// Classe para customização do ViewPager:
 class HorizontalMarginItemDecoration(context: Context, @DimenRes horizontalMarginInDp: Int) :
     RecyclerView.ItemDecoration() {
 

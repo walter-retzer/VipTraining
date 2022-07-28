@@ -7,6 +7,7 @@ import com.wdretzer.viptraining.R
 import kotlin.math.abs
 
 
+// Classe para customização do ViewPager:
 class CustomPageTransformer(context: Context) : ViewPager2.PageTransformer {
 
     private val nextItemVisiblePx =

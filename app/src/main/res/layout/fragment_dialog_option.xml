@@ -12,7 +12,7 @@
         android:layout_height="0dp"
         android:layout_marginTop="14dp"
         android:padding="15dp"
-        android:text="Deseja realmente apagar os dados desse Treino?"
+        android:text="@string/option6"
         android:textAlignment="center"
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"

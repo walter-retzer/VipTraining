@@ -31,11 +31,13 @@ import com.wdretzer.viptraining.view.extension.getImageUri
 import com.wdretzer.viptraining.viewmodel.VipTrainingViewModel
 
 
+// Classe responsável por Editar Dados do Perfil do Usuário:
 class EditProfileActivity : AppCompatActivity() {
 
     private val imageName = "training-${System.currentTimeMillis()}"
     private lateinit var uriImage: Uri
 
+    // variavel responsável pelo uso da câmera
     private val cameraCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -49,6 +51,7 @@ class EditProfileActivity : AppCompatActivity() {
             }
         }
 
+    // variavel responsável pelo uso da galeria de fotos
     private val galleryCallback =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
             if (result.resultCode == Activity.RESULT_OK) {
@@ -84,6 +87,7 @@ class EditProfileActivity : AppCompatActivity() {
     private val viewModel: VipTrainingViewModel by viewModels()
     private val sharedPref: SharedPrefVipTraining = SharedPrefVipTraining.instance
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_edit_profile)
@@ -97,6 +101,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por checar clicks:
     private fun checkClickListeners() {
         btnSaveProfile.setOnClickListener {
             updateUserPhoto()
@@ -117,6 +122,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável pela leitura dos itens: Altura, Peso, Img... salvos no SharedPreferences:
     private fun checkReadPreferences() {
         try {
             textBirthday.setText(sharedPref.readString("Date"))
@@ -127,11 +133,12 @@ class EditProfileActivity : AppCompatActivity() {
             imageProfile.setImageURI(uri)
 
         } catch (e: IllegalArgumentException) {
-            Log.d("Shared_Pref:", "Error: $e")
+            Log.e("Shared_Pref:", "Error: $e")
         }
     }
 
 
+    // Método responsável pela ataulização do nome do usuário na tela:
     private fun checkUser() {
         viewModel.checkUserName().observe(this) {
             if (it is DataResult.Loading) {
@@ -145,6 +152,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável pela atualização da foto do usuário na tela:
     private fun updatePhotoFirebase(uri: Uri, imageName: String) {
         viewModel.uploadFileToFirebaseStorage(uri, imageName, "Profile").observe(this) {
             if (it is DataResult.Loading) {
@@ -152,11 +160,13 @@ class EditProfileActivity : AppCompatActivity() {
             }
 
             if (it is DataResult.Success) {
-                Log.d("Firestore", "Update Photo In Firebase Storage!")
+                Log.i("Firestore", "Update Photo In Firebase Storage!")
             }
         }
     }
 
+
+    // Método responsável pela atualização da foto do usuário no Firebase Authentication:
     private fun updateUserPhoto() {
         viewModel.updateUserPhoto(uriImage.toString()).observe(this) {
             if (it is DataResult.Loading) {
@@ -164,32 +174,13 @@ class EditProfileActivity : AppCompatActivity() {
             }
 
             if (it is DataResult.Success) {
-                Log.d("Firestore", "Update Photo to Authentication!")
+                Log.i("Firestore", "Update Photo to Authentication!")
             }
         }
     }
 
-    private fun saveName(name: String) {
-        sharedPref.saveString("Name", name)
-    }
 
-    private fun saveImg(img: String) {
-        sharedPref.saveString("Img", img)
-    }
-
-    private fun saveBirthday(name: String) {
-        sharedPref.saveString("Date", name)
-    }
-
-    private fun saveWeight(weight: String) {
-        sharedPref.saveString("Weight", weight)
-    }
-
-    private fun saveHeight(height: String) {
-        sharedPref.saveString("Height", height)
-    }
-
-
+    // Método responsável por iniciar a Activity: MainMenuActivity
     private fun sendToMainMenu() {
         Handler().postDelayed({
             val intent = Intent(this, MainMenuActivity::class.java)
@@ -198,6 +189,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar o dialog com as opçãoes: Tirar foto e Galeria
     private fun dialogPhoto(context: Context) {
         val items = arrayOf("Tirar foto", "Buscar na Galeria")
         AlertDialog
@@ -213,6 +205,7 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar a Câmera:
     private fun getFromCamera(context: Context) {
         val permission =
             ContextCompat.checkSelfPermission(context, Manifest.permission.CAMERA)
@@ -226,11 +219,37 @@ class EditProfileActivity : AppCompatActivity() {
     }
 
 
+    // Método responsável por iniciar a Galeria de Fotos:
     private fun getFromGallery() {
         val intent = Intent().apply {
             action = Intent.ACTION_PICK
             type = "image/*"
         }
         galleryCallback.launch(intent)
+    }
+
+    // Método responsável por salvar o nome do usuário no Shared Preferences:
+    private fun saveName(name: String) {
+        sharedPref.saveString("Name", name)
+    }
+
+    // Método responsável por salvar a Imagem do usuário no Shared Preferences:
+    private fun saveImg(img: String) {
+        sharedPref.saveString("Img", img)
+    }
+
+    // Método responsável por salvar a data de nascimento do usuário no Shared Preferences:
+    private fun saveBirthday(name: String) {
+        sharedPref.saveString("Date", name)
+    }
+
+    // Método responsável por salvar o peso do usuário no Shared Preferences:
+    private fun saveWeight(weight: String) {
+        sharedPref.saveString("Weight", weight)
+    }
+
+    // Método responsável por salvar a altura do usuário no Shared Preferences:
+    private fun saveHeight(height: String) {
+        sharedPref.saveString("Height", height)
     }
 }

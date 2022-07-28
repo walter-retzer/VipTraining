@@ -36,12 +36,10 @@
     <string name="exercicios">Exercícios</string>
     <string name="imagens_do_treino">Imagens do Treino</string>
     <string name="observation">Minhas Observações</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="minha_meta">Minha meta</string>
     <string name="emagrecer">Abaixo nós apresentamos algumas opções de treino de musculação para emagrecer que você poderá seguir.</string>
     <string name="title_activity_choose_training">ChooseTrainingActivity</string>
-    <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
@@ -78,6 +76,20 @@
     <string name="edite_profile">Editar Perfil</string>
     <string name="ola">Olá,</string>
     <string name="completar_perfil">Complete o seu Perfil, isso nos ajudará a te conhecer melhor e assim poderemos te indicar super treinos.</string>
+    <string name="salve_img">Salve uma Imagem do Treino:</string>
+    <string name="option1">01 - Caminhada Leve por 40min</string>
+    <string name="option2">02 - Caminhada e Corrida Leve por 40min</string>
+    <string name="option3">03 - Pedalada Leve por 50min</string>
+    <string name="option4">04 - Caminhada Leve na Esteira por 40min</string>
+    <string name="option5">...</string>
+    <string name="info_perfil">Complete o seu Perfil, isso nos ajudará a te conhecer melhor e assim poderemos te indicar super treinos.</string>
+    <string name="editar_treino">Editar Treino</string>
+    <string name="senha1">Senha</string>
+    <string name="seja_bem_vindo">Seja Bem Vindo,</string>
+    <string name="option6">Deseja realmente apagar os dados desse Treino?</string>
+    <string name="continue1">Continue</string>
+    <string name="todo">TODO</string>
+    <string name="ganhar_musculos">Ganhar Musculos</string>
     <string-array name="training_types">
         <item>Perda de Peso</item>
         <item>Melhorar a forma Física</item>

@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment
 import com.google.android.material.imageview.ShapeableImageView
 import com.wdretzer.viptraining.R
 
+
+// Classe com as Informações do Treino Melhorar a Forma Física:
 class TrainingType4Fragment: Fragment(R.layout.fragment_training_type1){
 
     private val imageCard: ShapeableImageView?

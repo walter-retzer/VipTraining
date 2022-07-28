@@ -85,7 +85,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="18dp"
         android:buttonTint="@color/blue_light"
-        android:text="01 - Caminhada Leve por 40min"
+        android:text="@string/option1"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/view_top_white" />
@@ -97,7 +97,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:buttonTint="@color/blue_light"
-        android:text="02 - Caminhada e Corrida Leve por 40min"
+        android:text="@string/option2"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise1" />
@@ -109,7 +109,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:buttonTint="@color/blue_light"
-        android:text="03 - Pedalada Leve por 50min"
+        android:text="@string/option3"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise2" />
@@ -121,7 +121,7 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="10dp"
         android:buttonTint="@color/blue_light"
-        android:text="04 - Caminhada Leve na Esteira por 40min"
+        android:text="@string/option4"
         android:textColor="@color/grey"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/checkbox_exercise3" />
