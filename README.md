@@ -11,14 +11,11 @@ Tópicos Implementados na Aplicação Mobile:
 - Shared Preferences para armazenar o nome, data de nascimento, peso, altura e imagem do Avatar do Perfil do Usuário; 
 - Componentes do Material Design para criar os Layout das Telas;
 
-
 ## PROTÓTIPO DAS TELAS DO APLICATIVO NO FIGMA
 
 ![Screen](screen/img23.PNG)
 
-### Link com as telas desenhadas no Figma:
-
-[Figma](https://www.figma.com/file/J2iXG58WH6qTUWO2nrHEsg/Fitness-App-UI-Design?node-id=0%3A1)
+### Link com as telas desenhadas no Figma: [Figma](https://www.figma.com/file/J2iXG58WH6qTUWO2nrHEsg/Fitness-App-UI-Design?node-id=0%3A1)
 
 ## TELA DE ABERTURA DO APLICATIVO
 

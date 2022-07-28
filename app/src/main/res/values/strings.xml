@@ -78,7 +78,6 @@
     <string name="edite_profile">Editar Perfil</string>
     <string name="ola">Olá,</string>
     <string name="completar_perfil">Complete o seu Perfil, isso nos ajudará a te conhecer melhor e assim poderemos te indicar super treinos.</string>
-
     <string-array name="training_types">
         <item>Perda de Peso</item>
         <item>Melhorar a forma Física</item>
