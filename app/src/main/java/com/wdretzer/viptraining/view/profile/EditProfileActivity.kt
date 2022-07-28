@@ -152,7 +152,7 @@ class EditProfileActivity : AppCompatActivity() {
             }
 
             if (it is DataResult.Success) {
-                Toast.makeText(this, "Update Photo In Firebase Storage!", Toast.LENGTH_SHORT).show()
+                Log.d("Firestore", "Update Photo In Firebase Storage!")
             }
         }
     }
@@ -164,7 +164,7 @@ class EditProfileActivity : AppCompatActivity() {
             }
 
             if (it is DataResult.Success) {
-                Toast.makeText(this, "Update Photo to Authentication!", Toast.LENGTH_SHORT).show()
+                Log.d("Firestore", "Update Photo to Authentication!")
             }
         }
     }

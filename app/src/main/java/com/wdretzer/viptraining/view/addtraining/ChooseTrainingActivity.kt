@@ -12,6 +12,7 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.ArrayAdapter
 import android.widget.Button
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
@@ -22,6 +23,8 @@ import com.wdretzer.viptraining.R
 import com.wdretzer.viptraining.view.extension.getImageUri
 import com.wdretzer.viptraining.view.menu.MainMenuActivity
 import java.lang.System.currentTimeMillis
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 class ChooseTrainingActivity : AppCompatActivity() {
@@ -61,6 +64,9 @@ class ChooseTrainingActivity : AppCompatActivity() {
     private val btnCamera: ShapeableImageView
         get() = findViewById(R.id.btn_camera)
 
+    private val textDate: TextView
+        get() = findViewById(R.id.text_date_training)
+
     private var uriImage: Uri? = null
 
 
@@ -70,6 +76,10 @@ class ChooseTrainingActivity : AppCompatActivity() {
 
         // Desabilita a Action Bar que exibe o nome do Projeto:
         supportActionBar?.hide()
+
+        val sdf = SimpleDateFormat("E, dd-MM-yyyy")
+        val currentDate = sdf.format(Date())
+        textDate.text = currentDate.toString()
 
         // get reference to the string array that we just created
         val languages = resources.getStringArray(R.array.training_types)

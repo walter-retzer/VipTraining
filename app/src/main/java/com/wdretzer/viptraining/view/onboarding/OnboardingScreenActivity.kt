@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
+import android.window.SplashScreen
 import androidx.viewpager2.widget.ViewPager2
 import com.wdretzer.viptraining.view.util.CustomPageTransformer
 import com.wdretzer.viptraining.view.util.HorizontalMarginItemDecoration
@@ -21,6 +22,11 @@ class OnboardingScreenActivity : AppCompatActivity() {
 
         setupViewPager()
         checkPage()
+    }
+
+    override fun onBackPressed() {
+        val intent = Intent(this, SplashScreen::class.java)
+        startActivity(intent)
     }
 
     private fun setupViewPager() {

@@ -151,7 +151,6 @@ class MyProfileActivity : AppCompatActivity() {
             if (it is DataResult.Loading) {
                 progressBar.isVisible = it.isLoading
             }
-
             if (it is DataResult.Success) {
                 Toast.makeText(this, "Update Photo In Firebase Storage!", Toast.LENGTH_SHORT).show()
             }
